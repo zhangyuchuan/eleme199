@@ -17,6 +17,28 @@ Route::get('/', function () {
 
 
 
+
+Route::group([],function(){
+
+
+    //后台管理员路由
+    //Admin\Users\MangerController
+    Route::get('/admin/users/manger/index','Admin\Users\MangerController@index');
+    Route::get('/admin/users/manger/list','Admin\Users\MangerController@list');
+
+    //后台普通用户路由
+//    Admin\Users\UserController
+    //后台商家路由
+    //Admin\Users\SellerController
+    //后台商铺路由
+    //Admin\Shops\ShopController
+    //后台商品路由
+    //Admin\Goods\GoodController
+    //后台订单路由
+    //Admin\Orders\OrderController
+});
+
+
     //个人中心
     Route::get('/center','Home\Users\UserController@center');
     //安全中心
@@ -47,4 +69,4 @@ Route::get('/', function () {
     Route::get('/orders','Home\Orders\OrderController@orders');
     //结算
     Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
-
+    
