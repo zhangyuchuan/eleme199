@@ -10,12 +10,12 @@ class ShopController extends Controller
     //商品列表
     public function lists()
     {
-        return view('homes.Shops.lists');
+        return view('Homes.Shops.lists');
     }
 
     //商品详情
     public function shop()
     {
-        return view('homes.Shops.shop');
+        return view('Homes.Shops.shop');
     }
 }

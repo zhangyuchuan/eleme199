@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('homes.shouye');
 });
 
-Route::group([],function(){
+
 
     //个人中心
     Route::get('/center','Home\Users\UserController@center');
@@ -47,4 +47,4 @@ Route::group([],function(){
     Route::get('/orders','Home\Orders\OrderController@orders');
     //结算
     Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
-});
+
