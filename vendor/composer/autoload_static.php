@@ -80,6 +80,10 @@ class ComposerStaticInit36b447cebbe63736e31eacc153db7c91
         array (
             'Illuminate\\' => 11,
         ),
+        'G' => 
+        array (
+            'Gregwar\\' => 8,
+        ),
         'F' => 
         array (
             'Fideloper\\Proxy\\' => 16,
@@ -235,6 +239,10 @@ class ComposerStaticInit36b447cebbe63736e31eacc153db7c91
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'Gregwar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gregwar/captcha/src/Gregwar',
+        ),
         'Fideloper\\Proxy\\' => 
         array (
             0 => __DIR__ . '/..' . '/fideloper/proxy/src',
@@ -327,12 +335,19 @@ class ComposerStaticInit36b447cebbe63736e31eacc153db7c91
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Admin\\Login\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Login/LoginController.php',
+        'App\\Http\\Controllers\\Admin\\Users\\MangerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Users/MangerController.php',
+        'App\\Http\\Controllers\\Admin\\Users\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Users/UserController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\homes\\HomesController' => __DIR__ . '/../..' . '/app/Http/Controllers/homes/HomesController.php',
+        'App\\Http\\Controllers\\Home\\Goods\\GoodController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/Goods/GoodController.php',
+        'App\\Http\\Controllers\\Home\\Logins\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/Logins/LoginController.php',
+        'App\\Http\\Controllers\\Home\\Orders\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/Orders/OrderController.php',
+        'App\\Http\\Controllers\\Home\\Shops\\ShopController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/Shops/ShopController.php',
+        'App\\Http\\Controllers\\Home\\Users\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/Users/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
@@ -988,6 +1003,11 @@ class ComposerStaticInit36b447cebbe63736e31eacc153db7c91
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
+        'Gregwar\\Captcha\\CaptchaBuilder' => __DIR__ . '/..' . '/gregwar/captcha/src/Gregwar/Captcha/CaptchaBuilder.php',
+        'Gregwar\\Captcha\\CaptchaBuilderInterface' => __DIR__ . '/..' . '/gregwar/captcha/src/Gregwar/Captcha/CaptchaBuilderInterface.php',
+        'Gregwar\\Captcha\\ImageFileHandler' => __DIR__ . '/..' . '/gregwar/captcha/src/Gregwar/Captcha/ImageFileHandler.php',
+        'Gregwar\\Captcha\\PhraseBuilder' => __DIR__ . '/..' . '/gregwar/captcha/src/Gregwar/Captcha/PhraseBuilder.php',
+        'Gregwar\\Captcha\\PhraseBuilderInterface' => __DIR__ . '/..' . '/gregwar/captcha/src/Gregwar/Captcha/PhraseBuilderInterface.php',
         'Hamcrest\\Arrays\\IsArray' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
         'Hamcrest\\Arrays\\IsArrayContaining' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContaining.php',
         'Hamcrest\\Arrays\\IsArrayContainingInAnyOrder' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContainingInAnyOrder.php',

@@ -14,6 +14,18 @@
 Route::get('/', function () {
     return view('homes.shouye');
 });
+
+//后台登陆
+Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+    //首页
+    Route::get('login','Login\LoginController@index');
+    //生成验证码
+    Route::get('code/captcha/{id}','Login\LoginController@captcha');
+    //登陆验证
+    Route::post('dologin','Login\LoginController@dologin');
+});
+
+
 Route::group([],function(){
 
     //后台管理员路由
