@@ -15,4 +15,14 @@ class MangerController extends Controller
     {
         return view('Admin.Manger.UserList');
     }
+
+    public function add()
+    {
+        return view('Admin.Manger.UserAdd');
+    }
+    public function del()
+    {
+        return view('Admin.Manger.UserDel');
+    }
+
 }

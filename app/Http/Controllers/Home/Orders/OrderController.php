@@ -10,12 +10,12 @@ class OrderController extends Controller
     //结算
     public function jiesuan()
     {
-        return view('homes.Orders.jiesuan');
+        return view('Homes.Orders.jiesuan');
     }
 
     //商品订单
     public function orders()
     {
-        return view('homes.Orders.orders');
+        return view('Homes.Orders.orders');
     }
 }

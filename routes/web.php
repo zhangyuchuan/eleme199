@@ -13,6 +13,7 @@
 
 
 Route::get('/', function () {
+<<<<<<< HEAD
     return view('welcome');
 });
 //后台登录
@@ -26,24 +27,59 @@ Route::post('admin/doLogin','Admin\Login\LoginController@doLogin');
 
 //验证码验证
 Route::get('/admin/code','Admin\Login\LoginController@code');
+=======
+
+    return view('welcome');
+
+});
+
+
+//后台登陆
+Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+    //首页
+    Route::get('login','Login\LoginController@index');
+    //生成验证码
+    Route::get('code/captcha/{id}','Login\LoginController@captcha');
+    //登陆验证
+    Route::post('dologin','Login\LoginController@dologin');
+});
+
+>>>>>>> origin/master
 
 
 Route::group([],function(){
+
 
     //后台管理员路由
     //Admin\Users\MangerController
     Route::get('/admin/users/manger/index','Admin\Users\MangerController@index');
     Route::get('/admin/users/manger/list','Admin\Users\MangerController@list');
+    Route::get('/admin/users/manger/add','Admin\Users\MangerController@add');
+    Route::get('/admin/users/manger/del','Admin\Users\MangerController@del');
 
     //后台普通用户路由
+    Route::get('/admin/users/users/list','Admin\Users\UserController@list');
+    Route::get('/admin/users/users/grade','Admin\Users\UserController@grade');
+    Route::get('/admin/users/users/audit','Admin\Users\UserController@audit');
 //    Admin\Users\UserController
     //后台商家路由
+    Route::get('/admin/biz/biz/list','Admin\Biz\MerchantController@list');
+    Route::get('/admin/biz/biz/grade','Admin\Biz\MerchantController@grade');
+    Route::get('/admin/biz/biz/audit','Admin\Biz\MerchantController@audit');
     //Admin\Users\SellerController
     //后台商铺路由
+    Route::get('/admin/shops/shop/list','Admin\Shops\ShopsController@list');
+    Route::get('/admin/shops/shop/add','Admin\Shops\ShopsController@add');
     //Admin\Shops\ShopController
     //后台商品路由
+    Route::get('/admin/goods/good/list','Admin\Goods\GoodsController@list');
+    Route::get('/admin/goods/good/add','Admin\Goods\GoodsController@add');
+    Route::get('/admin/goods/good/del','Admin\Goods\GoodsController@del');
     //Admin\Goods\GoodController
     //后台订单路由
+    Route::get('/admin/order/order/list','Admin\Order\OrdersController@list');
+    Route::get('/admin/order/order/add','Admin\Order\OrdersController@add');
+    Route::get('/admin/order/order/del','Admin\Order\OrdersController@del');
     //Admin\Orders\OrderController
 });
 
@@ -78,7 +114,11 @@ Route::group([],function(){
     Route::get('/orders','Home\Orders\OrderController@orders');
     //结算
     Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
+<<<<<<< HEAD
 
 
 
 
+=======
+    
+>>>>>>> origin/master
