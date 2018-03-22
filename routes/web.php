@@ -12,8 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('homes.shouye');
+
+    return view('welcome');
+
 });
+
 
 //后台登陆
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
@@ -26,7 +29,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 });
 
 
+
 Route::group([],function(){
+
 
     //后台管理员路由
     //Admin\Users\MangerController
@@ -92,6 +97,4 @@ Route::group([],function(){
     Route::get('/orders','Home\Orders\OrderController@orders');
     //结算
     Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
-
-
-
+    
