@@ -8,9 +8,11 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
-
+    'App\\Http\\Controllers\\Admin\\Biz\\MerchantController' => $baseDir . '/app/Http/Controllers/Admin/Biz/MerchantController.php',
+    'App\\Http\\Controllers\\Admin\\Goods\\GoodsController' => $baseDir . '/app/Http/Controllers/Admin/Goods/GoodsController.php',
     'App\\Http\\Controllers\\Admin\\Login\\LoginController' => $baseDir . '/app/Http/Controllers/Admin/Login/LoginController.php',
-
+    'App\\Http\\Controllers\\Admin\\Order\\OrdersController' => $baseDir . '/app/Http/Controllers/Admin/Order/OrdersController.php',
+    'App\\Http\\Controllers\\Admin\\Shops\\ShopsController' => $baseDir . '/app/Http/Controllers/Admin/Shops/ShopsController.php',
     'App\\Http\\Controllers\\Admin\\Users\\MangerController' => $baseDir . '/app/Http/Controllers/Admin/Users/MangerController.php',
     'App\\Http\\Controllers\\Admin\\Users\\UserController' => $baseDir . '/app/Http/Controllers/Admin/Users/UserController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -29,6 +31,7 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Model\\User' => $baseDir . '/app/Model/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
