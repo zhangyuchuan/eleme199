@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Users extends Model
 {
-    public $table = 'webadmin';
+    public $table = 'users';
 
     //2. 模型默认的主键
     public $primaryKey ='id';

@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -46,36 +48,49 @@ class LoginController extends Controller
     //验证登录信息
     public function doLogin(Request $request)
     {
-        $input= $request -> input('code');
-        if (session('code') != $input)
-        {
-            return back()->with('msg','验证码不正确');
+        // 1.获取用户提交的登录数据(用户名,,密码,验证码)
+        $input= $request->except('_token');
+        //先判断验证码是否正确
+        if (strtolower($input['code']) != strtolower(session()->get('code'))){
+            return redirect('admin/login')->with('errors','验证码错误');
         }
-        $user= $request -> only(['username','password']);
-//        $res = Users::where(['name'=>$user['username'],'password'=>$user['password']])->firstOrFail();
-        $res = Users::where('name',$user['username'])->where('password',$user['password'])->first();
-//        dd($res);
-        if ($res){
-            session('adminUserInfo',$user['username']);
-            session('adminFlagInfo',true);
-            echo 1;
-        }else{
-            return back()->with('msg','用户名或密码不正确');
+
+        //对提交的数据进行验证(validator)
+        // $validator = Validator::make(需要验证的数据,验证的规则,提示信息);
+        //验证规则
+        $rule = [
+            'username'=>'required|between:5,10',
+            'password'=>'required|between:8,16'
+        ];
+        $msg = [
+            'username.required'=>'用户名必须不能为空',
+            'username.between'=>'用户名必须在5-10位之间',
+            'password.required'=>'密码不能为空',
+            'password.between'=>'密码必须在8-16位之间'
+        ];
+        $validator = Validator::make($input,$rule,$msg);
+        if ($validator->fails()) {
+            return redirect('admin/login')
+                ->withErrors($validator)
+                ->withInput();
         }
+
+        //4判断是否有此用户
+        $user= Users::where('username',$input['username'])->first();
+
+        if (!$user){
+            return redirect('admin/login')->with('errors','用户名不存在');
+        }
+        //5验证密码是否正确(加密方式)
+        /*if ($input['password'] !=Crypt::decrypt($user->password)){
+            return redirect('admin/login')->with('errors','密码错误');
+        }*/
+
+        //7 保存到
+        //6 都正确,跳转到后台首页(路由跳转)
+        return redirect('admin/index');
 
     }
 
-   /* public function code(Request $request)
-    {
-//        $tmp = $request ->a;
-//        echo $tmp;
-            $a = $_GET['a'];
-            echo $a;
-        if (session('code')==$a){
-            echo 1;
-        }else{
-            echo 0;
-        }
-//        echo session('code');
-    }*/
+
 }
