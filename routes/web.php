@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('homes.shouye');
+    return view('welcome');
 });
 
 
