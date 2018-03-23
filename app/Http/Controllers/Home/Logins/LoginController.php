@@ -10,13 +10,13 @@ class LoginController extends Controller
     //登录
     public function login()
     {
-        return view('homes.Logins.login');
+        return view('Homes.Logins.login');
     }
 
     //注册
     public function register()
     {
-        return view('homes.Logins.register');
+        return view('Homes.Logins.register');
     }
 }
 
