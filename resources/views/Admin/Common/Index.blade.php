@@ -52,13 +52,13 @@
                             </a>
                         </li >
                         <li>
-                            <a _href="member-del.html">
+                            <a _href="/admin/users/manger/add" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>添加管理员</cite>
                             </a>
                         </li>
                         <li>
-                            <a _href="member-del.html">
+                            <a _href="/admin/users/manger/del" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>删除管理员</cite>
                             </a>
@@ -74,20 +74,20 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="member-list.html">
+                            <a _href="/admin/users/users/list" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>用户列表</cite>
 
                             </a>
                         </li >
                         <li>
-                            <a _href="member-del.html">
+                            <a _href="/admin/users/users/grade" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>等级管理</cite>
+                                <cite>用户增加</cite>
                             </a>
                         </li>
                         <li>
-                            <a _href="member-del.html">
+                            <a _href="/admin/users/users/audit" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>用户审核</cite>
                             </a>
@@ -104,20 +104,20 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="member-list.html">
+                            <a _href="/admin/biz/biz/list" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>用户列表</cite>
+                                <cite>商家列表</cite>
 
                             </a>
                         </li >
                         <li>
-                            <a _href="member-del.html">
+                            <a _href="/admin/biz/biz/grade" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>等级管理</cite>
                             </a>
                         </li>
                         <li>
-                            <a _href="member-del.html">
+                            <a _href="/admin/biz/biz/audit" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>商家审核</cite>
                             </a>
@@ -134,13 +134,13 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="admin-list.html">
+                            <a _href="/admin/shops/shop/list" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>商铺列表</cite>
                             </a>
                         </li >
                         <li>
-                            <a _href="admin-role.html">
+                            <a _href="/admin/shops/shop/add" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>开店申请</cite>
                             </a>
@@ -156,9 +156,27 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="admin-list.html">
+                            <a _href="/admin/goods/good/list" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>商品列表</cite>
+                            </a>
+                        </li >
+
+                    </ul>
+                    <ul class="sub-menu">
+                        <li>
+                            <a _href="/admin/goods/good/add" target="_blank">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>商品添加</cite>
+                            </a>
+                        </li >
+
+                    </ul>
+                    <ul class="sub-menu">
+                        <li>
+                            <a _href="/admin/goods/good/del" target="_blank">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>商品删除</cite>
                             </a>
                         </li >
 
@@ -173,51 +191,25 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="echarts1.html">
+                            <a _href="/admin/order/order/list" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>拆线图</cite>
-                            </a>
-                        </li >
-                        <li>
-                            <a _href="echarts2.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>柱状图</cite>
+                                <cite>订单列表</cite>
                             </a>
                         </li>
+                    </ul>
+                    <ul class="sub-menu">
                         <li>
-                            <a _href="echarts3.html">
+                            <a _href="/admin/order/order/add" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>地图</cite>
+                                <cite>订单添加</cite>
                             </a>
                         </li>
+                    </ul>
+                    <ul class="sub-menu">
                         <li>
-                            <a _href="echarts4.html">
+                            <a _href="/admin/order/order/del" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>饼图</cite>
-                            </a>
-                        </li>
-                        <li>
-                            <a _href="echarts5.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>雷达图</cite>
-                            </a>
-                        </li>
-                        <li>
-                            <a _href="echarts6.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>k线图</cite>
-                            </a>
-                        </li>
-                        <li>
-                            <a _href="echarts7.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>热力图</cite>
-                            </a>
-                        </li>
-                        <li>
-                            <a _href="echarts8.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>仪表图</cite>
+                                <cite>订单删除</cite>
                             </a>
                         </li>
                     </ul>
