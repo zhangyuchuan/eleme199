@@ -66,9 +66,21 @@ Route::group(['middleware'=>'Islogin'],function() {
     //后台普通用户路由
     Route::get('/admin/users/users/grade','Admin\Users\UserController@grade');
     Route::get('/admin/users/users/audit','Admin\Users\UserController@audit');
+
     Route::resource('/admin/users/users','Admin\Users\UserController');
     //后台用户修改状态
     Route::post('/admin/users/users/changestatus','Admin\Users\UserController@changestatus');
+
+//    Admin\Users\UserController
+
+
+    //后台网站配置
+    //批量修改网站配置项
+    Route::post('/admin/config/changecontent','Admin\Config\ConfigController@changeContent');
+    Route::resource('/admin/config','Admin\Config\ConfigController');
+
+
+
 
 
 
