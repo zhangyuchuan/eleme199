@@ -12,7 +12,9 @@
 */
 
 //网站首页
+
 Route::get('/', function () {
+
 
     return view('welcome');
 
@@ -28,19 +30,20 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 });
 
 
+
 //后台路由组
-Route::group(['middleware'=>'Islogin'],function(){
+Route::group(['middleware'=>'Islogin'],function() {
     // 退出登录
-    Route::get('/admin/logout','Admin\Login\LoginController@logout');
+    Route::get('/admin/logout', 'Admin\Login\LoginController@logout');
     //后台首页路由
-    Route::get('/admin/index','Admin\Login\LoginController@index');
+    Route::get('/admin/index', 'Admin\Login\LoginController@index');
     //后台管理员路由
     //Admin\Users\MangerController
-    Route::post('/admin/users/manger/status','Admin\Users\MangerController@changestatus');
-    Route::get('/admin/users/manger/repass/{id}','Admin\Users\MangerController@repass');
-    Route::post('/admin/users/manger/dorepass/{id}','Admin\Users\MangerController@dorepass');
-    Route::get('/admin/users/manger/delall','Admin\Users\MangerController@delall');
-    Route::resource('/admin/users/manger','Admin\Users\MangerController');
+    Route::post('/admin/users/manger/status', 'Admin\Users\MangerController@changestatus');
+    Route::get('/admin/users/manger/repass/{id}', 'Admin\Users\MangerController@repass');
+    Route::post('/admin/users/manger/dorepass/{id}', 'Admin\Users\MangerController@dorepass');
+    Route::get('/admin/users/manger/delall', 'Admin\Users\MangerController@delall');
+    Route::resource('/admin/users/manger', 'Admin\Users\MangerController');
 
 //    //后台普通用户路由 Admin\Users\UserController
 //    Route::get('/admin/users/users/list','Admin\Users\UserController@list');
@@ -53,17 +56,22 @@ Route::group(['middleware'=>'Islogin'],function(){
 //    Route::get('/admin/biz/biz/audit','Admin\Biz\MerchantController@audit');
     //后台商铺路由 Admin\Shops\ShopController
     //管理员修改排序
-    Route::post('/admin/shops/changeorder','Admin\Shops\ShopsController@changeorder');
+    Route::post('/admin/shops/changeorder', 'Admin\Shops\ShopsController@changeorder');
     //管理员修改店铺状态
-    Route::post('/admin/shops/changestatus','Admin\Shops\ShopsController@changestatus');
+    Route::post('/admin/shops/changestatus', 'Admin\Shops\ShopsController@changestatus');
     //管理员删除店铺
-    Route::post('/admin/shops/delete/{id}','Admin\Shops\ShopsController@deleteshop');
-    Route::resource('/admin/shops','Admin\Shops\ShopsController');
+    Route::post('/admin/shops/delete/{id}', 'Admin\Shops\ShopsController@deleteshop');
+    Route::resource('/admin/shops', 'Admin\Shops\ShopsController');
 //    //后台商品路由 Admin\Goods\GoodController
-//    Route::get('/admin/goods/good/list','Admin\Goods\GoodsController@list');
-//    Route::get('/admin/goods/good/add','Admin\Goods\GoodsController@add');
-//    Route::get('/admin/goods/good/del','Admin\Goods\GoodsController@del');
-//    //
+
+
+    Route::post('/admin/goods/upload', 'Admin\Goods\GoodsController@upload');
+    Route::resource('/admin/goods', 'Admin\Goods\GoodsController');
+
+    //后台商品分类路由
+    Route::post('/admin/goodscate/statusup', 'Admin\Goods\GoodsCateController@statusup');
+    Route::post('/admin/goodscate/statusdown', 'Admin\Goods\GoodsCateController@statusdown');
+    Route::resource('/admin/goodscate', 'Admin\Goods\GoodsCateController');
 //    //后台订单路由 Admin\Orders\OrderController
 //    Route::get('/admin/order/order/list','Admin\Order\OrdersController@list');
 //    Route::get('/admin/order/order/add','Admin\Order\OrdersController@add');
@@ -73,14 +81,14 @@ Route::group(['middleware'=>'Islogin'],function(){
 //    Admin\Seller\SellerController
     //店家后台我的店铺
 //    Admin\Seller\ShopsController
-    Route::get('admin/seller/shops/changecontent','Admin\Seller\ShopsController@changecontent');
-    Route::resource('admin/seller/shops','Admin\Seller\ShopsController');
+    Route::get('admin/seller/shops/changecontent', 'Admin\Seller\ShopsController@changecontent');
+    Route::resource('admin/seller/shops', 'Admin\Seller\ShopsController');
     //店家后台商品管理
 //    Admin\Seller\GoodsControlelr
     //店家后台订单统计
 //    Admin\Seller\OrdersController
-});
 
+});
 
     //个人中心
     Route::get('/center','Home\Users\UserController@center');
@@ -112,4 +120,5 @@ Route::group(['middleware'=>'Islogin'],function(){
     Route::get('/orders','Home\Orders\OrderController@orders');
     //结算
     Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
-    
+
+

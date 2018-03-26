@@ -1,118 +1,164 @@
 @extends('Admin.Common.Common')
 @section('content')
-    <div class="x-body">
-        <form class="layui-form">
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>登录名
-                </label>
-                <div class="layui-input-inline">
-                    <input type="text" id="username" name="username" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>将会成为您唯一的登入名
-                </div>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <form enctype="multipart/form-data" class="layui-form" action="" method="post">
+        {{csrf_field()}}
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="gname" required  lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
             </div>
-            <div class="layui-form-item">
-                <label for="phone" class="layui-form-label">
-                    <span class="x-red">*</span>手机
-                </label>
-                <div class="layui-input-inline">
-                    <input type="text" id="phone" name="phone" required="" lay-verify="phone"
-                           autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>将会成为您唯一的登入名
-                </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商家编号</label>
+            <div class="layui-input-inline ">
+                <input type="text" name="sid" required lay-verify="required" placeholder="请输入商家编号" autocomplete="off" class="layui-input">
             </div>
-            <div class="layui-form-item">
-                <label for="L_email" class="layui-form-label">
-                    <span class="x-red">*</span>邮箱
-                </label>
-                <div class="layui-input-inline">
-                    <input type="text" id="L_email" name="email" required="" lay-verify="email"
-                           autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>
-                </div>
+            <div class="layui-input-inline ">
+                <input type="text" name="" id="sname" placeholder="商家" disabled autocomplete="off" class="layui-input">
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label"><span class="x-red">*</span>角色</label>
-                <div class="layui-input-block">
-                    <input type="checkbox" name="like1[write]" lay-skin="primary" title="超级管理员" checked="">
-                    <input type="checkbox" name="like1[read]" lay-skin="primary" title="编辑人员">
-                    <input type="checkbox" name="like1[write]" lay-skin="primary" title="宣传人员" checked="">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label">
-                    <span class="x-red">*</span>密码
-                </label>
-                <div class="layui-input-inline">
-                    <input type="password" id="L_pass" name="pass" required="" lay-verify="pass"
-                           autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux">
-                    6到16个字符
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label">
-                    <span class="x-red">*</span>确认密码
-                </label>
-                <div class="layui-input-inline">
-                    <input type="password" id="L_repass" name="repass" required="" lay-verify="repass"
-                           autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label">
-                </label>
-                <button  class="layui-btn" lay-filter="add" lay-submit="">
-                    增加
-                </button>
-            </div>
-        </form>
-    </div>
-    <script>
-        layui.use(['form','layer'], function(){
-            $ = layui.jquery;
-            var form = layui.form
-                ,layer = layui.layer;
+            <div class="layui-form-mid layui-word-aux"> </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品栏位</label>
+            <div class="layui-input-inline">
+                <select name="gcid" lay-verify="required">
+                    <option value=""></option>
+                    <option value="1">北京</option>
 
-            //自定义验证规则
-            form.verify({
-                nikename: function(value){
-                    if(value.length < 5){
-                        return '昵称至少得5个字符啊';
-                    }
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">价格</label>
+            <div class="layui-input-inline">
+                <input type="text" name="price" required  lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-upload">
+            <label class="layui-form-label">缩略图上传</label>
+
+            <div class="layui-upload-list" style="position: relative;">
+                <input id="file_upload" type="file" name="fileupload" value="" style="opacity:0.0;position: relative;z-index:99999999"   >
+                <img style="with:60px;height:30px;position: absolute;left:120px;top:0px;z-index:1;" class="layui-upload-img" id="demo1" src="/admin/images/shangchuan.jpg">
+                <p id="demoText"></p>
+
+
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-block">
+                <input type="hidden" name="gpic" value="">
+                <img id="gpic" src="" style="width:60px;">
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $("#file_upload").change(function () {
+                    uploadImage();
+                })
+            })
+            function uploadImage() {
+//  判断是否有选择上传文件
+                var imgPath = $("#file_upload").val();
+                if (imgPath == "") {
+                    alert("请选择上传图片！");
+                    return;
                 }
-                ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-                ,repass: function(value){
-                    if($('#L_pass').val()!=$('#L_repass').val()){
-                        return '两次密码不一致';
-                    }
+                //判断上传文件的后缀名
+                var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);
+                if (strExtension != 'jpg' && strExtension != 'gif'
+                    && strExtension != 'png' && strExtension != 'bmp') {
+                    alert("请选择图片文件");
+                    return;
                 }
-            });
+                // var formData = new FormData($('#art_form')[0]);
+                var formData = new FormData();
+                formData.append('fileupload',$('#file_upload')[0].files[0]);
+
+                $.ajax({
+                    type: "POST",
+                    cache: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "/admin/goods/upload",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        console.log(data);
+                         $('#gpic').attr('src','/uploads/'+data);
+                         $("input[name='gpic']").val(data);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("上传失败，请检查网络后重试");
+                    }
+                });
+            }
+        </script>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="status" value="1" title="新品" checked>
+                <input type="radio" name="status" value="2" title="上架" >
+                <input type="radio" name="status" value="4" title="活动" >
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">商品描述</label>
+            <div class="layui-input-inline">
+                <textarea name="gdesc" placeholder="请输入内容" class="layui-textarea" style="resize: none;width: 400px;"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">添加</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        //Demo
+        layui.use('form', function(){
+            var form = layui.form;
 
             //监听提交
-            form.on('submit(add)', function(data){
+            form.on('submit(formDemo)', function(data){
                 console.log(data);
-                //发异步，把数据提交给php
-                layer.alert("增加成功", {icon: 6},function () {
-                    // 获得frame索引
-                    var index = parent.layer.getFrameIndex(window.name);
-                    //关闭当前frame
-                    parent.layer.close(index);
+                $.ajax({
+                    type: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "/admin/goods",
+                    data: data.field,
+                    dataType: "json",
+                    success: function(data){
+                        // 如果添加成功
+                        if(data.status == 0){
+                            layer.alert(data.msg,{icon:6,time:2000},function(){
+                                //关闭弹层，刷新父页面
+                                parent.location.reload(true);
+                            })
+                        }else{
+                            layer.alert(data.msg,{icon:6,time:2000},function(){
+                                //关闭弹层，刷新父页面
+                                parent.location.reload(true);
+                            })
+                        }
+                    }
                 });
+
                 return false;
             });
-
-
         });
     </script>
+
     <script>var _hmt = _hmt || []; (function() {
             var hm = document.createElement("script");
             hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
