@@ -45,15 +45,7 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::get('/admin/users/manger/delall', 'Admin\Users\MangerController@delall');
     Route::resource('/admin/users/manger', 'Admin\Users\MangerController');
 
-//    //后台普通用户路由 Admin\Users\UserController
-//    Route::get('/admin/users/users/list','Admin\Users\UserController@list');
-//    Route::get('/admin/users/users/grade','Admin\Users\UserController@grade');
-//    Route::get('/admin/users/users/audit','Admin\Users\UserController@audit');
-//
-//    //后台商家路由 Admin\Users\SellerController
-//    Route::get('/admin/biz/biz/list','Admin\Biz\MerchantController@list');
-//    Route::get('/admin/biz/biz/grade','Admin\Biz\MerchantController@grade');
-//    Route::get('/admin/biz/biz/audit','Admin\Biz\MerchantController@audit');
+
     //后台商铺路由 Admin\Shops\ShopController
     //管理员修改排序
     Route::post('/admin/shops/changeorder', 'Admin\Shops\ShopsController@changeorder');
@@ -62,20 +54,26 @@ Route::group(['middleware'=>'Islogin'],function() {
     //管理员删除店铺
     Route::post('/admin/shops/delete/{id}', 'Admin\Shops\ShopsController@deleteshop');
     Route::resource('/admin/shops', 'Admin\Shops\ShopsController');
-//    //后台商品路由 Admin\Goods\GoodController
-
-
+    //后台商品路由 Admin\Goods\GoodController
     Route::post('/admin/goods/upload', 'Admin\Goods\GoodsController@upload');
     Route::resource('/admin/goods', 'Admin\Goods\GoodsController');
-
     //后台商品分类路由
     Route::post('/admin/goodscate/statusup', 'Admin\Goods\GoodsCateController@statusup');
     Route::post('/admin/goodscate/statusdown', 'Admin\Goods\GoodsCateController@statusdown');
     Route::resource('/admin/goodscate', 'Admin\Goods\GoodsCateController');
-//    //后台订单路由 Admin\Orders\OrderController
-//    Route::get('/admin/order/order/list','Admin\Order\OrdersController@list');
-//    Route::get('/admin/order/order/add','Admin\Order\OrdersController@add');
-//    Route::get('/admin/order/order/del','Admin\Order\OrdersController@del');
+
+
+    //后台普通用户路由
+    Route::get('/admin/users/users/grade','Admin\Users\UserController@grade');
+    Route::get('/admin/users/users/audit','Admin\Users\UserController@audit');
+    Route::resource('/admin/users/users','Admin\Users\UserController');
+    //后台用户修改状态
+    Route::post('/admin/users/users/changestatus','Admin\Users\UserController@changestatus');
+
+
+
+
+
 
     //店家后台个人信息
 //    Admin\Seller\SellerController
