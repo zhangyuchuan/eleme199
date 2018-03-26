@@ -31,6 +31,7 @@ class LoginController extends Controller
     public function captcha($tmp)
     {
 
+
         $phrase = new PhraseBuilder;
         // 设置验证码位数
         $code = $phrase->build(4);
@@ -52,6 +53,7 @@ class LoginController extends Controller
         header("Content-Type:image/jpeg");
         $builder->output();
     }
+
     public function dologin(Request $request)
     {
         //获取数据
@@ -70,10 +72,12 @@ class LoginController extends Controller
 
         $validator = Validator::make($input,$rule,$msg);
         if ($validator->fails()){
+
             return redirect('admin/login')
                 ->withErrors($validator)
                 ->withInput();
         }
+
         //验证码验证
         if(strtolower($input['yzm'])!=strtolower(session('code'))){
             return redirect('admin/login')->with('errors','验证码不对');
@@ -103,6 +107,7 @@ class LoginController extends Controller
         return redirect('admin/index');
 
     }
+
     //后台首页
     public function index()
     {
@@ -117,4 +122,5 @@ class LoginController extends Controller
        session()->forget('user');
         return redirect('admin/login');
     }
+
 }

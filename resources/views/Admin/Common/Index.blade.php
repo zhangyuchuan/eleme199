@@ -76,24 +76,13 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="/admin/users/users/list" target="_blank">
+                            <a _href="/admin/users/users" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>用户列表</cite>
 
                             </a>
                         </li >
-                        <li>
-                            <a _href="/admin/users/users/grade" target="_blank">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>用户增加</cite>
-                            </a>
-                        </li>
-                        <li>
-                            <a _href="/admin/users/users/audit" target="_blank">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>用户审核</cite>
-                            </a>
-                        </li>
+
 
                     </ul>
                 </li>
@@ -164,7 +153,16 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="/admin/goods/good/list" target="_blank">
+                            <a _href="/admin/goodscate" target="_blank">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>商品栏位</cite>
+                            </a>
+                        </li >
+
+                    </ul>
+                    <ul class="sub-menu">
+                        <li>
+                            <a _href="/admin/goods" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>商品列表</cite>
                             </a>
@@ -173,22 +171,14 @@
                     </ul>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="/admin/goods/good/add" target="_blank">
+                            <a _href="{{ url('admin/goods/create')}}" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>商品添加</cite>
                             </a>
                         </li >
 
                     </ul>
-                    <ul class="sub-menu">
-                        <li>
-                            <a _href="/admin/goods/good/del" target="_blank">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>商品删除</cite>
-                            </a>
-                        </li >
 
-                    </ul>
                 </li>
                 {{--订单管理--}}
                 <li>
@@ -218,6 +208,29 @@
                             <a _href="/admin/order/order/del" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>订单删除</cite>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{--网站配置管理--}}
+                <li>
+                    <a href="javascript:;">
+                        <i class="iconfont">&#xe726;</i>
+                        <cite>网站配置管理</cite>
+                        <i class="iconfont nav_right">&#xe697;</i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a _href="{{ url('admin/config') }}" target="_blank" >
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>网站配置列表</cite>
+
+                            </a>
+                        </li >
+                        <li>
+                            <a _href="{{ url('admin/config/create') }}" target="_blank">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>添加网站配置</cite>
                             </a>
                         </li>
                     </ul>
