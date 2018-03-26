@@ -74,24 +74,13 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="/admin/users/users/list" target="_blank">
+                            <a _href="/admin/users/users" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>用户列表</cite>
 
                             </a>
                         </li >
-                        <li>
-                            <a _href="/admin/users/users/grade" target="_blank">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>用户增加</cite>
-                            </a>
-                        </li>
-                        <li>
-                            <a _href="/admin/users/users/audit" target="_blank">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>用户审核</cite>
-                            </a>
-                        </li>
+
 
                     </ul>
                 </li>
