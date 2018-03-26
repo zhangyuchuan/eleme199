@@ -22,7 +22,7 @@ class LoginController extends Controller
      * @param
      * @return 登陆页面
      */
-    public function index()
+    public function login()
     {
 
         return view('Admin.Login.index');
@@ -88,11 +88,33 @@ class LoginController extends Controller
         if($input['password']!=decrypt($user->password)){
             return redirect('admin/login')->with('errors','用户名或者密码错误');
         }
+        //判断登录权限
+        if ($user->auth=='2'){
+            return redirect('admin/login')->with('errors','该用户没有权限');
+        }
+        //判断用户状态
+        if ($user->status=='1'){
+            return redirect('admin/login')->with('errors','该用户已被禁用');
+        }
         //将信息保存进session
         Session::put('user',$user);
 
         //登陆成功跳转至后台首页
-        return redirect('admin/users/manger/index');
+        return redirect('admin/index');
 
+    }
+    //后台首页
+    public function index()
+    {
+        $user = session('user');
+
+        return view('Admin.Common.Index',compact('user'));
+    }
+//    退出登录
+    public function logout()
+    {
+        //清空登录数据
+       session()->forget('user');
+        return redirect('admin/login');
     }
 }
