@@ -335,15 +335,12 @@ class ComposerStaticInit36b447cebbe63736e31eacc153db7c91
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-<<<<<<< HEAD
-        'App\\Http\\Controllers\\Admin\\Login\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Login/LoginController.php',
-=======
         'App\\Http\\Controllers\\Admin\\Biz\\MerchantController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Biz/MerchantController.php',
         'App\\Http\\Controllers\\Admin\\Goods\\GoodsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Goods/GoodsController.php',
         'App\\Http\\Controllers\\Admin\\Login\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Login/LoginController.php',
         'App\\Http\\Controllers\\Admin\\Order\\OrdersController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Order/OrdersController.php',
         'App\\Http\\Controllers\\Admin\\Shops\\ShopsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Shops/ShopsController.php',
->>>>>>> origin/master
+
         'App\\Http\\Controllers\\Admin\\Users\\MangerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Users/MangerController.php',
         'App\\Http\\Controllers\\Admin\\Users\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Users/UserController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -362,11 +359,10 @@ class ComposerStaticInit36b447cebbe63736e31eacc153db7c91
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-<<<<<<< HEAD
-        'App\\Model\\Users' => __DIR__ . '/../..' . '/app/Model/Users.php',
-=======
+
+
         'App\\Model\\User' => __DIR__ . '/../..' . '/app/Model/User.php',
->>>>>>> origin/master
+
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
