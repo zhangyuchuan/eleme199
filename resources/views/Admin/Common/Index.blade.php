@@ -214,6 +214,29 @@
                         </li>
                     </ul>
                 </li>
+                {{--网站配置管理--}}
+                <li>
+                    <a href="javascript:;">
+                        <i class="iconfont">&#xe726;</i>
+                        <cite>网站配置管理</cite>
+                        <i class="iconfont nav_right">&#xe697;</i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a _href="{{ url('admin/config') }}" target="_blank" >
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>网站配置列表</cite>
+
+                            </a>
+                        </li >
+                        <li>
+                            <a _href="{{ url('admin/config/create') }}" target="_blank">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>添加网站配置</cite>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

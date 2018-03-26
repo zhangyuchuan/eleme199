@@ -64,6 +64,12 @@ Route::group([],function(){
     Route::get('/admin/order/order/add','Admin\Order\OrdersController@add');
     Route::get('/admin/order/order/del','Admin\Order\OrdersController@del');
     //Admin\Orders\OrderController
+
+    //后台网站配置
+    //批量修改网站配置项
+    Route::post('/admin/config/changecontent','Admin\Config\ConfigController@changeContent');
+    Route::resource('/admin/config','Admin\Config\ConfigController');
+
 });
 
 
