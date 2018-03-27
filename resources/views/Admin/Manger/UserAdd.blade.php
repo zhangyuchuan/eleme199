@@ -3,6 +3,7 @@
     <div class="x-body">
         <form class="layui-form">
             <div class="layui-form-item">
+                {{csrf_field()}}
                 <label for="username" class="layui-form-label">
                     <span class="x-red">*</span>登录名
                 </label>
@@ -99,7 +100,18 @@
 
             //监听提交
             form.on('submit(add)', function(data){
-                console.log(data);
+
+                $.ajax({
+                    type:"POST",
+                    url:"/admin/biz/biz/list"
+                    data:data.field,
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                    }
+                });
+
+
                 //发异步，把数据提交给php
                 layer.alert("增加成功", {icon: 6},function () {
                     // 获得frame索引

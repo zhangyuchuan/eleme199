@@ -14,8 +14,7 @@
 Route::get('/', function () {
 
     return view('welcome');
-<<<<<<< HEAD
-=======
+
 
 });
 
@@ -28,16 +27,15 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('code/captcha/{id}','Login\LoginController@captcha');
     //登陆验证
     Route::post('dologin','Login\LoginController@dologin');
->>>>>>> origin/master
+
 });
 
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> origin/master
+
+
 Route::group([],function(){
 
 
@@ -56,6 +54,13 @@ Route::group([],function(){
     //后台商家路由
     Route::get('/admin/biz/biz/list','Admin\Biz\MerchantController@list');
     Route::get('/admin/biz/biz/grade','Admin\Biz\MerchantController@grade');
+    Route::get('/admin/biz/biz/create','Admin\Biz\MerchantController@create');
+    //删除
+    Route::post('/admin/biz/biz/destroy/{id}','Admin\Biz\MerchantController@destroy');
+    //禁用启用
+    Route::post('/admin/biz/biz/changestatus','Admin\Biz\MerchantController@changestatus');
+    //批量删除
+    Route::get('/admin/biz/biz/delall','Admin\Biz\MerchantController@delall');
     Route::get('/admin/biz/biz/audit','Admin\Biz\MerchantController@audit');
     //Admin\Users\SellerController
     //后台商铺路由
@@ -105,7 +110,7 @@ Route::group([],function(){
     Route::get('/orders','Home\Orders\OrderController@orders');
     //结算
     Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
-<<<<<<< HEAD
+
 
     //商家资质
     Route::get('/shopzizhi','Home\Sellers\SellerController@shopzizhi');
@@ -115,6 +120,5 @@ Route::group([],function(){
 
 
 
-=======
     
->>>>>>> origin/master
+
