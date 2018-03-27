@@ -41,11 +41,6 @@ Route::group(['middleware'=>'Islogin'],function() {
     //后台首页路由
     Route::get('/admin/index', 'Admin\Login\LoginController@index');
 
-
-
-
-
-
     //后台管理员路由
     //Admin\Users\MangerController
     Route::post('/admin/users/manger/status', 'Admin\Users\MangerController@changestatus');
@@ -81,8 +76,6 @@ Route::group(['middleware'=>'Islogin'],function() {
     //后台用户修改状态
     Route::post('/admin/users/users/changestatus','Admin\Users\UserController@changestatus');
 
-//    Admin\Users\UserController
-
     //后台商家路由
     Route::get('/admin/biz/biz/list','Admin\Biz\MerchantController@list');
     Route::get('/admin/biz/biz/grade','Admin\Biz\MerchantController@grade');
@@ -105,7 +98,9 @@ Route::group(['middleware'=>'Islogin'],function() {
     //店家后台我的店铺
 //    Admin\Seller\ShopsController
     Route::get('admin/seller/shops/changecontent', 'Admin\Seller\ShopsController@changecontent');
+    Route::get('admin/seller/shops/changetime', 'Admin\Seller\ShopsController@changetime');
     Route::post('admin/seller/shops/changestatus', 'Admin\Seller\ShopsController@changestatus');
+    Route::post('admin/seller/shops/uploadfile', 'Admin\Seller\ShopsController@uploadfile');
 
     Route::resource('admin/seller/shops', 'Admin\Seller\ShopsController');
     //店家后台商品管理
@@ -145,8 +140,6 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::get('/orders','Home\Orders\OrderController@orders');
     //结算
     Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
-
-
 
     //商家资质
     Route::get('/shopzizhi','Home\Sellers\SellerController@shopzizhi');

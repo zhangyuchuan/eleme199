@@ -28,14 +28,14 @@
                     <td>{{$v->id}}</td>
                     <td style="width:120px">{{$v->name}}</td>
                     <td style="width:120px">{{$v->address}}</td>
-                    <td style="width:125px">
-                        {{$v->time}}
+                    <td style="width:135px">
+                        <input type="text" class="layui-input" id="test9" ids = '{{$v->id}}' value='{{$v->time}}' placeholder=" - ">
                     </td>
                     <td>{{$v->sailcount}}</td>
                     <td>{{$v->income}}</td>
                     <td>{{$v->order}}</td>
                     <td>{{$v->score}}</td>
-                    <td><img src="/uploads/201803250257203124.jpg" alt="" style="width:80px"></td>
+                    <td><img src="{{$v->logo}}" alt="" style="width:80px"></td>
                     <td style="width:180px">
                         {!! $v->content !!}
                     </td>
@@ -69,12 +69,12 @@
                             <td>
 
                         @endif
-                        <a title="编辑"  onclick="x_admin_show('编辑','/admin/seller/shops/{{$v->id}}/edit',900,600)" href="javascript:;">
+                        <a title="修改店铺信息"  onclick="x_admin_show('修改店铺信息','/admin/seller/shops/{{$v->id}}/edit',900,600)" href="javascript:;">
                             <i class="layui-icon">&#xe642;</i>
                         </a>
-                        <a title="删除" onclick="member_del(this,'{{$v->id}}')" href="javascript:;"  status="{{$v->status}}">
-                            <i class="layui-icon">&#xe640;</i>
-                        </a>
+                        {{--<a title="删除" onclick="member_del(this,'{{$v->id}}')" href="javascript:;"  status="{{$v->status}}">--}}
+                            {{--<i class="layui-icon">&#xe640;</i>--}}
+                        {{--</a>--}}
                     </td>
                 </tr>
             @endforeach
@@ -95,12 +95,35 @@
             laydate.render({
                 elem: '#start' //指定元素
             });
+            laydate.render({
+                elem: '#test9'
+                ,type: 'time'
+                ,range: true
+                ,done: function(value, date, endDate){
+                    if(value==''){
+                        layer.msg('不能为空!!已恢复默认值');
+                        // $('#test9').val('08:00:00 - 18:00:00');
+                        setTimeout(function(){
+                            location.reload();
+                        },1000)
+                    }
+                    var ids = $('#test9').attr('ids');
+                    $.get('/admin/seller/shops/changetime',{ids:ids,time:value},function(data){
+                       if(data.status=='0'){
+                           layer.alert(data.msg,{icon:6,time:2000});
+                       }else{
+                           layer.alert(data.msg,{icon:5,time:2000});
+                       }
+                    })
+                }
+            });
             //执行一个laydate实例
             laydate.render({
                 elem: '#end' //指定元素
             });
 
         });
+
 
         //更改店铺公告
         $('textarea[name="shopcontent"]').change(function(){
@@ -118,7 +141,6 @@
 
         /*用户-停用*/
         function member_stop(obj,id){
-
             var status = $(obj).attr('status');
             var str = '';
             if(status=='0'){
@@ -170,10 +192,8 @@
                 })
             });
         }
-
         /*用户-删除*/
         function member_del(obj,id){
-
             layer.confirm('确认要删除吗？', function (index) {
                 $.ajax({
                     url: '/admin/users/manger/' + id,
@@ -189,31 +209,6 @@
                         }
                     }
                 })
-
-            });
-
-        }
-
-
-        //全部删除
-        function delAll (argument) {
-
-            layer.confirm('确认要删除吗？',function(index){
-                var ids = [];
-                $('.layui-form-checked').not('.header').each(function(i,v){
-                    ids.push($(v).attr('data-id'))
-                })
-                $.get('/admin/users/manger/delall',{'ids':ids},function(data){
-                    if(data.status=='0'){
-                        layer.msg('删除成功', {icon: 1});
-                        $(".layui-form-checked").not('.header').parents('tr').remove();
-                        location.reload(true);
-                    }else{
-                        layer.msg('删除失败', {icon: 2});
-                    }
-                })
-                //捉到所有被选中的，发异步进行删除
-
             });
         }
     </script>

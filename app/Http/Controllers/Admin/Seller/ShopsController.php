@@ -82,7 +82,25 @@ class ShopsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->except('_token');
+        $input['status'] = 3;
+//       return $input;
+        $res = ShopInfo::where('id',$id)->update($input);
+//        return $res;
+        if($res){
+            $data = [
+                'status'=>0,
+                'msg' =>'提交成功，请等待审核'
+            ];
+        }else{
+            $data = [
+                'status'=>1,
+                'msg'=>'提交失败'
+            ];
+        }
+        return $data;
+
+
     }
 
     /**
@@ -172,4 +190,52 @@ class ShopsController extends Controller
         }
         return $data;
     }
+    /**
+     * 营业.时间
+     *
+     * @param
+     * @return
+     */
+    public function changetime(Request $request)
+    {
+        $id = $request->input('ids');
+        $time  = $request->input('time');
+        //执行更新
+        $res = ShopInfo::where('id',$id)->update(['time'=>$time]);
+        if($res){
+            $data =[
+                'status'=>0,
+                'msg'=>'修改成功!!'
+            ];
+        }else{
+            $data =[
+                'status'=>1,
+                'msg'=>'修改失败!'
+            ];
+        }
+        return $data;
+    }
+    /**
+     * 上传缩略图
+     *
+     * @param
+     * @return
+     */
+    public function uploadfile(Request $request)
+    {
+        $file = $request->file('logo');
+        if($file->isValid()) {
+//            获取原文件的文件类型
+            $ext = $file->getClientOriginalExtension();    //文件拓展名
+//            生成新文件名
+            $newfile = date('YmdHis').rand(1000,9999).'.'.$ext;
+//            1. 将文件上传到本地服务器
+            //将文件从临时目录移动到制定目录
+            $path = $file->move(public_path().'/uploads',$newfile);
+            //将上传文件的路径返回给客户端
+            return $newfile;
+        }
+
+    }
+
 }
