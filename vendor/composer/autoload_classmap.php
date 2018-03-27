@@ -8,17 +8,17 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
-
-//    'App\\Http\\Controllers\\Admin\\Biz\\MerchantController' => $baseDir . '/app/Http/Controllers/Admin/Biz/MerchantController.php',
-//    'App\\Http\\Controllers\\Admin\\Goods\\GoodsController' => $baseDir . '/app/Http/Controllers/Admin/Goods/GoodsController.php',
-//    'App\\Http\\Controllers\\Admin\\Login\\LoginController' => $baseDir . '/app/Http/Controllers/Admin/Login/LoginController.php',
-//    'App\\Http\\Controllers\\Admin\\Order\\OrdersController' => $baseDir . '/app/Http/Controllers/Admin/Order/OrdersController.php',
-//    'App\\Http\\Controllers\\Admin\\Shops\\ShopsController' => $baseDir . '/app/Http/Controllers/Admin/Shops/ShopsController.php',
-//<<<<<<< HEAD
-//
-//=======
-//>>>>>>> origin/master
-//>>>>>>> origin/zcs
+    'App\\Http\\Controllers\\Admin\\Biz\\MerchantController' => $baseDir . '/app/Http/Controllers/Admin/Biz/MerchantController.php',
+    'App\\Http\\Controllers\\Admin\\Config\\ConfigController' => $baseDir . '/app/Http/Controllers/Admin/Config/ConfigController.php',
+    'App\\Http\\Controllers\\Admin\\Goods\\GoodsCateController' => $baseDir . '/app/Http/Controllers/Admin/Goods/GoodsCateController.php',
+    'App\\Http\\Controllers\\Admin\\Goods\\GoodsController' => $baseDir . '/app/Http/Controllers/Admin/Goods/GoodsController.php',
+    'App\\Http\\Controllers\\Admin\\Login\\LoginController' => $baseDir . '/app/Http/Controllers/Admin/Login/LoginController.php',
+    'App\\Http\\Controllers\\Admin\\Order\\OrdersController' => $baseDir . '/app/Http/Controllers/Admin/Order/OrdersController.php',
+    'App\\Http\\Controllers\\Admin\\Seller\\GoodsController' => $baseDir . '/app/Http/Controllers/Admin/Seller/GoodsController.php',
+    'App\\Http\\Controllers\\Admin\\Seller\\OrdersController' => $baseDir . '/app/Http/Controllers/Admin/Seller/OrdersController.php',
+    'App\\Http\\Controllers\\Admin\\Seller\\SellerController' => $baseDir . '/app/Http/Controllers/Admin/Seller/SellerController.php',
+    'App\\Http\\Controllers\\Admin\\Seller\\ShopsController' => $baseDir . '/app/Http/Controllers/Admin/Seller/ShopsController.php',
+    'App\\Http\\Controllers\\Admin\\Shops\\ShopsController' => $baseDir . '/app/Http/Controllers/Admin/Shops/ShopsController.php',
     'App\\Http\\Controllers\\Admin\\Users\\MangerController' => $baseDir . '/app/Http/Controllers/Admin/Users/MangerController.php',
     'App\\Http\\Controllers\\Admin\\Users\\UserController' => $baseDir . '/app/Http/Controllers/Admin/Users/UserController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -29,18 +29,22 @@ return array(
     'App\\Http\\Controllers\\Home\\Goods\\GoodController' => $baseDir . '/app/Http/Controllers/Home/Goods/GoodController.php',
     'App\\Http\\Controllers\\Home\\Logins\\LoginController' => $baseDir . '/app/Http/Controllers/Home/Logins/LoginController.php',
     'App\\Http\\Controllers\\Home\\Orders\\OrderController' => $baseDir . '/app/Http/Controllers/Home/Orders/OrderController.php',
+    'App\\Http\\Controllers\\Home\\Sellers\\SellerController' => $baseDir . '/app/Http/Controllers/Home/Sellers/SellerController.php',
     'App\\Http\\Controllers\\Home\\Shops\\ShopController' => $baseDir . '/app/Http/Controllers/Home/Shops/ShopController.php',
     'App\\Http\\Controllers\\Home\\Users\\UserController' => $baseDir . '/app/Http/Controllers/Home/Users/UserController.php',
-
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
+    'App\\Http\\Middleware\\Admin\\IsLogin' => $baseDir . '/app/Http/Middleware/Admin/IsLogin.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
-
+    'App\\Model\\Config' => $baseDir . '/app/Model/Config.php',
+    'App\\Model\\Goods' => $baseDir . '/app/Model/Goods.php',
+    'App\\Model\\GoodsCate' => $baseDir . '/app/Model/GoodsCate.php',
+    'App\\Model\\ShopCategory' => $baseDir . '/app/Model/ShopCategory.php',
+    'App\\Model\\ShopInfo' => $baseDir . '/app/Model/ShopInfo.php',
     'App\\Model\\User' => $baseDir . '/app/Model/User.php',
-
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
