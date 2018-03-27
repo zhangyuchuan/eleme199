@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home\Users;
 
+use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -35,6 +36,11 @@ class UserController extends Controller
     public function data()
     {
         return view('Homes.Users.data');
+
+//        //获取数据
+//        $users  = User::get();
+//        return view('Homes.Users.data',['users'=>$users]);
+
     }
 
     //用户积分
@@ -65,5 +71,12 @@ class UserController extends Controller
     public function evaluate()
     {
         return view('homes.Users.evaluate');
+    }
+
+
+    //公共
+    public function public()
+    {
+        return view('Homes.Users.public.public');
     }
 }

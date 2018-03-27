@@ -1,159 +1,9 @@
-@extends('homes.layout')
+@extends('Homes.Users.public.public')
 
 @section('title','饿了么-网上订餐_外卖_饿了么订餐官网')
 
 @section('content')
-    <link href="/home/css/vendor.eb86f5.css" rel="stylesheet"/>
-    <link href="/home/css/profile.4b02a0.css" rel="stylesheet"/>
-        <!-- ngView: -->
-        <div view="" role="main" class="scope">
-            <div class="profile profile-container container" profile-container=""
-            page-name="profile" page-title="个人中心" page-title-visible="false">
-                <div class="clearfix">
-                    <div class="location" style="{visibility: geohash ? '' : 'hidden'}"
-                    role="navigation" location="">
-                        <span>
-                            当前位置:
-                        </span>
-                        <span class="location-current">
-                            <a class="inherit binding" href="/place/wx4spk2hgfer" ubt-click="401"
-                            bind="place.name || place.address" href="https://www.ele.me/place/wx4spk2hgfer">
-                                昌平区204县道(北京市育荣教育园区西)
-                            </a>
-                        </span>
-                        <span class="location-change location-hashistory" class="{ 'location-hashistory': user.username &amp;&amp; userPlaces &amp;&amp; userPlaces.length &gt; 0 }">
-                            <a href="/home" ubt-click="400" hardjump="" href="https://www.ele.me/home">
-                                [切换地址]
-                            </a>
-                            <ul class="dropbox location-dropbox" ubt-visit="398">
-                                <li class="arrow">
-                                </li>
-                                <!-- ngRepeat: userPlace in userPlaces | filter:filterPlace | limitTo:
-                                4 -->
-                                <li repeat="userPlace in userPlaces | filter:filterPlace | limitTo: 4"
-                                class="scope">
-                                    <a class="inherit binding" href="/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404"
-                                    bind="userPlace.name" ubt-click="399" href="https://www.ele.me/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404">
-                                        昌平区204县道(北京市育荣教育园区西)
-                                    </a>
-                                </li>
-                                <!-- end ngRepeat: userPlace in userPlaces | filter:filterPlace | limitTo:
-                                4 -->
-                                <li class="changelocation">
-                                    <a href="/home" hardjump="" href="https://www.ele.me/home">
-                                        修改收货地址
-                                        <span class="icon-location">
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </span>
-                        <span transclude="">
-                            <i class="icon-arrow-right scope">
-                            </i>
-                            <span class="binding scope">
-                                个人中心
-                            </span>
-                        </span>
-                    </div>
-                    <div search-input="">
-                    </div>
-                </div>
-                <ul class="profile-sidebar" role="navigation" profile-sidebar="">
-                    <li class="profile-sidebar-section">
-                        <h2 class="profile-sidebar-sectiontitle active" class="{ active: pageName === 'profile' }">
-                            <i class="icon-line-home">
-                            </i>
-                            <a href="https://www.ele.me/profile">
-                                个人中心
-                            </a>
-                        </h2>
-                    </li>
-                    <li class="profile-sidebar-section">
-                        <h2 class="profile-sidebar-sectiontitle">
-                            <i class="icon-line-order">
-                            </i>
-                            我的订单
-                        </h2>
-                        <ul>
-                            <li class="{ active: pageName === 'order' }">
-                                <a href="/home/dingdan.html">
-                                    近三个月订单
-                                </a>
-                            </li>
-                            <li class="{ active: pageName === 'order-unrated' }">
-                                <a href="https://www.ele.me/profile/order/unrated">
-                                    待评价订单
-                                    <!-- ngIf: unratedNumber -->
-                                </a>
-                            </li>
-                            <li class="{ active: pageName === 'order-refunding' }">
-                                <a href="https://www.ele.me/profile/order/refund">
-                                    退单记录
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="profile-sidebar-section">
-                        <h2 class="profile-sidebar-sectiontitle">
-                            <i class="icon-yen">
-                            </i>
-                            我的资产
-                        </h2>
-                        <ul>
-                            <li class="{ active: pageName === 'balance' }">
-                                <a href="/home/yu'e.html">
-                                    账户余额
-                                </a>
-                            </li>
-                            <li class="{ active: pageName === 'points' }">
-                                <a href="/home/jifen.html">
-                                    我的积分
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="profile-sidebar-section">
-                        <h2 class="profile-sidebar-sectiontitle">
-                            <i class="icon-line-profile">
-                            </i>
-                            我的资料
-                        </h2>
-                        <ul>
-                            <li class="{ active: pageName === 'info' }">
-                                <a href="/home/gerenziliao.html">
-                                    个人资料
-                                </a>
-                            </li>
-                            <li class="{ active: pageName === 'address' }">
-                                <a href="/home/gerendizhi.html">
-                                    地址管理
-                                </a>
-                            </li>
-                            <li class="{ active: pageName === 'security-center' }">
-                                <a href="/home/gerenanquan.html">
-                                    安全中心
-                                </a>
-                            </li>
-                            <li class="{ active: pageName === 'changepassword' }">
-                                <a href="/home/gerenmima.html">
-                                    修改密码
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="profile-sidebar-section">
-                        <h2 class="profile-sidebar-sectiontitle" class="{ active: pageName === 'favor' }">
-                            <a href="/home/shoucang.html">
-                                <i class="icon-order-favor">
-                                </i>
-                                我的收藏
-                            </a>
-                        </h2>
-                    </li>
-                </ul>
-                <div class="profile-panel" role="main">
-                    <!-- ngIf: pageTitleVisible -->
+
                     <div class="profile-panelcontent" transclude="">
                         <div class="profile-info scope">
                             <div class="profile-infoitem">
@@ -161,7 +11,7 @@
                                     <img show="avatarUrl" src="//fuss10.elemecdn.com/1/aa/517c48e40061040af3a2b6a96bf94jpeg.jpeg?imageMogr2/thumbnail/112x112/format/webp/quality/85"
                                     alt="seeklegend的头像" class="profile-avatar" src="/home/img/517c48e40061040af3a2b6a96bf94jpeg(1).jpeg"
                                     />
-                                    <a href="https://www.ele.me/profile/info" class="profile-edit">
+                                    <a href="" class="profile-edit">
                                         编辑资料
                                     </a>
                                 </div>
@@ -181,20 +31,20 @@
                                         bind="levelText" class="binding high">
                                             高
                                         </span>
-                                        <a href="https://www.ele.me/profile/security" bind="levelTip" class="binding">
+                                        <a href="">
                                             查看详情
                                         </a>
                                     </p>
                                     <p class="profile-othermessage">
                                         <!-- ngIf: user.is_mobile_valid -->
-                                        <a href="https://www.ele.me/profile/security" class="icon mobile icon-profile-phone scope"
+                                        <a href="" class="icon mobile icon-profile-phone scope"
                                         if="user.is_mobile_valid">
                                         </a>
                                         <!-- end ngIf: user.is_mobile_valid -->
                                         <!-- ngIf: user.is_email_valid -->
                                         <!-- ngIf: !user.is_mobile_valid -->
                                         <!-- ngIf: !user.is_email_valid -->
-                                        <a href="https://www.ele.me/profile/security" class="icon email icon-profile-email none scope"
+                                        <a href="" class="icon email icon-profile-email none scope"
                                         if="!user.is_email_valid" tooltip="未绑定邮箱">
                                         </a>
                                         <!-- end ngIf: !user.is_email_valid -->
@@ -202,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="profile-infoitem">
-                                <a class="inherit" href="https://www.ele.me/profile/hongbao">
+                                <a class="inherit" href="">
                                     <p>
                                         我的红包
                                     </p>
@@ -215,7 +65,7 @@
                                 </a>
                             </div>
                             <div class="profile-infoitem">
-                                <a class="inherit" href="https://www.ele.me/profile/points">
+                                <a class="inherit" href="">
                                     <p>
                                         我的积分
                                     </p>
@@ -228,7 +78,7 @@
                                 </a>
                             </div>
                             <div class="profile-infoitem">
-                                <a class="inherit" href="https://www.ele.me/profile/balance">
+                                <a class="inherit" href="">
                                     <p>
                                         账户余额
                                     </p>
@@ -246,7 +96,7 @@
                                 <a class="tabnavigation-navitem active">
                                     最近订单
                                 </a>
-                                <a class="tabnavigation-rightitem profile-allorder" href="https://www.ele.me/profile/order">
+                                <a class="tabnavigation-rightitem profile-allorder" href="">
                                     查看全部订单&gt;
                                 </a>
                             </div>
@@ -258,7 +108,7 @@
                                 nodatatip="" content="你最近没有下过单哦，现在就去&lt;a href='/place'&gt;订餐&lt;/a&gt;吧~">
                                     <p class="nodata-container binding" bind-html="content | toTrusted">
                                         你最近没有下过单哦，现在就去
-                                        <a href="https://www.ele.me/place">
+                                        <a href="">
                                             订餐
                                         </a>
                                         吧~
@@ -272,7 +122,7 @@
                                 <a class="tabnavigation-navitem active">
                                     美食足迹
                                 </a>
-                                <a class="tabnavigation-navitem" href="https://www.ele.me/profile/favor">
+                                <a class="tabnavigation-navitem" href="">
                                     我的收藏
                                 </a>
                                 <div class="tabnavigation-rightitem scope binding simplepagination"
@@ -287,7 +137,7 @@
                             <div class="footprint-content clearfix">
                                 {{--<p class="nodata-container binding" bind-html="content | toTrusted">--}}
                                     {{--你最近没有下过单哦，现在就去--}}
-                                    {{--<a href="https://www.ele.me/place">--}}
+                                    {{--<a href="">--}}
                                         {{--订餐--}}
                                     {{--</a>--}}
                                     {{--吧~--}}
@@ -295,7 +145,7 @@
                                 <!-- ngRepeat: restaurant in restaurantContext.pageData -->
                                 <a class="noline rstblock isolate-scope" data-rst-id="305969" class="{'rstblock-closed': !restaurant.is_opening || restaurant.in_delivery_area === false}"
                                 href="/shop/305969" data-bidding="" target="_blank" repeat="restaurant in restaurantContext.pageData"
-                                data="{ $restaurant: restaurant }" href="https://www.ele.me/shop/305969">
+                                data="{ $restaurant: restaurant }" href=">
                                     <div class="rstblock-logo">
                                         <img width="70" height="70" class="rstblock-logo-icon" src="//fuss10.elemecdn.com/4/37/c63265e6d69161383973eb8eef609png.png?imageMogr2/thumbnail/70x70"
                                         alt="德克士（雅酷店）" src="/home/img/c63265e6d69161383973eb8eef609png.png"
@@ -366,10 +216,5 @@
                                 <!-- ngIf: !restaurantContext.pageData.length && !footDateLoading -->
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
 @endsection

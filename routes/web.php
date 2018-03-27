@@ -147,8 +147,10 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::get('/evaluate','Home\Users\UserController@evaluate');
 
 
+    //我的资料开始
+
+    //我的资料结束
 
 
-    
-
-
+//公共左
+Route::get('/public','Home\Users\UserController@public');
