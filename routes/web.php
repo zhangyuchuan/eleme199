@@ -92,6 +92,8 @@ Route::group(['middleware'=>'Islogin'],function() {
     //店家后台我的店铺
 //    Admin\Seller\ShopsController
     Route::get('admin/seller/shops/changecontent', 'Admin\Seller\ShopsController@changecontent');
+    Route::post('admin/seller/shops/changestatus', 'Admin\Seller\ShopsController@changestatus');
+
     Route::resource('admin/seller/shops', 'Admin\Seller\ShopsController');
     //店家后台商品管理
 //    Admin\Seller\GoodsControlelr

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Seller;
 
+use App\Model\Shop;
 use App\Model\ShopInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,14 +20,12 @@ class ShopsController extends Controller
         //获得店主id
         $id  = session('user')->id;
         //获得商铺
-
         $shops =ShopInfo::where('sellerid',$id)->paginate(2);
-//        dd($shops[0]->time);
         foreach($shops as $v){
             $v->content = '<textarea  name="shopcontent" id='.$v->id.' class="layui-textarea">'.$v->content.'</textarea>';
         }
 
-        return view('Admin.Seller.ShopsList',compact('shops'));
+        return view('Admin.Seller.Shops.ShopsList',compact('shops'));
     }
 
     /**
@@ -69,7 +68,9 @@ class ShopsController extends Controller
      */
     public function edit($id)
     {
-        //
+        //获取需要修改的店铺信息
+        $shop = ShopInfo::find($id);
+        return view('Admin.Seller.Shops.ShopsEdit',compact('shop'));
     }
 
     /**
@@ -118,6 +119,56 @@ class ShopsController extends Controller
                 'status'=>1,
                 'msg'=>'修改失败'
             ];
+        }
+        return $data;
+    }
+    /**
+     * 营业.休息
+     *
+     * @param
+     * @return
+     */
+    public function changestatus(Request $request)
+    {
+
+        //获取店铺id
+        $id = $request->input('id');
+        //获取店铺
+        $shop = ShopInfo::find($id);
+        $status = $request->input('status');
+
+        //获取用户状态
+        if($status=='2'){
+            $shop->status = 3;
+            $res = $shop->save();
+            if($res){
+                $data =[
+                    'status'=>2,
+                    'msg'=>'申请已发送,请等待审核通过!'
+                ];
+            }else{
+                $data =[
+                    'status'=>1,
+                    'msg'=>'操作失败!'
+                ];
+            }
+
+        }else{
+            $status = ($request->input('status') == 1)?  0: 1;
+            $shop->status = $status;
+            $res = $shop->save();
+            if($res){
+                $data =[
+                    'status'=>0,
+                    'msg'=>'操作成功!!'
+                ];
+            }else{
+                $data =[
+                    'status'=>1,
+                    'msg'=>'操作失败!'
+                ];
+            }
+
         }
         return $data;
     }

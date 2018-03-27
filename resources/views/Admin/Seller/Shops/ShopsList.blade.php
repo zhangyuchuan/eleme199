@@ -1,5 +1,6 @@
 @extends('Admin.Common.Common')
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
 @section('content')
     <div class="x-body">
         <div class="layui-row">
@@ -18,7 +19,6 @@
                 <th>积分</th>
                 <th>logo</th>
                 <th>店铺公告</th>
-
                 <th>状态</th>
                 <th>操作</th></tr>
             </thead>
@@ -28,15 +28,8 @@
                     <td>{{$v->id}}</td>
                     <td style="width:120px">{{$v->name}}</td>
                     <td style="width:120px">{{$v->address}}</td>
-                    <td style="width:120px">
-                        <form action="">
-                        <div class="layui-inline">
-                            <label class="layui-form-label">时间范围</label>
-                            <div class="layui-input-inline">
-                                <input type="text" lay-key="10" class="layui-input" id="test9" placeholder=" - ">
-                            </div>
-                        </div></form>
-{{--                        {{$v->time}}--}}
+                    <td style="width:125px">
+                        {{$v->time}}
                     </td>
                     <td>{{$v->sailcount}}</td>
                     <td>{{$v->income}}</td>
@@ -46,8 +39,6 @@
                     <td style="width:180px">
                         {!! $v->content !!}
                     </td>
-
-
                     <td class="td-status">
                         @if($v->status=='0')
                             <span class="layui-btn layui-btn-normal layui-btn-mini" id="spans"> 正常营业 </span>
@@ -73,12 +64,13 @@
                            status="{{$v->status}}">
                             <i class="layui-icon">&#xe62f; </i>
                         </a>
+                        @elseif($v->status=='3')
+                            <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled "> 等待审核 </span>
+                            <td>
+
                         @endif
-                        <a title="编辑"  onclick="x_admin_show('编辑','/admin/users/manger/{{$v->id}}/edit',600,400)" href="javascript:;">
+                        <a title="编辑"  onclick="x_admin_show('编辑','/admin/seller/shops/{{$v->id}}/edit',900,600)" href="javascript:;">
                             <i class="layui-icon">&#xe642;</i>
-                        </a>
-                        <a onclick="x_admin_show('修改密码','/admin/users/manger/repass/{{$v->id}}',600,400)" title="修改密码" href="javascript:;">
-                            <i class="layui-icon">&#xe631;</i>
                         </a>
                         <a title="删除" onclick="member_del(this,'{{$v->id}}')" href="javascript:;"  status="{{$v->status}}">
                             <i class="layui-icon">&#xe640;</i>
@@ -103,14 +95,16 @@
             laydate.render({
                 elem: '#start' //指定元素
             });
-
             //执行一个laydate实例
             laydate.render({
                 elem: '#end' //指定元素
             });
+
         });
+
         //更改店铺公告
         $('textarea[name="shopcontent"]').change(function(){
+
             var id = $(this).attr('id');
             var content = $(this).val();
             $.get('/admin/seller/shops/changecontent',{id:id,content:content},function(data){
@@ -128,36 +122,48 @@
             var status = $(obj).attr('status');
             var str = '';
             if(status=='0'){
-                str = '确认要停用吗?';
+                str = '好好休息~~';
+            }else if(status=='1'){
+                str = '工作愉快!!';
             }else{
-                str = '确认要启用吗?';
+                str = '申请恢复营业?';
             }
             layer.confirm(str,function(index){
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url:'/admin/users/manger/status',
+                    url:'/admin/seller/shops/changestatus',
                     data:{'id':id,'status':status},
                     dataType:'json',
                     type:'POST',
                     success:function(data){
-                        if(data=='0'){
-                            $(obj).attr('status','0');
-                            $(obj).find('i').html('&#xe601;');
-                            $(obj).attr('title','停用');
-                            $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                            layer.msg('已启用!',{icon: 6,time:1000});
-                        }else if(data=='1'){
-                            $(obj).attr('status','1');
-                            $(obj).find('i').html('&#xe62f;');
-                            $(obj).attr('title','启用');
-                            $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                            layer.msg('已停用!',{icon: 6,time:1000});
-                        }else{
-                            layui.alert('修改失败');
+                        if(data.status=='2'){
+                            layer.alert(data.msg, {icon: 1, time: 2000});
+                            location.reload(true);
+                            $(obj).parents("tr").find(".td-status").find('span').html('等待审核');
                         }
-
+                        if(status=='1'){
+                            if(data.status=='0'){
+                                $(obj).attr('status','0');
+                                $(obj).find('i').html('&#xe601;');
+                                $(obj).attr('title','休息');
+                                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('正常营业');
+                                layer.msg('工作愉快!!',{icon: 6,time:1000});
+                            }else if(data.status=='1'){
+                                layui.alert('修改失败');
+                            }
+                        }else if(status=='0'){
+                            if(data.status=='0') {
+                                $(obj).attr('status', '1');
+                                $(obj).find('i').html('&#xe62f;');
+                                $(obj).attr('title', '营业');
+                                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('休息');
+                                layer.msg('好好休息!', {icon: 6, time: 1000});
+                            }else if(data.status=='1'){
+                                layui.alert('修改失败');
+                            }
+                        }
                     },
                     timeout:3000,
                     async:true
