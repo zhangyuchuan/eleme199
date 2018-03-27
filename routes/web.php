@@ -18,6 +18,7 @@ Route::get('/', function () {
 
     return view('welcome');
 
+
 });
 //后台登陆
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
@@ -27,7 +28,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('code/captcha/{id}','Login\LoginController@captcha');
     //登陆验证
     Route::post('dologin','Login\LoginController@dologin');
+
 });
+
 
 
 
@@ -37,6 +40,12 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::get('/admin/logout', 'Admin\Login\LoginController@logout');
     //后台首页路由
     Route::get('/admin/index', 'Admin\Login\LoginController@index');
+
+
+
+
+
+
     //后台管理员路由
     //Admin\Users\MangerController
     Route::post('/admin/users/manger/status', 'Admin\Users\MangerController@changestatus');
@@ -54,6 +63,8 @@ Route::group(['middleware'=>'Islogin'],function() {
     //管理员删除店铺
     Route::post('/admin/shops/delete/{id}', 'Admin\Shops\ShopsController@deleteshop');
     Route::resource('/admin/shops', 'Admin\Shops\ShopsController');
+
+
     //后台商品路由 Admin\Goods\GoodController
     Route::post('/admin/goods/upload', 'Admin\Goods\GoodsController@upload');
     Route::resource('/admin/goods', 'Admin\Goods\GoodsController');
@@ -66,26 +77,28 @@ Route::group(['middleware'=>'Islogin'],function() {
     //后台普通用户路由
     Route::get('/admin/users/users/grade','Admin\Users\UserController@grade');
     Route::get('/admin/users/users/audit','Admin\Users\UserController@audit');
-
     Route::resource('/admin/users/users','Admin\Users\UserController');
     //后台用户修改状态
     Route::post('/admin/users/users/changestatus','Admin\Users\UserController@changestatus');
 
 //    Admin\Users\UserController
 
+    //后台商家路由
+    Route::get('/admin/biz/biz/list','Admin\Biz\MerchantController@list');
+    Route::get('/admin/biz/biz/grade','Admin\Biz\MerchantController@grade');
+    Route::get('/admin/biz/biz/create','Admin\Biz\MerchantController@create');
+    //删除
+    Route::post('/admin/biz/biz/destroy/{id}','Admin\Biz\MerchantController@destroy');
+    //禁用启用
+    Route::post('/admin/biz/biz/changestatus','Admin\Biz\MerchantController@changestatus');
+    //批量删除
+    Route::get('/admin/biz/biz/delall','Admin\Biz\MerchantController@delall');
+    Route::get('/admin/biz/biz/audit','Admin\Biz\MerchantController@audit');
 
     //后台网站配置
     //批量修改网站配置项
     Route::post('/admin/config/changecontent','Admin\Config\ConfigController@changeContent');
     Route::resource('/admin/config','Admin\Config\ConfigController');
-
-
-
-
-
-
-
-
 
     //店家后台个人信息
 //    Admin\Seller\SellerController
@@ -132,5 +145,17 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::get('/orders','Home\Orders\OrderController@orders');
     //结算
     Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
+
+
+
+    //商家资质
+    Route::get('/shopzizhi','Home\Sellers\SellerController@shopzizhi');
+    //用户评价
+    Route::get('/evaluate','Home\Users\UserController@evaluate');
+
+
+
+
+    
 
 

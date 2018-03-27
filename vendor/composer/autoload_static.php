@@ -335,6 +335,7 @@ class ComposerStaticInit36b447cebbe63736e31eacc153db7c91
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+
         'App\\Http\\Controllers\\Admin\\Biz\\MerchantController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Biz/MerchantController.php',
         'App\\Http\\Controllers\\Admin\\Goods\\GoodsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Goods/GoodsController.php',
         'App\\Http\\Controllers\\Admin\\Login\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Login/LoginController.php',
@@ -353,6 +354,9 @@ class ComposerStaticInit36b447cebbe63736e31eacc153db7c91
         'App\\Http\\Controllers\\Home\\Orders\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/Orders/OrderController.php',
         'App\\Http\\Controllers\\Home\\Shops\\ShopController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/Shops/ShopController.php',
         'App\\Http\\Controllers\\Home\\Users\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/Users/UserController.php',
+
+        'App\\Http\\Controllers\\homes\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/homes/UserController.php',
+
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',

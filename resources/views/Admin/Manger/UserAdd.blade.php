@@ -4,6 +4,7 @@
     <div class="x-body">
         <form class="layui-form" >
             <div class="layui-form-item">
+                {{csrf_field()}}
                 <label for="username" class="layui-form-label">
                     <span class="x-red">*</span>用户名
                 </label>
@@ -103,6 +104,7 @@
                       })
                   }
                 }
+
 
             });
             return false;

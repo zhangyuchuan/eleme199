@@ -60,4 +60,10 @@ class UserController extends Controller
     {
         return view('Homes.Shops.join');
     }
+
+    //用户评价
+    public function evaluate()
+    {
+        return view('homes.Users.evaluate');
+    }
 }
