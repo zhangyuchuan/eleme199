@@ -6,26 +6,18 @@
         <div class="layui-form-item">
             <label class="layui-form-label">商品名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="gname" required  lay-verify="required" value="{{ $goods ->gname }}" autocomplete="off" class="layui-input">
+                <input type="text" name="gname" required  lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">商家编号</label>
-            <div class="layui-input-inline ">
-                <input type="text" name="sid" required lay-verify="required" value="{{ $goods ->sid }}" autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-input-inline ">
-                <input type="text" name="" id="sname" placeholder="商家" disabled autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-form-mid layui-word-aux"> </div>
-        </div>
+        <input type="hidden" name="sid" required lay-verify="required" value="{{ $sid }}" autocomplete="off" class="layui-input">
+
         <div class="layui-form-item">
             <label class="layui-form-label">商品栏位</label>
             <div class="layui-input-inline">
                 <select name="gcid" lay-verify="required">
-                    <option value=""></option>
+                    <option value="">请选择</option>
                     @foreach($goodscate as $v)
-                    <option value="{{ $v['id'] }}">{{ $v['category'] }}</option>
+                            <option value="{{ $v['id'] }}" >{{ $v['category'] }}</option>
                     @endforeach
                 </select>
             </div>
@@ -33,7 +25,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">价格</label>
             <div class="layui-input-inline">
-                <input type="text" name="price" required  lay-verify="required"value="{{ $goods ->price }}" autocomplete="off" class="layui-input">
+                <input type="text" name="price" required  lay-verify="required" placeholder="请输入商品价格" autocomplete="off" class="layui-input">
             </div>
         </div>
 
@@ -52,7 +44,7 @@
             <label class="layui-form-label"></label>
             <div class="layui-input-block">
                 <input type="hidden" name="gpic" value="">
-                <img id="gpic" src="{{ '/uploads/'.$goods->gpic }}" style="width:60px;">
+                <img id="gpic" src="" style="width:60px;">
             </div>
         </div>
 
@@ -86,7 +78,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "/admin/goods/upload",
+                    url: "/admin/seller/goods/upload",
                     data: formData,
                     contentType: false,
                     processData: false,
@@ -104,15 +96,15 @@
         <div class="layui-form-item">
             <label class="layui-form-label">状态</label>
             <div class="layui-input-block">
-                <input type="radio" name="status" value="1" title="新品" {{ ($goods->status==1)?'checked': '' }}>
-                <input type="radio" name="status" value="2" title="上架" {{ ($goods->status==2)?'checked': '' }}>
-                <input type="radio" name="status" value="4" title="活动" {{ ($goods->status==3)?'checked': '' }}>
+                <input type="radio" name="status" value="1" title="新品" checked>
+                <input type="radio" name="status" value="2" title="上架" >
+                <input type="radio" name="status" value="4" title="活动" >
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">商品描述</label>
             <div class="layui-input-inline">
-                <textarea name="gdesc"  class="layui-textarea" style="resize: none;width: 400px;">{{ $goods->gdesc }}</textarea>
+                <textarea name="gdesc" placeholder="请输入内容" class="layui-textarea" style="resize: none;width: 400px;"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
@@ -130,17 +122,16 @@
 
             //监听提交
             form.on('submit(formDemo)', function(data){
-                // console.log(data);
+                console.log(data);
                 $.ajax({
-                    type: "PUT",
+                    type: "POST",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "/admin/goods/"+{{ $id }},
+                    url: "/admin/seller/goods",
                     data: data.field,
                     dataType: "json",
                     success: function(data){
-                        console.log(data);
                         // 如果添加成功
                         if(data.status == 0){
                             layer.alert(data.msg,{icon:6,time:2000},function(){

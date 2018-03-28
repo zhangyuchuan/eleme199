@@ -6,33 +6,31 @@
         <div class="layui-form-item">
             <label class="layui-form-label">商品名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="gname" required  lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+                <input type="text" name="gname" required  lay-verify="required" value="{{ $goods ->gname }}" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">商家编号</label>
-            <div class="layui-input-inline ">
-                <input type="text" name="sid" required lay-verify="required" placeholder="请输入商家编号" autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-input-inline ">
-                <input type="text" name="" id="sname" placeholder="商家" disabled autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-form-mid layui-word-aux"> </div>
-        </div>
+
+        <input type="hidden" name="sid" required lay-verify="required" value="{{ $goods ->sid }}" autocomplete="off" class="layui-input">
+
         <div class="layui-form-item">
             <label class="layui-form-label">商品栏位</label>
             <div class="layui-input-inline">
                 <select name="gcid" lay-verify="required">
                     <option value=""></option>
-                    <option value="1">北京</option>
-
+                    @foreach($goodscate as $v)
+                        @if($goods->gcid== $v['id'])
+                    <option value="{{ $v['id'] }}" selected>{{ $v['category'] }}</option>
+                        @else
+                    <option value="{{ $v['id'] }}" >{{ $v['category'] }}</option>
+                        @endif
+                    @endforeach
                 </select>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">价格</label>
             <div class="layui-input-inline">
-                <input type="text" name="price" required  lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+                <input type="text" name="price" required  lay-verify="required"value="{{ $goods ->price }}" autocomplete="off" class="layui-input">
             </div>
         </div>
 
@@ -51,7 +49,7 @@
             <label class="layui-form-label"></label>
             <div class="layui-input-block">
                 <input type="hidden" name="gpic" value="">
-                <img id="gpic" src="" style="width:60px;">
+                <img id="gpic" src="{{ '/uploads/'.$goods->gpic }}" style="width:60px;">
             </div>
         </div>
 
@@ -90,7 +88,7 @@
                     contentType: false,
                     processData: false,
                     success: function(data) {
-                        console.log(data);
+                        // console.log(data);
                          $('#gpic').attr('src','/uploads/'+data);
                          $("input[name='gpic']").val(data);
                     },
@@ -103,21 +101,21 @@
         <div class="layui-form-item">
             <label class="layui-form-label">状态</label>
             <div class="layui-input-block">
-                <input type="radio" name="status" value="1" title="新品" checked>
-                <input type="radio" name="status" value="2" title="上架" >
-                <input type="radio" name="status" value="4" title="活动" >
+                <input type="radio" name="status" value="1" title="新品" {{ ($goods->status==1)?'checked': '' }}>
+                <input type="radio" name="status" value="2" title="上架" {{ ($goods->status==2)?'checked': '' }}>
+                <input type="radio" name="status" value="3" title="下架" {{ ($goods->status==3)?'checked': '' }}>
+                <input type="radio" name="status" value="4" title="活动" {{ ($goods->status==4)?'checked': '' }}>
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">商品描述</label>
             <div class="layui-input-inline">
-                <textarea name="gdesc" placeholder="请输入内容" class="layui-textarea" style="resize: none;width: 400px;"></textarea>
+                <textarea name="gdesc"  class="layui-textarea" style="resize: none;width: 400px;">{{ $goods->gdesc }}</textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">添加</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                <button class="layui-btn" lay-submit lay-filter="formDemo">修改</button>
             </div>
         </div>
     </form>
@@ -129,24 +127,25 @@
 
             //监听提交
             form.on('submit(formDemo)', function(data){
-                console.log(data);
+                // console.log(data);
                 $.ajax({
-                    type: "POST",
+                    type: "PUT",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "/admin/goods",
+                    url: "/admin/goods/"+{{ $id }},
                     data: data.field,
                     dataType: "json",
                     success: function(data){
+                        // console.log(data);
                         // 如果添加成功
                         if(data.status == 0){
-                            layer.alert(data.msg,{icon:6,time:2000},function(){
+                            layer.alert(data.msg,{icon:6},function(){
                                 //关闭弹层，刷新父页面
                                 parent.location.reload(true);
                             })
                         }else{
-                            layer.alert(data.msg,{icon:6,time:2000},function(){
+                            layer.alert(data.msg,{icon:6},function(){
                                 //关闭弹层，刷新父页面
                                 parent.location.reload(true);
                             })

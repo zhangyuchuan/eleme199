@@ -577,7 +577,9 @@
         },
         "dist": {
             "type": "zip",
+
             "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/1d06ac8e12d2b3e0df39586d78b9f50e086a0bea",
+
             "reference": "1d06ac8e12d2b3e0df39586d78b9f50e086a0bea",
             "shasum": ""
         },

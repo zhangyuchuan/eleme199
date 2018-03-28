@@ -61,13 +61,15 @@ Route::group(['middleware'=>'adminIslogin'],function() {
 
 
     //后台商品路由 Admin\Goods\GoodController
+    Route::post('/admin/goods/delall','Admin\Goods\GoodsController@delall');
     Route::post('/admin/goods/upload', 'Admin\Goods\GoodsController@upload');
     Route::resource('/admin/goods', 'Admin\Goods\GoodsController');
+
     //后台商品分类路由
+    Route::post('/admin/goodscate/delall','Admin\Goods\GoodsCateController@delall');
     Route::post('/admin/goodscate/statusup', 'Admin\Goods\GoodsCateController@statusup');
     Route::post('/admin/goodscate/statusdown', 'Admin\Goods\GoodsCateController@statusdown');
     Route::resource('/admin/goodscate', 'Admin\Goods\GoodsCateController');
-
 
     //后台普通用户路由
     Route::get('/admin/users/users/grade','Admin\Users\UserController@grade');
@@ -101,10 +103,20 @@ Route::group(['middleware'=>'adminIslogin'],function() {
     Route::get('admin/seller/shops/changetime', 'Admin\Seller\ShopsController@changetime');
     Route::post('admin/seller/shops/changestatus', 'Admin\Seller\ShopsController@changestatus');
     Route::post('admin/seller/shops/uploadfile', 'Admin\Seller\ShopsController@uploadfile');
-
     Route::resource('admin/seller/shops', 'Admin\Seller\ShopsController');
     //店家后台商品管理
-    //    Admin\Seller\GoodsControlelr
+//    Admin\Seller\GoodsControlelr
+    Route::post('/admin/seller/goods/delall','Admin\Seller\GoodsController@delall');
+    Route::post('/admin/seller/goods/upload', 'Admin\Seller\GoodsController@upload');
+    Route::post('/admin/seller/goods/chasta', 'Admin\Seller\GoodsController@chasta');
+    Route::resource('admin/seller/goods','Admin\Seller\GoodsController');
+
+    //店家后台分类路由
+    Route::post('/admin/seller/goodscate/delall','Admin\Seller\GoodsCateController@delall');
+    Route::post('/admin/seller/goodscate/statusup', 'Admin\Seller\GoodsCateController@statusup');
+    Route::post('/admin/seller/goodscate/statusdown', 'Admin\Seller\GoodsCateController@statusdown');
+    Route::resource('/admin/seller/goodscate', 'Admin\Seller\GoodsCateController');
+
     //店家后台订单统计
     //    Admin\Seller\OrdersController
 
@@ -116,7 +128,6 @@ Route::group(['prefix'=>'home','namespace'=>'Home'],function(){
     Route::get('/login','Logins\LoginController@login');
     //登陆验证
     Route::post('/dologin','Logins\LoginController@dologin');
-
     //注册
     Route::get('/register','Logins\LoginController@register');
     Route::post('/doregister','Logins\LoginController@doregister');
