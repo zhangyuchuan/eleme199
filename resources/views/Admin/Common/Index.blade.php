@@ -252,7 +252,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a _href="" target="_blank">
+                                <a _href="{{ url('admin/seller/sellers') }}" target="_blank">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>个人信息</cite>
                                 </a>

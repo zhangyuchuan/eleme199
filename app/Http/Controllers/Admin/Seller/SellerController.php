@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Seller;
 
+use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,9 +13,15 @@ class SellerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+
+        //列表页
+            //获取个人信息列表
+            $user = User::find(session('user')->id);
+            return view('Admin.Seller.Sellers.SellerList',compact('user'));
+
     }
 
     /**
@@ -24,7 +31,7 @@ class SellerController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +42,7 @@ class SellerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -57,7 +64,9 @@ class SellerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+//        dd($user);
+        return view('Admin.Seller.Sellers.SellerEdit',compact('user'));
     }
 
     /**
@@ -69,7 +78,20 @@ class SellerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $res  = User::find($id)->update($request->except('id'));
+        if($res) {
+            $arr = [
+                'status' => 0,
+                'msg' => '修改成功'
+            ];
+        }else{
+            $arr = [
+                'status'=>1,
+                'msg'=>'修改失败'
+            ];
+        }
+
+        return $arr;
     }
 
     /**
@@ -81,5 +103,54 @@ class SellerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * 修改密码页面
+     *
+     * @param
+     * @return
+     */
+    public function repass($id)
+    {
+        $user = User::find($id);
+//        dd($user->id);
+        return view('Admin.Seller.Sellers.SellerRepass',compact('user'));
+    }
+    /**
+     * 修改密码
+     *
+     * @param
+     * @return
+     */
+    public function dorepass(Request $request,$id)
+    {
+        //获取用户的原密码
+        $user = User::find($id);
+        $oldpass = $user->password;
+        //判断原密码是否正确
+        if((Crypt::decrypt($oldpass))!= ($request->input('oldpass'))){
+            $arr = [
+                'status'=>1,
+                'msg'=>'原密码不正确'
+            ];
+            return $arr;
+        }
+        //将密码进行加密
+        $newpass = Crypt::encrypt($request->input('newpass'));
+        $user->password = $newpass;
+        $res = $user->save();
+        if($res){
+            $arr = [
+                'status'=>0,
+                'msg'=>'修改成功'
+            ];
+        }else{
+            $arr = [
+                'status'=>1,
+                'msg'=>'修改失败'
+            ];
+        }
+        return $arr;
     }
 }

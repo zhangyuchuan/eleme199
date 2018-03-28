@@ -17,9 +17,10 @@
             <th>ID</th>
             <th>网站配置标题</th>
             <th>网站配置名称</th>
+            <th style="width:200px">网站配置图片</th>
             <th>网站配置值</th>
 
-            <th>操作</th></tr>
+            <th style="width:100px">操作</th></tr>
         </thead>
         <tbody>
         <form action="{{ url('admin/config/changecontent') }}" method="post">
@@ -28,6 +29,7 @@
             <td>{{ $v->conf_id }}</td>
             <td>{{ $v->conf_title }}</td>
             <td>{{ $v->conf_name }}</td>
+            <td>{{ $v->cpic }}</td>
             <td style="width:250px;">
               <input type="hidden" name="conf_id[]" value="{{ $v->conf_id }}">
               {!! $v->conf_content !!}
@@ -42,10 +44,9 @@
 
         @endforeach
         <tr>
-          <td></td>
-          <td colspan="4">
+          <td colspan="6">
 {{ csrf_field() }}
-              <div class="layui-input-block">
+              <div class="layui-input-block" style="float:right;margin-right:10px">
                 <button class="layui-btn" lay-submit="" lay-filter="demo1">确认修改</button>
               </div>
 
@@ -149,7 +150,7 @@
           layer.confirm('确认要删除吗？',function(index){
 
               // $.post('请求的路径','携带的参数'，执行成功后的返回结果)
-              $.post("{{ url('admin/user/') }}/"+id,{'_token':"{{csrf_token()}}",'_method':'delete'},function(data){
+              $.post("{{ url('admin/config/') }}/"+id,{'_token':"{{csrf_token()}}",'_method':'delete'},function(data){
                   //如果删除成功
                   if(data.status == 0){
                       //发异步删除数据

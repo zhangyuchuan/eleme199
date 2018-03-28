@@ -78,6 +78,24 @@ class ConfigController extends Controller
         return view('Admin.Config.add');
     }
 
+    public function upload(Request $request)
+    {
+        $file = $request -> file('fileupload');
+        if ($file->isValid()){
+            //            获取原文件的文件类型
+            $ext = $file->getClientOriginalExtension();    //文件拓展名
+//            生成新文件名
+            $newfile = md5(date('YmdHis').rand(1000,9999).uniqid()).'.'.$ext;
+//            1. 将文件上传到本地服务器
+            //将文件从临时目录移动到制定目录
+            $path = $file->move(public_path().'/uploads',$newfile);
+
+
+            return $newfile;
+
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -86,15 +104,18 @@ class ConfigController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->except('_token');
-//        dd($input);
-
+        //接收表单数据
+        $input = $request ->except('_token','fileupload');
         $res = Config::create($input);
 
         if($res){
+            //添加成功
+            echo '添加成功';
             return redirect('admin/config');
+
         }else{
-            return back();
+            return back()->with('msg','添加失败');
+            echo '添加失败';
         }
     }
 
@@ -120,17 +141,6 @@ class ConfigController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

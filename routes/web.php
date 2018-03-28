@@ -77,6 +77,7 @@ Route::group(['middleware'=>'Islogin'],function() {
     //后台网站配置
     //批量修改网站配置项
     Route::post('/admin/config/changecontent','Admin\Config\ConfigController@changeContent');
+    Route::post('/admin/config/upload','Admin\Config\ConfigController@upload');
     Route::resource('/admin/config','Admin\Config\ConfigController');
 
 
@@ -89,6 +90,8 @@ Route::group(['middleware'=>'Islogin'],function() {
 
     //店家后台个人信息
 //    Admin\Seller\SellerController
+    Route::get('/admin/seller/sellers/repass/{id}', 'Admin\Seller\SellerController@repass');
+    Route::resource('admin/seller/sellers', 'Admin\Seller\SellerController');
     //店家后台我的店铺
 //    Admin\Seller\ShopsController
     Route::get('admin/seller/shops/changecontent', 'Admin\Seller\ShopsController@changecontent');
