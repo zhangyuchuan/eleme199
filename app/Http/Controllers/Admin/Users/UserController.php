@@ -15,11 +15,11 @@ class UserController extends Controller
 //
     public function grade()
     {
-        return view('Admin.Shops.UserGrade');
+        return view('Admin.Users.UserGrade');
     }
     public function audit()
     {
-        return view('Admin.Shops.UserAudit');
+        return view('Admin.Users.UserAudit');
     }
 
     public function index(Request $request)
@@ -27,7 +27,7 @@ class UserController extends Controller
 
         $users =User::where('auth','2')->get();
 //
-         return view('Admin.Shops.UserList',['users'=>$users,'request'=> $request]);
+         return view('Admin.Users.UserList',['users'=>$users,'request'=> $request]);
 
 
 
@@ -94,7 +94,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('Admin.Shops.UserGrade',compact('users'));
+        return view('Admin.Users.UserGrade',compact('users'));
     }
 
     public function update(Request $request, $id)

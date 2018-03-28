@@ -35,7 +35,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
 
 //后台路由组
-Route::group(['middleware'=>'Islogin'],function() {
+Route::group(['middleware'=>'adminIslogin'],function() {
     // 退出登录
     Route::get('/admin/logout', 'Admin\Login\LoginController@logout');
     //后台首页路由
@@ -104,12 +104,30 @@ Route::group(['middleware'=>'Islogin'],function() {
 
     Route::resource('admin/seller/shops', 'Admin\Seller\ShopsController');
     //店家后台商品管理
-//    Admin\Seller\GoodsControlelr
+    //    Admin\Seller\GoodsControlelr
     //店家后台订单统计
-//    Admin\Seller\OrdersController
+    //    Admin\Seller\OrdersController
 
 });
 
+//前台登陆注册
+Route::group(['prefix'=>'home','namespace'=>'Home'],function(){
+    //登录
+    Route::get('/login','Logins\LoginController@login');
+    //登陆验证
+    Route::post('/dologin','Logins\LoginController@dologin');
+
+    //注册
+    Route::get('/register','Logins\LoginController@register');
+    Route::post('/doregister','Logins\LoginController@doregister');
+
+});
+
+//前台路由组
+
+Route::group(['middleware'=>'homeIslogin'],function(){
+    //商品订单
+    Route::get('/orders','Home\Orders\OrderController@orders');
     //个人中心
     Route::get('/center','Home\Users\UserController@center');
     //安全中心
@@ -126,31 +144,21 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::get('/collect','Home\Users\UserController@collect');
     //账户余额
     Route::get('/balance','Home\Users\UserController@balance');
-    //加盟合作
-    Route::get('/join','Home\Users\UserController@join');
-    //登录
-    Route::get('/login','Home\Logins\LoginController@login');
-    //注册
-    Route::get('/register','Home\Logins\LoginController@register');
-    //商品详情
-    Route::get('/shop','Home\Shops\ShopController@shop');
+
+});
     //商品列表
     Route::get('/lists','Home\Shops\ShopController@lists');
-    //商品订单
-    Route::get('/orders','Home\Orders\OrderController@orders');
+    //加盟合作
+    Route::get('/join','Home\Users\UserController@join');
+    //商品详情
+    Route::get('/shop','Home\Shops\ShopController@shop');
     //结算
     Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
-
     //商家资质
     Route::get('/shopzizhi','Home\Sellers\SellerController@shopzizhi');
     //用户评价
     Route::get('/evaluate','Home\Users\UserController@evaluate');
-
-
     //我的资料开始
-
     //我的资料结束
-
-
-//公共左
-Route::get('/public','Home\Users\UserController@public');
+    //公共左
+    Route::get('/public','Home\Users\UserController@public');

@@ -24,6 +24,34 @@
                     <input type="text" id="phone" name="phone" required="" lay-verify="phone"
                            autocomplete="off" class="layui-input" value="{{$user->phone}}">
                 </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>不能为空
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="L_pass" class="layui-form-label">
+                    <span class="x-red">*</span>邮箱
+                </label>
+                <div class="layui-input-inline">
+                    <input type="email" id="" name="email" required="" lay-verify="email"
+                           autocomplete="off" class="layui-input" value="{{$user->email}}">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>不能为空
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="L_pass" class="layui-form-label">
+                    <span class="x-red">*</span>地址
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="" name="address" required="" lay-verify="address"
+                           autocomplete="off" class="layui-input" value="{{$user->address}}">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>不能为空
+                </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">性别</label>
@@ -65,14 +93,14 @@
                     dataType:'json',
                     type:'PUT',
                     success:function(data){
-
+                        // console.log(data);
                         if(data.status==1){
                             layer.alert(data.msg,{icon:5,time:2000},function(){
                                 //关闭弹层，刷新父页面
                                 parent.location.reload();
 
                             })
-                        }else{
+                        }else {
                             layer.alert(data.msg,{icon:6,time:2000},function(){
                                 //关闭弹层，刷新父页面
 

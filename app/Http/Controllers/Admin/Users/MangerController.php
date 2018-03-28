@@ -79,7 +79,9 @@ class MangerController extends Controller
             'username'=>'required|between:4,16',
             'pass'=>'required|between:4,16',
             'phone'=>'required',
-            'repass'=>'required'
+            'repass'=>'required',
+            'address'=>'required',
+            'email'=>'required'
         ];
         $msg=[
             'username.required'=>'用户名必须4到16位，且不能出现空格',
@@ -87,7 +89,9 @@ class MangerController extends Controller
             'pass.required'=>'密码必须4到16位，且不能出现空格',
             'pass.between'=>'密码必须4到16位，且不能出现空格',
             'phone.required'=>'手机号格式不正确',
-            'repass.required'=>'两次密码不一致'
+            'repass.required'=>'两次密码不一致',
+            'address.required'=>'地址不能为空',
+            'email.required'=>'邮箱不能为空'
         ];
 
         $validator = Validator::make($input,$rule,$msg);
@@ -99,12 +103,30 @@ class MangerController extends Controller
             return $arr;
         }
         //检查用户是否存在
+        //检查用户名
         $user = User::where('username',$input['username'])->first();
-
+        //检查手机号
+        $phone = User::where('phone',$input['phone'])->first();
+        //检查邮箱
+        $email = User::where('email',$input['email'])->first();
         if ($user){
             $arr = [
                 'status'=>1,
                 'msg'=>'用户已经存在'
+            ];
+            return $arr;
+        }
+        if ($phone){
+            $arr = [
+                'status'=>1,
+                'msg'=>'手机号已存在,请更换!'
+            ];
+            return $arr;
+        }
+        if ($email){
+            $arr = [
+                'status'=>1,
+                'msg'=>'邮箱已存在,请更换!'
             ];
             return $arr;
         }
@@ -117,6 +139,8 @@ class MangerController extends Controller
             'password'=>$pass,
             'phone'=>$input['phone'],
             'sex'=>$input['sex'],
+            'email'=>$input['email'],
+            'address'=>$input['address'],
             'auth'=>'0'
         ]);
         if($res) {
@@ -168,6 +192,37 @@ class MangerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $input = $request->all();
+        //检查用户是否已经存在
+        //检查用户是否存在
+        //检查用户名
+        $user = User::where('username',$input['username'])->first();
+//        return $user;
+        //检查手机号
+        $phone = User::where('phone',$input['phone'])->first();
+        //检查邮箱
+        $email = User::where('email',$input['email'])->first();
+        if ($user){
+            $arr = [
+                'status'=>1,
+                'msg'=>'用户已经存在'
+            ];
+            return $arr;
+        }
+        if ($phone){
+            $arr = [
+                'status'=>1,
+                'msg'=>'手机号已存在,请更换!'
+            ];
+            return $arr;
+        }
+        if ($email){
+            $arr = [
+                'status'=>1,
+                'msg'=>'邮箱已存在,请更换!'
+            ];
+            return $arr;
+        }
         $res  = User::find($id)->update($request->except('id'));
         if($res) {
             $arr = [

@@ -3,15 +3,13 @@
 @section('title','饿了么-网上订餐_外卖_饿了么订餐官网')
 
 @section('content')
-
     <!-- 地址栏 -->
     <div class="container clearfix scope">
-        <!-- <div class="location" style="{visibility: geohash ? '' : 'hidden'}"
-        role="navigation" location="" if="geohash"> -->
+      <div class="location" style="{visibility: geohash ? '' : 'hidden'}" role="navigation" location="" if="geohash">
         <span>
                 当前位置:
             </span>
-        <!-- <span class="location-current">
+       <span class="location-current">
         <a class="inherit binding" href="/place/wx4eyv2e1qf" ubt-click="401" bind="place.name || place.address" href="/place/wx4eyv2e1qf">昌平区回龙观村东区(龙域中街南70米)</a>
         </span>
         <span class="location-change" class="{ 'location-hashistory': user.username && userPlaces && userPlaces.length > 0 }">
@@ -26,16 +24,67 @@
         </li>
         </ul>
         </span>
-        <span transclude="">
-        <i class="icon-arrow-right scope"></i>
-        <span class="scope">服务中心</span>
-        </span>-->
+
     </div>
+        <div class="place-search" role="search" search-input="">
+            {{--<a class="place-search-btn icon-search" ubt-click="403" ng-attr-ubt-data-keyword="{{searchText}}"--}}
+               {{--title="搜索商家或美食" ubt-data-keyword="">--}}
+            {{--</a>--}}
+            <a class="place-search-btn icon-search" ubt-click="403" ng-attr-ubt-data-keyword=""
+               title="搜索商家或美食" ubt-data-keyword="">
+            </a>
+            <label for="globalsearch">
+                搜索商家或美食
+            </label>
+            <input id="globalsearch" class="place-search-input ng-pristine ng-valid"
+                   ng-model="searchText" autocomplete="" placeholder="搜索商家,美食...">
+            <div class="searchbox">
+                <div class="searchbox-list searchbox-rstlist ng-hide" ng-show="searchRestaurants &amp;&amp; searchRestaurants.length > 0"
+                     ng-class="{ 'show-separator': searchFoods &amp;&amp; searchFoods.length > 0 }">
+                    <ul>
+
+                    </ul>
+                </div>
+                <div class="searchbox-list searchbox-foodlist ng-hide" ng-show="searchFoods &amp;&amp; searchFoods.length > 0">
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-<div class="container ng-scope" ng-show="!recentBoughtOnly">
+    <style>
+        .place-fetchtakeout{
+            margin-bottom: -12px;
+            width: 100%;
+            height: 56px;
+            position: relative;
+            cursor: pointer;
+            z-index: 2;
+        }
+        .place-fetchtakeout img{
+            margin-bottom: 0px;
+            width: 186px;
+            height: 56px;
+            position: absolute;
+            right:155px;
+            cursor: pointer;
+            z-index: 2;
+        }
+        .excavator-filter-name {
+            position: absolute;
+            left: 10px;
+            top: 13px;
+            color: #999;
+        }
+    </style>
+    <div class="place-fetchtakeout ng-isolate-scope" show-fetch-takeout-dialog="">
+        <img src="/home/image/takeout.408a87.png" alt="谁去拿外卖">
+    </div>
+
+    <div class="container ng-scope" ng-show="!recentBoughtOnly">
             <div class="excavator container">
                 <div class="excavator-filter ng-scope">
-                    <span>
+                    <span class="excavator-filter-name">
                         商家分类:
                     </span>
                     <a class="excavator-filter-item ng-binding ng-scope active" href="javascript:">
@@ -102,7 +151,64 @@
                     ng-bind="category.name" ng-click="changeCategory(category)" ubt-click="380">
                         鲜花蛋糕
                     </a>
-                    <div class="excavator-filter-subbox ng-hide" ng-show="subCategories">
+                    {{--<div class="excavator-filter-subbox ng-hide" ng-show="subCategories">--}}
+                        <div ng-show="subCategories" class="excavator-filter-subbox">
+                            <!-- ngRepeat: subitem in subCategories -->
+                            <a class="excavator-filter-item ng-binding ng-scope focus" href="javascript:"
+                               ng-repeat="subitem in subCategories" ng-class="{'focus': clickedCategory === subitem.id}"
+                               ng-bind="subitem.name" ng-click="changeCategory(subitem)">
+                                全部
+                            </a>
+                            <!-- end ngRepeat: subitem in subCategories -->
+                            <a class="excavator-filter-item ng-binding ng-scope" href="javascript:"
+                               ng-repeat="subitem in subCategories" ng-class="{'focus': clickedCategory === subitem.id}"
+                               ng-bind="subitem.name" ng-click="changeCategory(subitem)">
+                                小吃炸串
+                            </a>
+                            <!-- end ngRepeat: subitem in subCategories -->
+                            <a class="excavator-filter-item ng-binding ng-scope" href="javascript:"
+                               ng-repeat="subitem in subCategories" ng-class="{'focus': clickedCategory === subitem.id}"
+                               ng-bind="subitem.name" ng-click="changeCategory(subitem)">
+                                地方菜系
+                            </a>
+                            <!-- end ngRepeat: subitem in subCategories -->
+                            <a class="excavator-filter-item ng-binding ng-scope" href="javascript:"
+                               ng-repeat="subitem in subCategories" ng-class="{'focus': clickedCategory === subitem.id}"
+                               ng-bind="subitem.name" ng-click="changeCategory(subitem)">
+                                简餐便当
+                            </a>
+                            <!-- end ngRepeat: subitem in subCategories -->
+                            <a class="excavator-filter-item ng-binding ng-scope" href="javascript:"
+                               ng-repeat="subitem in subCategories" ng-class="{'focus': clickedCategory === subitem.id}"
+                               ng-bind="subitem.name" ng-click="changeCategory(subitem)">
+                                面食粥点
+                            </a>
+                            <!-- end ngRepeat: subitem in subCategories -->
+                            <a class="excavator-filter-item ng-binding ng-scope" href="javascript:"
+                               ng-repeat="subitem in subCategories" ng-class="{'focus': clickedCategory === subitem.id}"
+                               ng-bind="subitem.name" ng-click="changeCategory(subitem)">
+                                香锅冒菜
+                            </a>
+                            <!-- end ngRepeat: subitem in subCategories -->
+                            <a class="excavator-filter-item ng-binding ng-scope" href="javascript:"
+                               ng-repeat="subitem in subCategories" ng-class="{'focus': clickedCategory === subitem.id}"
+                               ng-bind="subitem.name" ng-click="changeCategory(subitem)">
+                                日韩料理
+                            </a>
+                            <!-- end ngRepeat: subitem in subCategories -->
+                            <a class="excavator-filter-item ng-binding ng-scope" href="javascript:"
+                               ng-repeat="subitem in subCategories" ng-class="{'focus': clickedCategory === subitem.id}"
+                               ng-bind="subitem.name" ng-click="changeCategory(subitem)">
+                                汉堡披萨
+                            </a>
+                            <!-- end ngRepeat: subitem in subCategories -->
+                            <a class="excavator-filter-item ng-binding ng-scope" href="javascript:"
+                               ng-repeat="subitem in subCategories" ng-class="{'focus': clickedCategory === subitem.id}"
+                               ng-bind="subitem.name" ng-click="changeCategory(subitem)">
+                                轻食西餐
+                            </a>
+                            <!-- end ngRepeat: subitem in subCategories -->
+                        {{--</div>--}}
                     </div>
                 </div>
             </div>

@@ -16,6 +16,9 @@ class IsLogin
     public function handle($request, Closure $next)
     {
         if (session('user')){
+            if(session('user')->auth==2){
+                return redirect('/lists');
+            }
             return $next($request);
         }else{
             return redirect('admin/login')->with('errors','请先登录');
