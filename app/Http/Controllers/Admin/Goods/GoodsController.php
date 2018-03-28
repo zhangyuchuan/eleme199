@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Goods;
 
 use App\Model\Goods;
 use App\Model\GoodsCate;
+use App\Model\ShopInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,6 +17,21 @@ class GoodsController extends Controller
      */
     public function index(Request $request)
     {
+
+        $good = Goods::orderBy('id','asc')
+            ->where(function($query) use($request){
+                //检测关键字
+                $gname = $request->input('gname');
+                $sid = $request->input('sid');
+                //如果商品名不为空
+                if(!empty($gname)) {
+                    $query->where('gname','like','%'.$gname.'%');
+                }
+                //如果商铺编号不为空
+                if(!empty($sid)) {
+                    $query->where('sid',$sid);
+                }
+            })->get();
 //         多条件并分页
         $goods = Goods::orderBy('id','asc')
             ->where(function($query) use($request){
@@ -32,16 +48,14 @@ class GoodsController extends Controller
                 }
             })
             ->paginate($request->input('num', 5));
-        return view('Admin.Goods.GoodsList',['goods'=>$goods, 'request'=> $request]);
-    }
 
-    public function add()
-    {
-
-    }
-    public function Del()
-    {
-        return view('Admin.Goods.GoodsDel');
+        //商品栏位
+        $goodscate = GoodsCate::pluck('category','id');
+        //商家
+        $shops = ShopInfo::pluck('name','id');
+//        dd($goodscate);
+        return view('Admin.Goods.GoodsList',['goods'=>$goods, 'request'=> $request,'good'=>$good,'goodscate'=>$goodscate,
+            'shops'=>$shops]);
     }
 
     /**
@@ -164,6 +178,40 @@ class GoodsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $goods = Goods::find($id);
+        $res = $goods -> delete();
+        if($res){
+            //            json格式的接口信息  {'status':是否成功，'msg'：提示信息}
+            $arr = [
+                'status'=>0,
+                'msg'=>'删除成功'
+            ];
+        }else{
+            $arr = [
+                'status'=>1,
+                'msg'=>'删除失败'
+            ];
+        }
+
+        return $arr;
+    }
+
+    public function delall(Request $request)
+    {
+        $ids = $request->input('ids');
+        $res = Goods::destroy($ids);
+        if($res){
+            $arr = [
+                'status'=>0,
+                'msg'=>'删除成功'
+            ];
+        }else{
+            $arr = [
+                'status'=>1,
+                'msg'=>'删除失败'
+            ];
+        }
+        return $arr;
+
     }
 }

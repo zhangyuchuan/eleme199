@@ -55,9 +55,11 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::post('/admin/shops/delete/{id}', 'Admin\Shops\ShopsController@deleteshop');
     Route::resource('/admin/shops', 'Admin\Shops\ShopsController');
     //后台商品路由 Admin\Goods\GoodController
+    Route::post('/admin/goods/delall','Admin\Goods\GoodsController@delall');
     Route::post('/admin/goods/upload', 'Admin\Goods\GoodsController@upload');
     Route::resource('/admin/goods', 'Admin\Goods\GoodsController');
     //后台商品分类路由
+    Route::post('/admin/goodscate/delall','Admin\Goods\GoodsCateController@delall');
     Route::post('/admin/goodscate/statusup', 'Admin\Goods\GoodsCateController@statusup');
     Route::post('/admin/goodscate/statusdown', 'Admin\Goods\GoodsCateController@statusdown');
     Route::resource('/admin/goodscate', 'Admin\Goods\GoodsCateController');
@@ -95,6 +97,19 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::resource('admin/seller/shops', 'Admin\Seller\ShopsController');
     //店家后台商品管理
 //    Admin\Seller\GoodsControlelr
+    Route::post('/admin/seller/goods/delall','Admin\Seller\GoodsController@delall');
+
+    Route::post('/admin/seller/goods/upload', 'Admin\Seller\GoodsController@upload');
+    Route::post('/admin/seller/goods/chasta', 'Admin\Seller\GoodsController@chasta');
+
+    Route::resource('admin/seller/goods','Admin\Seller\GoodsController');
+
+    //店家商品分类路由
+    Route::post('/admin/seller/goodscate/delall','Admin\Seller\GoodsCateController@delall');
+
+    Route::post('/admin/seller/goodscate/statusup', 'Admin\Seller\GoodsCateController@statusup');
+    Route::post('/admin/seller/goodscate/statusdown', 'Admin\Seller\GoodsCateController@statusdown');
+    Route::resource('/admin/seller/goodscate', 'Admin\Seller\GoodsCateController');
     //店家后台订单统计
 //    Admin\Seller\OrdersController
 

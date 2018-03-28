@@ -23,7 +23,7 @@
                 <dl class="layui-nav-child"> <!-- 二级菜单 -->
                     <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
                     <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
-                    <dd><a href="{{url('admin\logout')}}">退出</a></dd>
+                    <dd><a href="{{url('admin/logout')}}">退出</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
@@ -169,15 +169,6 @@
                         </li >
 
                     </ul>
-                    <ul class="sub-menu">
-                        <li>
-                            <a _href="{{ url('admin/goods/create')}}" target="_blank">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>商品添加</cite>
-                            </a>
-                        </li >
-
-                    </ul>
 
                 </li>
                 {{--订单管理--}}
@@ -297,7 +288,16 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a _href="/admin/goods/good/list" target="_blank">
+                                <a _href="/admin/seller/goodscate" target="_blank">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>商品栏位</cite>
+                                </a>
+                            </li >
+
+                        </ul>
+                        <ul class="sub-menu">
+                            <li>
+                                <a _href="/admin/seller/goods" target="_blank">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>商品列表</cite>
                                 </a>
@@ -306,22 +306,14 @@
                         </ul>
                         <ul class="sub-menu">
                             <li>
-                                <a _href="/admin/goods/good/add" target="_blank">
+                                <a _href="/admin/seller/goods/create" target="_blank">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>商品添加</cite>
                                 </a>
                             </li >
 
                         </ul>
-                        <ul class="sub-menu">
-                            <li>
-                                <a _href="/admin/goods/good/del" target="_blank">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>商品删除</cite>
-                                </a>
-                            </li >
 
-                        </ul>
                     </li>
                     {{--订单管理--}}
                     <li>
