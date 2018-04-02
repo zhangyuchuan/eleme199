@@ -45,14 +45,14 @@
                 </div>
                 <div class="form-helper">
                     <label class="login-checkbox"> <input class="login-remember" type="checkbox" name="remember" checked=""> 下次自动登录 </label>
-                    <a class="g-link js_link_register" href="http://waimai.com/forget">忘记密码</a>
+                    <a class="g-link js_link_register" href="javascript:;">忘记密码</a>
                 </div>
                 <button class="g-btn g-btn-l g-btn-submit" type="submit">登录</button>
             </form>
 
         </div>
         <div class="panel-ft">
-            <a class="g-btn g-btn-l g-btn-submit" href="http://waimai.com/register">免费注册</a>
+            <a class="g-btn g-btn-l g-btn-submit" href="javascript:;">免费注册</a>
         </div>
     </div>
 </div>
@@ -61,7 +61,7 @@
 
 <footer class="site-footer group" role="contentinfo">
     <div class="container">
-        <p class="sfooter-line"> <a class="sfooter-link" href="http://kaidian.ele.me/">我要开店</a> | <a class="sfooter-link" href="http://waimai.com/login">联系我们</a> | <a class="sfooter-link" href="http://waimai.com/login">服务条款和协议</a> | <a class="sfooter-link" href="http://waimai.com/">站点地图</a>
+        <p class="sfooter-line"> <a class="sfooter-link" href="javascript:;">我要开店</a> | <a class="sfooter-link" href="http://waimai.com/login">联系我们</a> | <a class="sfooter-link" href="http://waimai.com/login">服务条款和协议</a> | <a class="sfooter-link" href="http://waimai.com/">站点地图</a>
         </p></div>
 </footer>
 

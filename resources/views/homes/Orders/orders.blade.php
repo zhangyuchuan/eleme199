@@ -9,13 +9,13 @@
         <div class="sidebar" role="complementary" hide="layoutState &amp;&amp; layoutState.hideSidebar">
             <div class="sidebar-tabs">
                 <div class="toolbar-tabs-middle">
-                    <a class="toolbar-btn icon-order toolbar-close" href="https://www.ele.me/profile/order"
+                    <a class="toolbar-btn icon-order toolbar-close" href="/orders"
                     hardjump="" tooltip="我的订单" tooltip-placement="left" ubt-click="toolbar_order">
                         <!-- ngIf: sidebarCount.uncompletedOrder> 0 -->
                     </a>
                     <div class="toolbar-separator">
                     </div>
-                    <a class="toolbar-cartbtn icon-cart toolbar-open" href="JavaScript:" template="cart"
+                    <a class="toolbar-cartbtn icon-cart toolbar-open" href="javascript:;" template="cart"
                     class="{&#39;focus&#39;: (activeTemplate === &#39;cart&#39; &amp;&amp; isSidebarOpen), &#39;toolbar-cartbtn-shownum&#39;: foodCount.count}"
                     ubt-click="390">
                         购物车
@@ -32,7 +32,7 @@
                 <div class="toolbar-tabs-bottom">
                     <div class="toolbar-btn icon-QR-code">
                         <div class="dropbox toolbar-tabs-dropbox">
-                            <a href="http://static11.elemecdn.com/eleme/desktop/mobile/index.html"
+                            <a href="javascript:;"
                             target="_blank">
                                 <img src="/home/img/appqc.95e532.png" alt="下载手机应用">
                                 <p>
@@ -69,13 +69,13 @@
                             当前位置:
                         </span>
                         <span class="location-current">
-                            <a class="inherit binding" href="/place/wx4spk2hgfer" ubt-click="401"
-                            bind="place.name || place.address" href="https://www.ele.me/place/wx4spk2hgfer">
+                            <a class="inherit binding" href="javascript:;" ubt-click="401"
+                            bind="place.name || place.address" href="javascript:;">
                                 昌平区204县道(北京市育荣教育园区西)
                             </a>
                         </span>
                         <span class="location-change location-hashistory" class="{ &#39;location-hashistory&#39;: user.username &amp;&amp; userPlaces &amp;&amp; userPlaces.length &gt; 0 }">
-                            <a href="/home" ubt-click="400" hardjump="" href="https://www.ele.me/home">
+                            <a href="javascript:;" ubt-click="400" hardjump="" href="javascript:;">
                                 [切换地址]
                             </a>
                             <ul class="dropbox location-dropbox" ubt-visit="398">
@@ -85,15 +85,15 @@
                                 4 -->
                                 <li repeat="userPlace in userPlaces | filter:filterPlace | limitTo: 4"
                                 class="scope">
-                                    <a class="inherit binding" href="/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404"
-                                    bind="userPlace.name" ubt-click="399" href="https://www.ele.me/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404">
+                                    <a class="inherit binding" href="javascript:;"
+                                    bind="userPlace.name" ubt-click="399" href="javascript:;">
                                         昌平区204县道(北京市育荣教育园区西)
                                     </a>
                                 </li>
                                 <!-- end ngRepeat: userPlace in userPlaces | filter:filterPlace | limitTo:
                                 4 -->
                                 <li class="changelocation">
-                                    <a href="/home" hardjump="" href="https://www.ele.me/home">
+                                    <a href="javascript:;" hardjump="" href="javascript:;">
                                         修改收货地址
                                         <span class="icon-location">
                                         </span>
@@ -117,7 +117,7 @@
                         <h2 class="profile-sidebar-sectiontitle" class="{ active: pageName === &#39;profile&#39; }">
                             <i class="icon-line-home">
                             </i>
-                            <a href="https://www.ele.me/profile">
+                            <a href="/center">
                                 个人中心
                             </a>
                         </h2>
@@ -130,19 +130,8 @@
                         </h2>
                         <ul>
                             <li class="{ active: pageName === &#39;order&#39; }" class="active">
-                                <a href="https://www.ele.me/profile/order">
-                                    近三个月订单
-                                </a>
-                            </li>
-                            <li class="{ active: pageName === &#39;order-unrated&#39; }">
-                                <a href="https://www.ele.me/profile/order/unrated">
-                                    待评价订单
-                                    <!-- ngIf: unratedNumber -->
-                                </a>
-                            </li>
-                            <li class="{ active: pageName === &#39;order-refunding&#39; }">
-                                <a href="https://www.ele.me/profile/order/refund">
-                                    退单记录
+                                <a href="/orders">
+                                    近期订单
                                 </a>
                             </li>
                         </ul>
@@ -155,17 +144,17 @@
                         </h2>
                         <ul>
                             <li class="{ active: pageName === &#39;hongbao&#39; }">
-                                <a href="https://www.ele.me/profile/hongbao">
+                                <a href="javascript:;">
                                     我的红包
                                 </a>
                             </li>
                             <li class="{ active: pageName === &#39;balance&#39; }">
-                                <a href="https://www.ele.me/profile/balance">
+                                <a href="/balance">
                                     账户余额
                                 </a>
                             </li>
                             <li class="{ active: pageName === &#39;points&#39; }">
-                                <a href="https://www.ele.me/profile/points">
+                                <a href="/integral">
                                     我的积分
                                 </a>
                             </li>
@@ -179,22 +168,22 @@
                         </h2>
                         <ul>
                             <li class="{ active: pageName === &#39;info&#39; }">
-                                <a href="https://www.ele.me/profile/info">
+                                <a href="/center">
                                     个人资料
                                 </a>
                             </li>
                             <li class="{ active: pageName === &#39;address&#39; }">
-                                <a href="https://www.ele.me/profile/address">
+                                <a href="/add">
                                     地址管理
                                 </a>
                             </li>
                             <li class="{ active: pageName === &#39;security-center&#39; }">
-                                <a href="https://www.ele.me/profile/security">
+                                <a href="/safety">
                                     安全中心
                                 </a>
                             </li>
                             <li class="{ active: pageName === &#39;changepassword&#39; }">
-                                <a href="https://www.ele.me/profile/security/changepassword">
+                                <a href="javascript:;">
                                     修改密码
                                 </a>
                             </li>
@@ -202,7 +191,7 @@
                     </li>
                     <li class="profile-sidebar-section">
                         <h2 class="profile-sidebar-sectiontitle" class="{ active: pageName === &#39;favor&#39; }">
-                            <a href="https://www.ele.me/profile/favor">
+                            <a href="/collect">
                                 <i class="icon-order-favor">
                                 </i>
                                 我的收藏
@@ -225,10 +214,10 @@
                             <img src="/home/img/takeout.408a87.png">
                         </div>
                         <div class="order-extra scope">
-                            <a href="https://www.ele.me/support/question/hotissue" target="_blank">
+                            <a href="javascript:;">
                                 热门问题
                             </a>
-                            <a href="https://static11.elemecdn.com/eleme/desktop/mobile/index.html"
+                            <a href="javascript:;"
                             target="_blank">
                                 随时关注订单状态
                             </a>
@@ -238,7 +227,7 @@
                         nodatatip="" content="暂无记录，现在就去&lt;a href=&#39;/place&#39;&gt;订餐&lt;/a&gt;吧!">
                             <p class="nodata-container binding" bind-html="content | toTrusted">
                                 暂无记录，现在就去
-                                <a href="https://www.ele.me/place">
+                                <a href="/lists">
                                     订餐
                                 </a>
                                 吧!

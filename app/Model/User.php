@@ -17,4 +17,9 @@ class User extends Model
 
     //    4. 是否允许批量操作字段
         public $guarded = [];
+
+    public function Orders()
+    {
+        return  $this->hasMany('App\Model\Orders','uid','id');
+    }
 }

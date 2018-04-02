@@ -117,6 +117,8 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::get('/integral','Home\Users\UserController@integral');
     //用户收藏
     Route::get('/collect','Home\Users\UserController@collect');
+    //删除用户收藏
+    Route::get('/delete/{id}','Home\Users\UserController@delete');
     //账户余额
     Route::get('/balance','Home\Users\UserController@balance');
     //加盟合作
@@ -131,7 +133,18 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::get('/lists','Home\Shops\ShopController@lists');
     //商品订单
     Route::get('/orders','Home\Orders\OrderController@orders');
-    //结算
+    //订单详情
+    Route::get('/orderdata/{id}','Home\Orders\OrderController@orderdata');
+    //结算{
     Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
 
+    //申请开店
+    Route::get('/open','Home\Open\OpenController@open');
+    //开店准备资料
+    Route::get('/opendata','Home\Open\OpenController@opendata');
+    //开店信息
+    Route::get('/openmessage','Home\Open\OpenController@openmessage');
 
+
+    //前台网站配置
+    Route::resource('/home/config','Home\Config\ConfigController');

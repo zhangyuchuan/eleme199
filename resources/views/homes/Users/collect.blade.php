@@ -15,13 +15,13 @@
                             当前位置:
                         </span>
                 <span class="location-current">
-                            <a class="inherit ng-binding" ng-href="/place/wx4spk2hgfer" ubt-click="401"
-                               ng-bind="place.name || place.address" href="https://www.ele.me/place/wx4spk2hgfer">
+                            <a class="inherit ng-binding" ng-href="javascript:;" ubt-click="401"
+                               ng-bind="place.name || place.address" href="javascript:;">
                                 昌平区204县道(北京市育荣教育园区西)
                             </a>
                         </span>
                 <span class="location-change location-hashistory" ng-class="{ &#39;location-hashistory&#39;: user.username &amp;&amp; userPlaces &amp;&amp; userPlaces.length &gt; 0 }">
-                            <a ng-href="/home" ubt-click="400" hardjump="" href="https://www.ele.me/home">
+                            <a ng-href="javascript:;" ubt-click="400" hardjump="" href="javascript:;">
                                 [切换地址]
                             </a>
                             <ul class="dropbox location-dropbox" ubt-visit="398">
@@ -31,15 +31,15 @@
                                 4 -->
                                 <li ng-repeat="userPlace in userPlaces | filter:filterPlace | limitTo: 4"
                                     class="ng-scope">
-                                    <a class="inherit ng-binding" ng-href="/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404"
-                                       ng-bind="userPlace.name" ubt-click="399" href="https://www.ele.me/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404">
+                                    <a class="inherit ng-binding" ng-href="javascript:;"
+                                       ng-bind="userPlace.name" ubt-click="399" href="javascript:;">
                                         昌平区204县道(北京市育荣教育园区西)
                                     </a>
                                 </li>
                                 <!-- end ngRepeat: userPlace in userPlaces | filter:filterPlace | limitTo:
                                 4 -->
                                 <li class="changelocation">
-                                    <a ng-href="/home" hardjump="" href="https://www.ele.me/home">
+                                    <a ng-href="javascript:;" hardjump="" href="javascript:;">
                                         修改收货地址
                                         <span class="icon-location">
                                         </span>
@@ -63,7 +63,7 @@
                 <h2 class="profile-sidebar-sectiontitle" ng-class="{ active: pageName === &#39;profile&#39; }">
                     <i class="icon-line-home">
                     </i>
-                    <a href="https://www.ele.me/profile">
+                    <a href="/center">
                         个人中心
                     </a>
                 </h2>
@@ -76,18 +76,18 @@
                 </h2>
                 <ul>
                     <li ng-class="{ active: pageName === &#39;order&#39; }">
-                        <a href="https://www.ele.me/profile/order">
+                        <a href="/orders">
                             近三个月订单
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;order-unrated&#39; }">
-                        <a href="https://www.ele.me/profile/order/unrated">
+                        <a href="javascript:;">
                             待评价订单
                             <!-- ngIf: unratedNumber -->
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;order-refunding&#39; }">
-                        <a href="https://www.ele.me/profile/order/refund">
+                        <a href="javascript:;">
                             退单记录
                         </a>
                     </li>
@@ -101,17 +101,17 @@
                 </h2>
                 <ul>
                     <li ng-class="{ active: pageName === &#39;hongbao&#39; }">
-                        <a href="https://www.ele.me/profile/hongbao">
+                        <a href="javascript:;">
                             我的红包
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;balance&#39; }">
-                        <a href="https://www.ele.me/profile/balance">
+                        <a href="/balance">
                             账户余额
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;points&#39; }">
-                        <a href="https://www.ele.me/profile/points">
+                        <a href="/integral">
                             我的积分
                         </a>
                     </li>
@@ -125,12 +125,12 @@
                 </h2>
                 <ul>
                     <li ng-class="{ active: pageName === &#39;info&#39; }">
-                        <a href="https://www.ele.me/profile/info">
+                        <a href="/data">
                             个人资料
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;address&#39; }">
-                        <a href="https://www.ele.me/profile/address">
+                        <a href="/add">
                             地址管理
                         </a>
                     </li>
@@ -140,7 +140,7 @@
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;changepassword&#39; }">
-                        <a href="https://www.ele.me/profile/security/changepassword">
+                        <a href="javascript:;">
                             修改密码
                         </a>
                     </li>
@@ -148,7 +148,7 @@
             </li>
             <li class="profile-sidebar-section">
                 <h2 class="profile-sidebar-sectiontitle active" ng-class="{ active: pageName === &#39;favor&#39; }">
-                    <a href="https://www.ele.me/profile/favor">
+                    <a href="/collect">
                         <i class="icon-order-favor">
                         </i>
                         我的收藏
@@ -176,42 +176,63 @@
                     <!-- ngIf: type==='normal' -->
                     正在载入商家信息...
                 </div>
-                <div class="favor-restaurants ng-scope" ng-show="!favorLoading">
-                    <h4 class="favor-title">
-                        当前区域共有
-                        <span ng-bind="inRegionFavors.length || 0" class="ng-binding">
-                                    0
-                                </span>
-                        家可配送商家
-                    </h4>
-                    <div class="clearfix">
+                @foreach($shop_data as $v)
+                <div class="favor-restaurants ng-scope" ng-show="!favorLoading" style="">
+
+                    <div class="">
                         <!-- ngRepeat: restaurant in inRegionFavors -->
+                        <div class="favor-rstblock" ng-class="{&#39;outofregion&#39;:outofregion}"
+                             favor-rst-block="" ng-repeat="restaurant in inRegionFavors">
+                            <div class="favor-rstblock-header">
+                                <div class="favor-rstblock-headerbg" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + backgroundUrl + &#39;)&#39;}"
+                                     style="background-image: url(&quot;//shadow.elemecdn.com/faas/desktop/media/img/favor-rst-bg1.804470.jpg&quot;);">
+                                </div>
+                                <a class="favor-rstblock-name ng-binding" ng-bind="restaurant.name" ng-href="/shop/161298449"
+                                   title="前往主食爱上粥(三期百汇店)" href="https://www.ele.me/shop/161298449">
+                                    {{ $v->name }}
+                                </a>
+                                <!-- ngIf: !restaurant.is_opening && !outofregion -->
+                                <!-- ngIf: restaurant.status===5 && !outofregion -->
+                            </div>
+                            <a ng-href="" title="前往主食爱上粥(三期百汇店)" href="/shop">
+                                <img ng-src=""
+                                     class="favor-rstblock-logo" alt="商家 LOGO" src="{{ $v->logo }}">
+                            </a>
+                            <div class="favor-rstblock-starrating icon-star">
+                                        <span class="icon-star" ng-style="{ width: (restaurant.rating * 20) + &#39;%&#39; }"
+                                              style="width: {{ $v->score }}%;">
+                                        </span>
+                            </div>
+                            <div class="favor-rstblock-content">
+                                <div class="favor-rstblock-item">
+                                    <p>
+                                        起送价
+                                    </p>
+                                    <p class="value icon-yen ng-binding" ng-bind="restaurant.float_minimum_order_amount">
+                                        {{ $v->fsmoney }}
+                                    </p>
+                                </div>
+                                <div class="favor-rstblock-item">
+                                    <p>
+                                        送餐时间
+                                    </p>
+                                    <p class="value time ng-binding" ng-bind="restaurant.order_lead_time_text ||  0">
+                                        {{ $v->finishtime }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="favor-rstblock-activity">
+                                <!-- ngRepeat: activity in restaurant.activities | limitTo: 8 -->
+                                <a href="/delete/{{$v->id}}"><i class="favor-rstblock-cancel icon-trash" ng-click="showRemoveMask($index)">
+
+                                </i></a>
+                            </div>
+                        </div>
+                        <!-- end ngRepeat: restaurant in inRegionFavors -->
                         <!-- ngIf: !inRegionFavors.length -->
-                        <div class="nodata ng-isolate-scope" ng-if="!inRegionFavors.length" nodatatip=""
-                             content="暂无可配送商家">
-                            <p class="nodata-container ng-binding" ng-bind-html="content | toTrusted">
-                                暂无可配送商家
-                            </p>
-                        </div>
-                        <!-- end ngIf: !inRegionFavors.length -->
                     </div>
                 </div>
-                <div class="favor-restaurants ng-scope" ng-show="!favorLoading">
-                    <h4 class="favor-title">
-                        当前区域不可配送的商家
-                    </h4>
-                    <div class="clearfix">
-                        <!-- ngRepeat: restaurant in outOfRegionFavors -->
-                        <!-- ngIf: !outOfRegionFavors.length -->
-                        <div class="nodata ng-isolate-scope" ng-if="!outOfRegionFavors.length"
-                             nodatatip="" content="暂无不可配送商家">
-                            <p class="nodata-container ng-binding" ng-bind-html="content | toTrusted">
-                                暂无不可配送商家
-                            </p>
-                        </div>
-                        <!-- end ngIf: !outOfRegionFavors.length -->
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

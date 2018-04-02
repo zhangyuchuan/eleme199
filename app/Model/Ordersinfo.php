@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Model;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Ordersinfo extends Model
+{
+    //    1. 模型关联的数据表
+    public $table = 'ordersinfo';
+
+    //    2. 主键
+    public $primaryKey = 'id';
+
+    //    3. 是否维护created_at updated_at字段
+    public $timestamps = false;
+
+    //    4. 是否允许批量操作字段
+    public $guarded = [];
+
+    public function Goods()
+    {
+        return  $this->hasone('App\Model\Goods','id','gid');
+    }
+
+    public function shopinfo()
+    {
+        return  $this->hasone('App\Model\ShopInfo','id','sid');
+    }
+
+
+
+}

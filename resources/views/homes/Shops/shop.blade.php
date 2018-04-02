@@ -65,31 +65,31 @@
         <header class="topbar shoptopbar" role="navigation" ng-class="{shoptopbar: state.type === &#39;shop&#39;}">
             <div class="container clearfix">
                 <h1>
-                    <a href="https://www.ele.me/" hardjump="" class="topbar-logo icon-logo">
+                    <a href="/lists" hardjump="" class="topbar-logo icon-logo">
                                 <span>
                                     饿了么
                                 </span>
                     </a>
                 </h1>
-                <a href="https://www.ele.me/" hardjump="" class="topbar-item topbar-homepage"
+                <a href="/lists" hardjump="" class="topbar-item topbar-homepage"
                    ng-class="{&#39;focus&#39;: $root.locationpath[0] === &#39;place&#39;}">
                     首页
                 </a>
-                <a href="https://www.ele.me/profile/order" hardjump="" class="topbar-item"
+                <a href="/orders" hardjump="" class="topbar-item"
                    ng-class="{&#39;focus&#39;: $root.locationpath[1] === &#39;order&#39;}">
                     我的订单
                 </a>
-                <a href="https://h5.ele.me/service/cooperation/" target="_blank" class="topbar-item cooperation">
+                <a href="javascript:;" target="_blank" class="topbar-item cooperation">
                     加盟合作
                 </a>
                 <nav class="topbar-nav">
-                    <a href="https://www.ele.me/support/center" hardjump="" class="topbar-nav-link"
+                    <a href="javascript:;" hardjump="" class="topbar-nav-link"
                        target="_blank">
                         <i class="topbar-nav-icon icon-service">
                         </i>
                         服务中心
                     </a>
-                    <a href="https://www.ele.me/support/rules/default" hardjump="" class="topbar-nav-link"
+                    <a href="javascript:;" hardjump="" class="topbar-nav-link"
                        target="_blank">
                         规则中心
                     </a>
@@ -110,8 +110,7 @@
                             <span class="topbar-profilebox-avatar icon-profile" ng-show="!$root.user.username">
                                     </span>
                             <span ng-show="!$root.user.username" class="">
-                                        <a ng-href="//h5.ele.me//login/#redirect=https%3A%2F%2Fwww.ele.me%2Fshop%2F1195106"
-                                           target="_blank" href="https://h5.ele.me//login/#redirect=https%3A%2F%2Fwww.ele.me%2Fshop%2F1195106">
+                                        <a ng-href="javascript:;" href="javascript:;">
                                             登录/注册
                                         </a>
                                     </span>
@@ -125,16 +124,16 @@
                                         </span>
                                 <!-- end ngIf: $root.topbarType !==' checkout' -->
                                         <div class="dropbox topbar-profilebox-dropbox">
-                                            <a class="icon-profile" href="https://www.ele.me/profile" hardjump="">
+                                            <a class="icon-profile" href="/center" hardjump="">
                                                 个人中心
                                             </a>
-                                            <a class="icon-star" href="https://www.ele.me/profile/favor" hardjump="">
+                                            <a class="icon-star" href="/collect" hardjump="">
                                                 我的收藏
                                             </a>
-                                            <a class="icon-location" href="https://www.ele.me/profile/address" hardjump="">
+                                            <a class="icon-location" href="/add" hardjump="">
                                                 我的地址
                                             </a>
-                                            <a class="icon-setting" href="https://www.ele.me/profile/security" hardjump="">
+                                            <a class="icon-setting" href="/safety" hardjump="">
                                                 安全设置
                                             </a>
                                             <a class="icon-logout" href="JavaScript:" ng-click="logout()">
@@ -155,7 +154,7 @@
 <div class="sidebar ng-hide" role="complementary" ng-hide="layoutState &amp;&amp; layoutState.hideSidebar">
     <div class="sidebar-tabs">
         <div class="toolbar-tabs-middle">
-            <a class="toolbar-btn icon-order toolbar-close" href="https://www.ele.me/profile/order"
+            <a class="toolbar-btn icon-order toolbar-close" href="/orders"
                hardjump="" tooltip="我的订单" tooltip-placement="left" ubt-click="toolbar_order">
                 <!-- ngIf: sidebarCount.uncompletedOrder> 0 -->
             </a>
@@ -178,7 +177,7 @@
         <div class="toolbar-tabs-bottom">
             <div class="toolbar-btn icon-QR-code">
                 <div class="dropbox toolbar-tabs-dropbox">
-                    <a href="http://static11.elemecdn.com/eleme/desktop/mobile/index.html"
+                    <a href="javascript:;"
                        target="_blank">
                         <img src="/home/elm/appqc.95e532.png" alt="下载手机应用">
                         <p>
@@ -219,7 +218,7 @@
                             田老师红烧肉（怀柔青春路店）
                         </h1>
                         <!-- ngIf: shop.tip -->
-                        <a ng-href="/shop/1195106/info" href="https://www.ele.me/shop/1195106/info">
+                        <a ng-href="javascript:;" href="javascript:;">
                             <!-- ngIf: cityId===6 7 -->
                         </a>
                     </div>
@@ -231,7 +230,7 @@
                                     </span>
                     </div>
                     (
-                    <a ng-href="/shop/1195106/rate" class="ng-binding" href="https://www.ele.me/shop/1195106/rate">
+                    <a ng-href="javascript:;" class="ng-binding" href="javascript:;">
                         456
                     </a>
                     )
@@ -378,13 +377,13 @@
         <div class="shopnav">
             <div class="container clearfix">
                 <div class="shopnav-left">
-                    <a class="shopnav-tab active" href="https://www.ele.me/shop/1195106" ng-class="{active: shop.tab === &#39;index&#39;}">
+                    <a class="shopnav-tab active" href="/lists" ng-class="{active: shop.tab === &#39;index&#39;}">
                         所有商品
                     </a>
-                    <a class="shopnav-tab" href="https://www.ele.me/shop/1195106/rate" ng-class="{active: shop.tab === &#39;rate&#39;}">
+                    <a class="shopnav-tab" href="javascript:;" ng-class="{active: shop.tab === &#39;rate&#39;}">
                         评价
                     </a>
-                    <a class="shopnav-tab" href="https://www.ele.me/shop/1195106/info" ng-class="{active: shop.tab === &#39;info&#39;}">
+                    <a class="shopnav-tab" href="javascript:;" ng-class="{active: shop.tab === &#39;info&#39;}">
                         商家资质
                     </a>
                     <!-- ngIf: shopAction===' menu' -->
@@ -1512,10 +1511,10 @@
             <h3 class="footer-link-title">
                 用户帮助
             </h3>
-            <a class="footer-link-item" href="https://www.ele.me/support/center" target="_blank">
+            <a class="footer-link-item" href="javascript:;" target="_blank">
                 服务中心
             </a>
-            <a class="footer-link-item" href="https://www.ele.me/support/question/default"
+            <a class="footer-link-item" href="javascript:;"
                target="_blank">
                 常见问题
             </a>
@@ -1527,18 +1526,18 @@
             <h3 class="footer-link-title">
                 商务合作
             </h3>
-            <a class="footer-link-item" href="https://kaidian.ele.me/" target="_blank">
+            <a class="footer-link-item" href="javascript:;" target="_blank">
                 我要开店
             </a>
-            <a class="footer-link-item" href="https://www.ele.me/support/about/jiameng"
+            <a class="footer-link-item" href="javascript:;"
                target="_blank">
                 加盟指南
             </a>
-            <a class="footer-link-item" href="https://www.ele.me/support/about/contact"
+            <a class="footer-link-item" href="javascript:;"
                target="_blank">
                 市场合作
             </a>
-            <a class="footer-link-item" href="http://openapi.eleme.io/" target="_blank">
+            <a class="footer-link-item" href="javascript:;" target="_blank">
                 开放平台
             </a>
         </div>
@@ -1546,17 +1545,17 @@
             <h3 class="footer-link-title">
                 关于我们
             </h3>
-            <a class="footer-link-item" href="https://www.ele.me/support/about" target="_blank">
+            <a class="footer-link-item" href="javascript:;" target="_blank">
                 饿了么介绍
             </a>
-            <a class="footer-link-item" href="http://jobs.ele.me/" target="_blank">
+            <a class="footer-link-item" href="javascript:;" target="_blank">
                 加入我们
             </a>
-            <a class="footer-link-item" href="https://www.ele.me/support/about/contact"
+            <a class="footer-link-item" href="javascript:;"
                target="_blank">
                 联系我们
             </a>
-            <a class="footer-link-item" href="https://www.ele.me/support/rules/default"
+            <a class="footer-link-item" href="javascript:;"
                target="_blank">
                 规则中心
             </a>
@@ -1564,13 +1563,13 @@
         <div class="footer-contect">
             <div class="footer-contect-item">
                 24小时客服热线 :
-                <a class="inherit" href="tel:10105757">
+                <a class="inherit" href="javascript:;">
                     10105757
                 </a>
             </div>
             <div class="footer-contect-item">
                 意见反馈 :
-                <a class="inherit" href="mailto:feedback@ele.me">
+                <a class="inherit" href="javascript:;">
                     feedback@ele.me
                 </a>
             </div>
@@ -1592,7 +1591,7 @@
             </div>
         </div>
         <div class="footer-mobile">
-            <a href="https://h.ele.me/landing" target="_blank">
+            <a href="javascript:;" target="_blank">
                 <img src="/home/elm/appqc.95e532.png" class="footer-mobile-icon" alt="扫一扫下载饿了么手机 App">
             </a>
             <div class="footer-mobile-content">
@@ -1610,15 +1609,15 @@
             </h5>
             <p>
                 增值电信业务许可证 :
-                <a href="http://www.shca.gov.cn/" target="_blank">
+                <a href="javascript:;" target="_blank">
                     沪B2-20150033
                 </a>
                 |
-                <a href="http://www.miibeian.gov.cn/" target="_blank">
+                <a href="javascript:;" target="_blank">
                     沪ICP备 09007032
                 </a>
                 |
-                <a href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&amp;entyId=20120305173227823"
+                <a href="javascript:;"
                    target="_blank">
                     上海工商行政管理
                 </a>
@@ -1626,7 +1625,7 @@
             </p>
         </div>
         <div class="footer-police container">
-            <a href="http://www.zx110.org/picp/?sn=310100103568" rel="nofollow" target="_blank">
+            <a href="javascript:;" rel="nofollow" target="_blank">
                 <img alt="已通过沪公网备案，备案号 310100103568" src="/home/elm/picp_bg.e373b3.jpg" height="30">
             </a>
         </div>
