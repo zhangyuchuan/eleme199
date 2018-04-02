@@ -4,12 +4,32 @@
 
     <div class="x-body">
         <div class="layui-row">
+            <form class="layui-form layui-col-md12 x-so" action="/admin/users/users" method="get">
+                <div class="layui-input-inline">
+                    <select name="num">
+                        <option value="3"
+                                @if($request['num'] == 3)  selected  @endif
+                        >3
+                        </option>
+                        <option value="10"
+                                @if($request['num'] == 10)  selected  @endif
+                        >10
+                        </option>
+                    </select>
+                </div>
+                <input type="text" name="username" value="{{$request->username}}" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                <div class="layui-input-block" style="display:inline">
+                    <input type="radio" name="sex"  title="男" value ="男" @if($request->sex=="男") checked @endif>
+                    <input type="radio" name="sex"  title="女" value ="女" @if($request->sex=="女") checked @endif>
+                </div>
 
+                <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+            </form>
         </div>
         <xblock>
             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
 
-            <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+            <span class="x-right" style="line-height:40px">共有数据：{{count($users)}} 条</span>
         </xblock>
         <table class="layui-table">
             <thead>
@@ -35,6 +55,7 @@
                 <td>{{$v->username}}</td>
                 <td>{{$v->sex}}</td>
                 <td>{{$v->phone}}</td>
+
                 @if($v->status==0)
                 <td class="td-status">
                     <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
@@ -43,7 +64,7 @@
                         <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span></td>
                 @endif
                 <td class="td-manage">
-                    <a onclick="member_stop(this,{{ $v->id }})" href="javascript:;" status="{{ $v->status }}" title="启用">
+                    <a onclick="member_stop(this,'{{ $v->id }}')" href="javascript:;" status="{{ $v->status }}" title="启用">
                         <i class="layui-icon">&#xe601;</i>
                     </a>
                     <a title="编辑"  onclick="x_admin_show('编辑','/admin/users/users/grade',600,400)" href="javascript:;">
@@ -65,7 +86,7 @@
         <div class="page">
             <div>
                 {{--        {{ $users->appends(['username' => $username])->links() }}--}}
-                {{--{!! $users->appends($request->all())->render() !!}--}}
+                {!! $users->appends($request->all())->render() !!}
             </div>
         </div>
 
@@ -159,12 +180,22 @@
 
         function delAll (argument) {
 
-            var data = tableCheck.getData();
-
-            layer.confirm('确认要删除吗？'+data,function(index){
+            layer.confirm('确认要删除吗？',function(index){
+                var ids = [];
+                $('.layui-form-checked').not('.header').each(function(i,v){
+                    ids.push($(v).attr('data-id'))
+                })
+                $.get('/admin/users/users/delall',{'ids':ids},function(data){
+                    if(data.status=='0'){
+                        layer.msg('删除成功', {icon: 1});
+                        $(".layui-form-checked").not('.header').parents('tr').remove();
+                        location.reload(true);
+                    }else{
+                        layer.msg('删除失败', {icon: 2});
+                    }
+                })
                 //捉到所有被选中的，发异步进行删除
-                layer.msg('删除成功', {icon: 1});
-                $(".layui-form-checked").not('.header').parents('tr').remove();
+
             });
         }
 

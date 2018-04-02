@@ -72,7 +72,7 @@
                         <a class="topbar-item topbar-homepage focus" href="/" hardjump="">
                             首页
                         </a>
-                        <a class="topbar-item" href="/profile/order" hardjump="" class="{'focus': $root.locationpath[1] === 'order'}">
+                        <a class="topbar-item" href="/orders" hardjump="" class="{'focus': $root.locationpath[1] === 'order'}">
                             我的订单
                         </a>
                         <a class="topbar-item cooperation" href="//h5.ele.me/service/cooperation/"
@@ -80,12 +80,12 @@
                             加盟合作
                         </a>
                         <nav class="topbar-nav">
-                            <a class="topbar-nav-link" href="/support/center" hardjump="" target="_blank">
+                            <a class="topbar-nav-link" href="" hardjump="" target="_blank">
                                 <i class="topbar-nav-icon icon-service">
                                 </i>
                                 服务中心
                             </a>
-                            <a class="topbar-nav-link" href="/support/rules/default" hardjump="" target="_blank">
+                            <a class="topbar-nav-link" href="" hardjump="" target="_blank">
                                 规则中心
                             </a>
                             <div class="topbar-nav-link">

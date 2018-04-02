@@ -82,7 +82,13 @@
 
                             </a>
                         </li >
+                        <li>
+                            <a _href="/admin/users/users/info" target="_blank">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>用户详情</cite>
 
+                            </a>
+                        </li >
 
                     </ul>
                 </li>
@@ -195,22 +201,15 @@
                             </a>
                         </li>
                     </ul>
-                    <ul class="sub-menu">
-                        <li>
-                            <a _href="/admin/order/order/add" target="_blank">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>订单添加</cite>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="sub-menu">
-                        <li>
-                            <a _href="/admin/order/order/del" target="_blank">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>订单删除</cite>
-                            </a>
-                        </li>
-                    </ul>
+
+                    {{--<ul class="sub-menu">--}}
+                        {{--<li>--}}
+                            {{--<a _href="/admin/order/order/del" target="_blank">--}}
+                                {{--<i class="iconfont">&#xe6a7;</i>--}}
+                                {{--<cite>订单删除</cite>--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
                 </li>
                 {{--网站配置管理--}}
                 <li>

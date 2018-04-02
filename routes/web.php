@@ -64,14 +64,21 @@ Route::group(['middleware'=>'Islogin'],function() {
 
 
     //后台普通用户路由
+    Route::post('/admin/users/users/changestatus','Admin\Users\UserController@changestatus');
+    Route::get('/admin/users/users/info','Admin\Users\UserController@info');
+    Route::post('/admin/users/users/del/{id}','Admin\Users\UserController@del');
+
     Route::get('/admin/users/users/grade','Admin\Users\UserController@grade');
     Route::get('/admin/users/users/audit','Admin\Users\UserController@audit');
-
+    Route::get('/admin/users/users/delall', 'Admin\Users\UserController@delall');
     Route::resource('/admin/users/users','Admin\Users\UserController');
     //后台用户修改状态
-    Route::post('/admin/users/users/changestatus','Admin\Users\UserController@changestatus');
 
-//    Admin\Users\UserController
+    //后台订单
+    Route::get('/admin/order/order/info','Admin\Order\OrdersController@info');
+    Route::get('/admin/order/order/list','Admin\Order\OrdersController@List');
+    Route::post('/admin/order/order/changestatus','Admin\Order\OrdersController@changestatus');
+    Route::resource('/admin/order/order','Admin\Order\OrdersController');
 
 
     //后台网站配置
@@ -130,5 +137,9 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::get('/orders','Home\Orders\OrderController@orders');
     //结算
     Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
+    //用户红包
+    Route::get('/hongbao','Home\Users\UserController@hongbao');
+    //订单完成
+    Route::get('/overorder','Home\Orders\OrderController@overorder');
 
 

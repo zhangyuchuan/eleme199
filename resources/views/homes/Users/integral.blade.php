@@ -32,14 +32,14 @@
                                 <li ng-repeat="userPlace in userPlaces | filter:filterPlace | limitTo: 4"
                                     class="ng-scope">
                                     <a class="inherit ng-binding" ng-href="/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404"
-                                       ng-bind="userPlace.name" ubt-click="399" href="https://www.ele.me/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404">
+                                       ng-bind="userPlace.name" ubt-click="399" href="/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404">
                                         昌平区204县道(北京市育荣教育园区西)
                                     </a>
                                 </li>
                                 <!-- end ngRepeat: userPlace in userPlaces | filter:filterPlace | limitTo:
                                 4 -->
                                 <li class="changelocation">
-                                    <a ng-href="/home" hardjump="" href="https://www.ele.me/home">
+                                    <a ng-href="/home" hardjump="" href="/home">
                                         修改收货地址
                                         <span class="icon-location">
                                         </span>
@@ -63,7 +63,7 @@
                 <h2 class="profile-sidebar-sectiontitle" ng-class="{ active: pageName === &#39;profile&#39; }">
                     <i class="icon-line-home">
                     </i>
-                    <a href="https://www.ele.me/profile">
+                    <a href="/center">
                         个人中心
                     </a>
                 </h2>
@@ -75,19 +75,19 @@
                     我的订单
                 </h2>
                 <ul>
-                    <li ng-class="{ active: pageName === &#39;order&#39; }">
-                        <a href="https://www.ele.me/profile/order">
+                    <li class="{ active: pageName === &#39;order&#39; }" class="active">
+                        <a href="/orders">
                             近三个月订单
                         </a>
                     </li>
-                    <li ng-class="{ active: pageName === &#39;order-unrated&#39; }">
-                        <a href="https://www.ele.me/profile/order/unrated">
+                    <li class="{ active: pageName === &#39;order-unrated&#39; }">
+                        <a href="/orders">
                             待评价订单
                             <!-- ngIf: unratedNumber -->
                         </a>
                     </li>
-                    <li ng-class="{ active: pageName === &#39;order-refunding&#39; }">
-                        <a href="https://www.ele.me/profile/order/refund">
+                    <li class="{ active: pageName === &#39;order-refunding&#39; }">
+                        <a href="/orders">
                             退单记录
                         </a>
                     </li>
@@ -100,18 +100,18 @@
                     我的资产
                 </h2>
                 <ul>
-                    <li ng-class="{ active: pageName === &#39;hongbao&#39; }">
-                        <a href="https://www.ele.me/profile/hongbao">
-                            我的红包
+                    <li ng-class="{ active: pageName === &#39;balance&#39; }" class="active">
+                        <a href="/hongbao">
+                            个人红包
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;balance&#39; }" class="active">
-                        <a href="https://www.ele.me/profile/balance">
+                        <a href="/balance">
                             账户余额
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;points&#39; }">
-                        <a href="https://www.ele.me/profile/points">
+                        <a href="/integral">
                             我的积分
                         </a>
                     </li>
@@ -125,22 +125,22 @@
                 </h2>
                 <ul>
                     <li ng-class="{ active: pageName === &#39;info&#39; }">
-                        <a href="https://www.ele.me/profile/info">
+                        <a href="/data">
                             个人资料
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;address&#39; }">
-                        <a href="https://www.ele.me/profile/address">
+                        <a href="add">
                             地址管理
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;security-center&#39; }">
-                        <a href="https://www.ele.me/profile/security">
+                        <a href="/safety">
                             安全中心
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;changepassword&#39; }">
-                        <a href="https://www.ele.me/profile/security/changepassword">
+                        <a href="/password">
                             修改密码
                         </a>
                     </li>
@@ -148,7 +148,7 @@
             </li>
             <li class="profile-sidebar-section">
                 <h2 class="profile-sidebar-sectiontitle" ng-class="{ active: pageName === &#39;favor&#39; }">
-                    <a href="https://www.ele.me/profile/favor">
+                    <a href="/collect">
                         <i class="icon-order-favor">
                         </i>
                         我的收藏
@@ -173,7 +173,7 @@
                                     当前账户积分：
                                 </span>
                         <b class="points-number ng-binding" ng-bind="points">
-                            0
+                            {{$userinfo['score']}}
                         </b>
                         分
                     </p>
