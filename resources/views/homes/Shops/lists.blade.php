@@ -1,8 +1,13 @@
+<<<<<<< Updated upstream
 @extends('Homes.layout')
+=======
+@extends('homes.layout')
+>>>>>>> Stashed changes
 
 @section('title','饿了么-网上订餐_外卖_饿了么订餐官网')
 
 @section('content')
+<<<<<<< Updated upstream
     <!-- 地址栏 -->
     <div class="container clearfix scope">
       <div class="location" style="{visibility: geohash ? '' : 'hidden'}" role="navigation" location="" if="geohash">
@@ -10,6 +15,17 @@
                 当前位置:
             </span>
        <span class="location-current">
+=======
+
+    <!-- 地址栏 -->
+    <div class="container clearfix scope">
+        <!-- <div class="location" style="{visibility: geohash ? '' : 'hidden'}"
+        role="navigation" location="" if="geohash"> -->
+        <span>
+                当前位置:
+            </span>
+        <!-- <span class="location-current">
+>>>>>>> Stashed changes
         <a class="inherit binding" href="/place/wx4eyv2e1qf" ubt-click="401" bind="place.name || place.address" href="/place/wx4eyv2e1qf">昌平区回龙观村东区(龙域中街南70米)</a>
         </span>
         <span class="location-change" class="{ 'location-hashistory': user.username && userPlaces && userPlaces.length > 0 }">
@@ -24,6 +40,7 @@
         </li>
         </ul>
         </span>
+<<<<<<< Updated upstream
 
     </div>
         <div class="place-search" role="search" search-input="">
@@ -51,40 +68,26 @@
                 </div>
             </div>
         </div>
+=======
+        <span transclude="">
+        <i class="icon-arrow-right scope"></i>
+        <span class="scope">服务中心</span>
+        </span>-->
+>>>>>>> Stashed changes
     </div>
-    <style>
-        .place-fetchtakeout{
-            margin-bottom: -12px;
-            width: 100%;
-            height: 56px;
-            position: relative;
-            cursor: pointer;
-            z-index: 2;
-        }
-        .place-fetchtakeout img{
-            margin-bottom: 0px;
-            width: 186px;
-            height: 56px;
-            position: absolute;
-            right:155px;
-            cursor: pointer;
-            z-index: 2;
-        }
-        .excavator-filter-name {
-            position: absolute;
-            left: 10px;
-            top: 13px;
-            color: #999;
-        }
-    </style>
-    <div class="place-fetchtakeout ng-isolate-scope" show-fetch-takeout-dialog="">
-        <img src="/home/image/takeout.408a87.png" alt="谁去拿外卖">
     </div>
+<<<<<<< Updated upstream
 
     <div class="container ng-scope" ng-show="!recentBoughtOnly">
             <div class="excavator container">
                 <div class="excavator-filter ng-scope">
                     <span class="excavator-filter-name">
+=======
+<div class="container ng-scope" ng-show="!recentBoughtOnly">
+            <div class="excavator container">
+                <div class="excavator-filter ng-scope">
+                    <span>
+>>>>>>> Stashed changes
                         商家分类:
                     </span>
                     <a class="excavator-filter-item ng-binding ng-scope active" href="javascript:">
@@ -151,6 +154,7 @@
                     ng-bind="category.name" ng-click="changeCategory(category)" ubt-click="380">
                         鲜花蛋糕
                     </a>
+<<<<<<< Updated upstream
                     {{--<div class="excavator-filter-subbox ng-hide" ng-show="subCategories">--}}
                         <div ng-show="subCategories" class="excavator-filter-subbox">
                             <!-- ngRepeat: subitem in subCategories -->
@@ -209,6 +213,9 @@
                             </a>
                             <!-- end ngRepeat: subitem in subCategories -->
                         {{--</div>--}}
+=======
+                    <div class="excavator-filter-subbox ng-hide" ng-show="subCategories">
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
