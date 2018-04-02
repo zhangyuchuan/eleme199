@@ -161,10 +161,20 @@ Route::group(['middleware'=>'homeIslogin'],function(){
     Route::get('/lists','Home\Shops\ShopController@lists');
     //加盟合作
     Route::get('/join','Home\Users\UserController@join');
+    //店铺详情详情
+    Route::get('/shop/{id}','Home\Shops\ShopController@shop');
+    //店铺评价
+    Route::get('/shop/{id}/rate','Home\Shops\ShopController@rate');
     //商品详情
-    Route::get('/shop','Home\Shops\ShopController@shop');
+    Route::get('/home/show','Home\Shops\ShopController@show');
+    //加入购物车
+    Route::get('/home/addcart','Home\Shops\ShopController@addCart');
+    //减购物车的商品数量
+    Route::get('/home/delgcart','Home\Shops\ShopController@delgcart');
+    //加购物车的商品的数量
+    Route::get('/home/addgcart','Home\Shops\ShopController@addgcart');
     //结算
-    Route::get('/jiesuan','Home\Orders\OrderController@jiesuan');
+    Route::get('/shop/{id}/jiesuan','Home\Orders\OrderController@jiesuan');
     //商家资质
     Route::get('/shopzizhi','Home\Sellers\SellerController@shopzizhi');
     //用户评价
