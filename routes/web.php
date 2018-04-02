@@ -123,6 +123,8 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::get('/add','Home\Users\UserController@add');
     //用户密码
     Route::get('/password','Home\Users\UserController@password');
+    //用户密码修改
+    Route::post('/repass','Home\Users\UserController@repass');
     //用户数据资料
     Route::get('/data','Home\Users\UserController@data');
     //用户积分
@@ -154,10 +156,21 @@ Route::group(['middleware'=>'Islogin'],function() {
     Route::get('/evaluate','Home\Users\UserController@evaluate');
 
 
-    //我的资料开始
 
-    //我的资料结束
+
+
 
 
 //公共左
 Route::get('/public','Home\Users\UserController@public');
+//我的资料开始
+//添加地址
+Route::get('/create','Home\Users\UserController@create');
+Route::post('/store','Home\Users\UserController@store');
+//修改地址
+Route::get('/modify/{id}','Home\Users\UserController@modify');
+Route::post('/storemodify{id}','Home\Users\UserController@storemodify');
+//删除地址
+Route::get('/delete/{id}','Home\Users\UserController@delete');
+//我的资料结束
+

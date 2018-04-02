@@ -12,7 +12,9 @@
                         </span>
             </h3>
             <!-- end ngIf: pageTitleVisible -->
-            <div class="profile-panelcontent" ng-transclude="">
+            @if(!empty($users->useraddr))
+            @foreach($users->useraddr as $v)
+            <div class="profile-panelcontent" ng-transclude="" style="width: 320px">
                 <div class="loading ng-binding ng-isolate-scope ng-hide" loading="" content="正在载入地址..."
                      ng-show="addressLoading">
                     <!-- ngIf: type==='profile' -->
@@ -22,28 +24,35 @@
                     <!-- ngIf: type==='normal' -->
                     正在载入地址...
                 </div>
-                <div class="desktop-addresslist clearfix ng-scope" ng-hide="addressLoading">
+                <div class="desktop-addresslist clearfix ng-scope" ng-hide="addressLoading" style="width: 300px">
                     <!-- ngRepeat: address in userAddresses -->
-                    <div class="desktop-addressblock ng-scope" ng-repeat="address in userAddresses">
+                    <div class="desktop-addressblock ng-scope" ng-repeat="address in userAddresses" style="float:left;">
                         <div class="desktop-addressblock-buttons">
                             <button class="desktop-addressblock-button" ng-click="editAddress(address)">
+                                <a href="/modify/{{$v->id}}">
                                 修改
                             </button>
                             <button class="desktop-addressblock-button" ng-click="showMask = true">
+                                <a href="/delete/{{$v->id}}">
                                 删除
                             </button>
                         </div>
                         <div class="desktop-addressblock-name ng-binding">
-                            陈
+                            {{$v->rec}}
                             <span class="ng-binding">
-                                        先生
+                                        {{$v->sex}}
+                                {{--@if($users->sex='女')--}}
+                                    {{--女士--}}
+                                {{--@else--}}
+                                    {{--先生--}}
+                                {{--@endif--}}
                                     </span>
                         </div>
                         <div class="desktop-addressblock-address ng-binding" ng-bind="address.address + &#39; &#39; + address.address_detail">
-                            赛格电脑城 黄河路2楼凯尼科技
+                            {{$v->addr}}
                         </div>
                         <div class="desktop-addressblock-mobile ng-binding" ng-bind="address.phone">
-                            15139802553
+                            {{$v->tel}}
                         </div>
                         <div class="desktop-addressblock-mask ng-hide" ng-show="showMask">
                         </div>
@@ -60,13 +69,17 @@
                             </button>
                         </div>
                     </div>
+                </div>
+            </div>
+            @endforeach
+            @endif
                     <!-- end ngRepeat: address in userAddresses -->
                     <button class="desktop-addressblock desktop-addressblock-addblock" ng-click="addAddress()">
+                        <a href="/create">
                         <i class="icon-plus">
                         </i>
                         添加新地址
                     </button>
-                </div>
-            </div>
+
 
 @endsection

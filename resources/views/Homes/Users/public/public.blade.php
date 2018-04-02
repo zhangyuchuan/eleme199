@@ -40,6 +40,7 @@
           type="image/png" sizes="96x96" />
     <link href="/home/css/vendor.d724a8_2.css" rel="stylesheet">
     <link href="/home/css/main.0a7669.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('home/lib/layui/css/layui.css')}}" media="all">
     <!--[if lte IE 8]>
     <script>
         window.location.href = 'https://h.ele.me/activities/landing';
@@ -53,6 +54,10 @@
     </script>
     <script src="/home/js/main.a0cd82.js" type="text/javascript" crossorigin="anonymous">
     </script>
+    <script src="/home/js/jquery.min.js"></script>
+    <script src="/home/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/home/js/xadmin.js"></script>
+
 </head>
 <body cute-title class="{hidesidebar: layoutState && layoutState.hideSidebar, smallbody: layoutState.smallBody, whitebody: layoutState.whiteBody}">
 <!-- <eleme-topbar state="layoutState"></eleme-topbar> -->
@@ -265,17 +270,6 @@
                     <li ng-class="{ active: pageName === &#39;order&#39; }">
                         <a href="">
                             近三个月订单
-                        </a>
-                    </li>
-                    <li ng-class="{ active: pageName === &#39;order-unrated&#39; }">
-                        <a href="">
-                            待评价订单
-                            <!-- ngIf: unratedNumber -->
-                        </a>
-                    </li>
-                    <li ng-class="{ active: pageName === &#39;order-refunding&#39; }">
-                        <a href="">
-                            退单记录
                         </a>
                     </li>
                 </ul>
