@@ -51,6 +51,7 @@
     <script src="/home/jiesuan_files/main.4f18c4.js.下载" type="text/javascript"
             crossorigin="anonymous">
     </script>
+    <script src="/home/js/jquery.min.js">    </script>
     <!--<base href="/">-->
     <base href=".">
     <meta name="mobile-agent" content="undefined">
@@ -183,6 +184,7 @@
     </div>
 </div>
 <!-- ngView: -->
+
 <div view="" role="main" class="scope">
     <div class="checkoutguide isolate-scope" checkout-guide="" guide="guide">
         <div class="container">
@@ -216,6 +218,7 @@
             <!-- end ngIf: guide.step -->
         </div>
     </div>
+    @if($gcarts = session()->get('gcarts'))
     <div class="container clearfix scope">
         <!-- ngIf: loading -->
         <!-- ngIf: !loading && nofood -->
@@ -242,32 +245,81 @@
                         小计（元）
                     </div>
                 </div>
+                <script>
+
+                    function delgcart(obj,id){
+                        var inval = $(obj).next().val();
+                        // console.log(inval);
+                        var pval = $(obj).parent().next().text();
+                        // console.log(pval);
+                        $.get('/home/delgcart',{'id': id},function(data){
+                            // console.log(data);
+                            if (data == 1){
+                                if (inval <=1){
+
+                                    $(obj).parents('#pcart').remove();
+                                    var dcss = $('#shopbasket').css('top');
+                                    // console.log(dcss);
+                                    var topp = parseInt(dcss)+45;
+                                    $('#shopbasket').css('top',topp);
+                                    if ($('#cparent').html()){
+                                        parent.location.reload(true);
+                                    }
+                                }else{
+                                    var n = parseInt(inval)-1;
+                                    $(obj).next().val(n);
+                                    var m = n*(parseInt(pval)/parseInt(inval));
+                                    $(obj).parent().next().text(m);
+
+                                }
+                                var sum= $('#sum').text();
+                                $('#sum').text(parseInt(sum)-(parseInt(pval)/parseInt(inval)));
+                                var sbnt = $('#sbnt').text();
+                                $('#sbnt').text(parseInt(sbnt)-1);
+                            }
+
+                        })
+
+                    }
+                    function addgcart(obj,id){
+                        var inval = $(obj).prev().val();
+                        var pval = $(obj).parent().next().text();
+                        // console.log(inval);
+                        $.get('/home/addgcart',{'id':id},function(data){
+                            // console.log(data);
+                            if (data == 1){
+                                var n = parseInt(inval)+1;
+                                $(obj).prev().val(n);
+                                var m = n*(parseInt(pval)/parseInt(inval));
+                                $(obj).parent().next().text(m);
+                                var sum= $('#sum').text();
+                                $('#sum').text(parseInt(sum)+(parseInt(pval)/parseInt(inval)));
+                                var sbnt = $('#sbnt').text();
+                                $('#sbnt').text(parseInt(sbnt)+1);
+
+                            }
+
+                        })
+                    }
+                </script>
                 <!-- ngRepeat: basket in cart.vm.group -->
                 <!-- ngIf: basket.length -->
                 <dl if="basket.length" repeat="basket in cart.vm.group" class="checkoutcart-group scope">
-                    <dt bind="$index + 1 + &#39;号购物车&#39;" class="checkoutcart-grouptitle binding">
-                        1号购物车
-                    </dt>
                     <!-- ngRepeat: item in basket -->
-                    <dd repeat="item in basket" class="scope">
-                        <div class="checkoutcart-tablerow">
-                            <div class="cell itemname binding" bind="item.name" title="吃贷二人组">
-                                吃贷二人组
-                            </div>
-                            <div class="cell itemquantity">
-                                <button click="cart.sub(item)">
-                                    -
-                                </button>
-                                <input model="item.quantity" change="cart.update(item)" blur="cart.blur(item)"
-                                       class="pristine valid">
-                                <button click="cart.add(item)">
-                                    +
-                                </button>
-                            </div>
-                            <div class="cell itemtotal binding" bind="&#39;¥&#39; + (item.price * item.quantity | number:2)">
-                                ¥76.00
-                            </div>
-                        </div>
+                    <dd repeat="item in basket" class="scope" id="cparent">
+
+                            @foreach( $gcarts as $v)
+                                <div  class="checkoutcart-tablerow" id="pcart">
+                                    <div class="cell itemname binding"  title="{{ $v->gname }}">{{ $v->gname }}</div>
+                                    <div class="cell itemquantity">
+                                        <button  onclick="delgcart(this,'{{ $v->id }}')">-</button>
+                                        <input  class="ng-pristine ng-valid" value="{{ $v->bnt }}">
+                                        <button onclick="addgcart(this,'{{ $v->id }}')">+</button>
+                                    </div>
+                                    <div class="cell itemtotal binding" > {{$v->bnt*$v->price }}</div>
+                                </div>
+                            @endforeach
+
                     </dd>
                     <!-- end ngRepeat: item in basket -->
                 </dl>
@@ -291,58 +343,29 @@
                         </div>
                         <div class="cell itemtotal binding" class="{minus: item.price &lt; 0}"
                              bind="&#39;¥&#39; + (item.price | number:2)">
-                            ¥5.00
+                            ¥{{ $shopinfo->sendmoney }}
                         </div>
                     </li>
-                    <!-- end ngRepeat: item in cart.vm.extra -->
-                    <li repeat="item in cart.vm.extra" class="checkoutcart-tablerow extra scope">
-                        <div class="cell itemname">
-                                    <span bind="item.name" title="" class="binding">
-                                    </span>
-                            <!-- ngIf: item.name===' 配送费' -->
-                        </div>
-                        <div class="cell itemquantity">
-                        </div>
-                        <div class="cell itemtotal binding" class="{minus: item.price &lt; 0}"
-                             bind="&#39;¥&#39; + (item.price | number:2)">
-                            ¥
-                        </div>
-                    </li>
-                    <!-- end ngRepeat: item in cart.vm.extra -->
-                    <li repeat="item in cart.vm.extra" class="checkoutcart-tablerow extra scope">
-                        <div class="cell itemname">
-                                    <span bind="item.name" title="餐盒" class="binding">
-                                        餐盒
-                                    </span>
-                            <!-- ngIf: item.name===' 配送费' -->
-                        </div>
-                        <div class="cell itemquantity">
-                        </div>
-                        <div class="cell itemtotal binding" class="{minus: item.price &lt; 0}"
-                             bind="&#39;¥&#39; + (item.price | number:2)">
-                            ¥2.00
-                        </div>
-                    </li>
-                    <!-- end ngRepeat: item in cart.vm.extra -->
                     <!-- ngRepeat: item in cart.vm.records -->
                 </ul>
                 <!-- end ngIf: cart.vm.extra || cart.vm.records -->
                 <div class="checkoutcart-total color-stress">
                     ¥
-                    <span class="num binding" bind="cart.vm.total | number: 2">
-                                83.00
+                    <span class="num binding" bind="cart.vm.total | number: 2" id="sum">
+                                {{ $sum+$shopinfo->sendmoney }}
                             </span>
                 </div>
                 <div class="checkoutcart-totalextra">
                     共
-                    <span bind="cart.pieces" class="binding">
-                                1
+                    <span bind="cart.pieces" class="binding" id="sbnt">
+                               {{ $sbnt }}
                             </span>
                     份商品
                     <!-- ngIf: cart.vm.benefit -->
                 </div>
             </div>
         </div>
+
         <!-- end ngIf: !loading && !nofood -->
         <!-- ngIf: !loading && !nofood -->
         <div if="!loading &amp;&amp; !nofood" class="checkout-content scope">
@@ -479,7 +502,7 @@
             </div>
             <div>
                 <button quicksubmit-trigger="" submit-visable="checkout.submitVisable"
-                        class="btn-stress btn-lg binding isolate-scope" disabled="orderButton.disabled"
+                        class="btn-stress btn-lg binding ng-isolate-scope " ng-disabled="orderButton.disabled"
                         bind="orderButton.text" click="orderSubmit()">
                     确认下单
                 </button>
@@ -499,24 +522,28 @@
         </div>
         <!-- end ngIf: !loading && !nofood -->
     </div>
-    <div class="checkout-quicksubmit scope" hide="checkout.submitVisable || nofood">
-        <div class="container">
-                    <span class="quick-text">
-                        应付金额
-                        <span class="yen">
-                            ¥
-                        </span>
-                        <span class="total binding" bind="cartView.vm.total">
-                            83
-                        </span>
-                    </span>
-            <button class="btn-stress btn-lg binding" disabled="orderButton.disabled"
-                    bind="orderButton.text" click="orderSubmit()">
-                确认下单
-            </button>
-        </div>
-    </div>
+    @else
+        <div class="nodata ng-isolate-scope" ng-if="!loading &amp;&amp; nofood" nodatatip="" content="你的购物车是空的，去<a href='/place'>下单</a>吧"><p class="nodata-container ng-binding" ng-bind-html="content | toTrusted">你的购物车是空的，去<a href="/place">下单</a>吧</p></div>
+    @endif
+    {{--<div class="checkout-quicksubmit scope" hide="checkout.submitVisable || nofood">--}}
+        {{--<div class="container">--}}
+                    {{--<span class="quick-text">--}}
+                        {{--应付金额--}}
+                        {{--<span class="yen">--}}
+                            {{--¥--}}
+                        {{--</span>--}}
+                        {{--<span class="total binding" bind="cartView.vm.total">--}}
+                            {{--83--}}
+                        {{--</span>--}}
+                    {{--</span>--}}
+            {{--<button class="btn-stress btn-lg binding" disabled="orderButton.disabled"--}}
+                    {{--bind="orderButton.text" click="orderSubmit()">--}}
+                {{--确认下单--}}
+            {{--</button>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 </div>
+
 <footer class="footer" role="contentinfo">
     <div class="container clearfix">
         <div class="footer-link">
