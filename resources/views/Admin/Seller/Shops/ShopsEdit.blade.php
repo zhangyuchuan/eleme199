@@ -21,14 +21,9 @@
                 <label for="phone" class="layui-form-label">
                     <span class="x-red">*</span>店铺地址
                 </label>
-                {{--<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>--}}
-                {{--<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>--}}
-                {{--<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>--}}
                 <div class="layui-input-inline">
                     <textarea name="address" id="" cols="30" rows="10">{{$shop->address}}</textarea>
-                    {{--<script  id="editor"  name="address"  type="text/plain"  style="width:620px;height:250px;">{{}}</script>--}}
                 </div>
-                {{--<script type="text/javascript">var ue = UE.getEditor('editor');</script>--}}
             </div>
             <div class="layui-form-item">
                 <label for="phone" class="layui-form-label">
@@ -58,7 +53,6 @@
             //监听提交
             form.on('submit(add)', function(data){
                 var id= $('input[name=id]').val();
-                // console.log(id);
                 var src = $('#img2').attr('src');
                 data.field.logo=src;
                 $.ajax({
@@ -71,7 +65,6 @@
                     dataType:'json',
                     type:'PUT',
                     success:function(data){
-                        // console.log(data);
                         if(data.status==1){
                             layer.alert(data.msg,{icon:5,time:2000},function(){
                                 //关闭弹层，刷新父页面

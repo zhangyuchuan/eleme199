@@ -1,6 +1,5 @@
 <!doctype html>
 <html app="eleme" perf-error="desktop/">
-    
     <head>
         <meta charset="utf-8" />
         <meta name="renderer" content="webkit" />
@@ -45,20 +44,22 @@
                 window.location.href = 'https://h.ele.me/activities/landing';
             </script>
         <![endif]-->
+        <script src="/home/js/jquery-1.8.3.min.js"></script>
+        {{--<script src="/home/jiesuan_files/vendor.6502b2.js"></script>--}}
         <script src="/home/js/69e30c57868b46e7a0d2b4a6c711970a.js" data-ref="API_CONFIG">
         </script>
-        <script src="/home/js/perf.js" type="text/javascript" crossorigin="anonymous">
-        </script>
-        <script src="/home/js/vendor.8c3a5a.js" type="text/javascript" crossorigin="anonymous">
-        </script>
-        <script src="/home/js/main.a0cd82.js" type="text/javascript" crossorigin="anonymous">
-        </script>
+        {{--<script src="/home/js/perf.js" type="text/javascript" crossorigin="anonymous">--}}
+        {{--</script>--}}
+        {{--<script src="/home/js/vendor.8c3a5a.js" type="text/javascript" crossorigin="anonymous">--}}
+        {{--// </script>--}}
+        {{--<script src="/home/js/main.a0cd82.js" type="text/javascript" crossorigin="anonymous">--}}
+        {{--</script>--}}
         <script src="/home/js/6936dbf3e7d94cffa954bcbcf2b79f38.js"></script>
     </head>
     
     <body cute-title class="{hidesidebar: layoutState && layoutState.hideSidebar, smallbody: layoutState.smallBody, whitebody: layoutState.whiteBody}">
         <!-- <eleme-topbar state="layoutState"></eleme-topbar> -->
-        <div class="isolate-scope" switch="state.type" state="layoutState">
+        <div class="isolate-scope" switch="state.type" state="layoutState" id="toptool">
             <div class="scope isolate-scope" switch-default="" topbar-default=""
             state="state">
                 <header class="topbar" role="navigation" class="{shoptopbar: state.type === 'shop'}">
@@ -143,7 +144,7 @@
         <div class="importantnotification container" role="banner">
         </div>
         <!-- <eleme-importantnotification></eleme-importantnotification> -->
-        <div class="sidebar" role="complementary" hide="layoutState && layoutState.hideSidebar">
+        <div class="sidebar" id="sidebar" role="complementary" hide="layoutState && layoutState.hideSidebar">
             <div class="sidebar-tabs">
                 <div class="toolbar-tabs-middle">
                     <a class="toolbar-btn icon-order toolbar-close" href="/profile/order"
@@ -153,23 +154,22 @@
                     </div>
                     <a class="toolbar-cartbtn icon-cart toolbar-open" href="JavaScript:" template="cart"
                     class="{'focus': (activeTemplate === 'cart' && isSidebarOpen), 'toolbar-cartbtn-shownum': foodCount.count}"
-                    ubt-click="390">
+                    ubt-click="390" id="goodscart">
                         购物车
                     </a>
                     <div class="toolbar-separator">
                     </div>
-                    <a class="toolbar-btn icon-notice toolbar-open modal-hide" href="JavaScript:"
+                    <a id="news" class="toolbar-btn icon-notice toolbar-open " href="JavaScript:"
                     template="message" class="{'focus': (activeTemplate === 'message' && isSidebarOpen), 'toolbar-open': user, 'modal-hide': user}"
                     tooltip="我的信息" tooltip-placement="left" ubt-click="392">
                     </a>
                 </div>
                 <div class="toolbar-tabs-bottom">
                     <div class="toolbar-btn icon-QR-code">
-                        <div class="dropbox toolbar-tabs-dropbox">
+                        <div class="dropbox toolbar-tabs-dropbox" >
                             <a href="http://static11.elemecdn.com/eleme/desktop/mobile/index.html"
                             target="_blank">
                                 <img src="/home/img/appqc.95e532.png" alt="下载手机应用">
-                                <p>
                                     下载手机应用
                                 </p>
                                 <p class="icon-QR-code-bonus">
@@ -182,17 +182,128 @@
                     tooltip="在线客服" title="在线客服" tooltip-placement="left" target="_blank" href="JavaScript:"
                     style="visibility: hidden;">
                     </a>
-                    <a class="toolbar-btn sidebar-btn-backtop icon-top" tooltip="回到顶部" title="回到顶部"
-                    href="JavaScript:" tooltip-placement="left" style="visibility: hidden;">
+                    <a class="toolbar-btn sidebar-btn-backtop icon-top" tooltip="回到顶部" href="#toptool" id="top" title="回到顶部"
+                    href="JavaScript:" tooltip-placement="left"  style="display:none">
                     </a>
                 </div>
-            </div>
-            <div class="sidebar-content">
-            </div>
+                <div class="sidebar-content"  id="cartslide" >
+                    <!-- ngInclude: activeTemplate ? ('/common/page/_block/sidebar/sidebar-'+
+                    activeTemplate + '/sidebar-'+ activeTemplate + '.html') : '' -->
+                    <div ng-include="activeTemplate ? ('/common/page/_block/sidebar/sidebar-'+ activeTemplate + '/sidebar-'+ activeTemplate + '.html') : ''"
+                         class="ng-scope">
+                        <div ng-controller="sidebarCartCtrl" class="ng-scope" >
+                            <div class="sidebarcart-caption">
+                                <a ng-href="/shop/2296214" ng-bind="cart.restaurant_info.name || '购物车'"
+                                   ubt-click="394" class="ng-binding" href="/shop/2296214">
+                                    购物车
+                                </a>
+                                <span class="icon-angle-double-right" ng-click="toggleSidebar()">
+                </span>
+                            </div>
+                            <!-- ngIf: loading -->
+                            <!-- ngIf: pieces -->
+                            <div class="sidebarcart-summary ng-hide" ng-show="pieces">
+                                <p>
+                                    共
+                                    <span class="color-stress ng-binding" ng-bind="pieces">
+                        0
+                    </span>
+                                    份，总计
+                                    <span class="color-stress ng-binding" ng-bind="total">
+                        0
+                    </span>
+                                </p>
+                                <button ng-click="settle()" class="sidebarcart-submit ng-binding sidebarcart-hasagio"
+                                        ng-class="{ 'sidebarcart-hasagio': submitButton.disabled }" ng-bind="submitButton.text"
+                                        ubt-click="391">
+                                    购物车是空的
+                                </button>
+                            </div>
+                            <!-- ngIf: !loading && !pieces -->
+                            <div ng-if="!loading &amp;&amp; !pieces" class="sidebarcart-notice ng-scope">
+                                <i class="icon-history">
+                                </i>
+                                <h3>
+                                    购物车空空如也
+                                </h3>
+                                <p>
+                                    快去订餐吧，总有你心仪的美食
+                                </p>
+                            </div>
+                            <!-- end ngIf: !loading && !pieces -->
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-content" id="newslide">
+                    <!-- ngInclude: activeTemplate ? ('/common/page/_block/sidebar/sidebar-'+
+                    activeTemplate + '/sidebar-'+ activeTemplate + '.html') : '' -->
+                    <div ng-include="activeTemplate ? ('/common/page/_block/sidebar/sidebar-'+ activeTemplate + '/sidebar-'+ activeTemplate + '.html') : ''"
+                         class="ng-scope">
+                        <div ng-controller="sidebarMessageCtrl" class="ng-scope">
+                            <div class="sidebarmessage-title">
+                                我的消息
+                                <span class="icon-angle-double-right" ng-click="toggleSidebar()">
+                </span>
+                                <!-- ngIf: 0 && messageList.$resolved && messageList.length -->
+                            </div>
+                            <!-- ngIf: !messageList.$resolved -->
+                            <div ng-show="messageList.$resolved &amp;&amp; !messageList.length" class="sidebarmessage-notice">
+                                <i class="icon-notice">
+                                </i>
+                                您没有新的消息哦
+                            </div>
+                            <!-- ngRepeat: item in messageList -->
+                        </div>
+                    </div>
+                </div>
+        </div>
         </div>
         <!-- <eleme-sidebar hide="layoutState && layoutState.hideSidebar"></eleme-sidebar> -->
         <!-- <div view role="main"></div> -->
+        <script>
+            // var start = null;
+            $('#goodscart').click(function(){
+                $('#cartslide').css('display','block');
+                $('#newslide').css('display','none');
+               if($('#sidebar').css('marginRight')!='0px'){
+                   $('#sidebar').animate({
+                       'marginRight':'0px'
+                   },400);
+               }else{
+                   $('#sidebar').animate({
+                       'marginRight':'300px'
+                   },400);
+               }
+            })
+            $('#news').click(function(){
+                $('#cartslide').css('display','none');
+                $('#newslide').css('display','block');
+                if($('#sidebar').css('marginRight')!='0px'){
+                    $('#sidebar').animate({
+                        'marginRight':'0px'
+                    },400);
+                }else{
+                    $('#sidebar').animate({
+                        'marginRight':'300px'
+                    },400);
+                }
+            })
+            $('.icon-angle-double-right').click(function(){
+                $('#sidebar').animate({
+                    'marginRight':'0px'
+                },400);
+            })
+            document.onscroll=function(){
+               if($(document).scrollTop()>=500){
+                    $('#top').css('display','block');
+            }else{
+                   $('#top').css('display','none');
+               }
+          }
 
+
+
+        </script>
         @section('content')
 
 

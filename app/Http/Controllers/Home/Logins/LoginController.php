@@ -12,8 +12,21 @@ use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
     //引入登录页面
-    public function login()
+    public function login(Request $request)
     {
+        //定义路由组
+        $path = [
+                    '/orders','/center','/safety',
+                    '/add','/password','/data','/integral',
+                    '/collect','/balance', '/opendata','/openmessage',
+                ];
+        foreach($path as $k=>$v){
+          $path[$k] ='http://'.$request->server('HTTP_HOST').$v;
+
+        }
+        if(in_array(url()->previous(),$path)){
+            Session::put('paths',url()->previous());
+        }
 
         return view('Homes.Logins.login');
     }
@@ -44,9 +57,7 @@ class LoginController extends Controller
             return redirect('home/login')->with('errors','该用户已被禁用');
         }
         //将信息保存进session
-
         Session::put('user',$user);
-
         //登陆成功跳转至后台首页
         $path = !empty(session('paths'))?session('paths'):'/lists';
         return redirect($path);

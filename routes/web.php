@@ -14,11 +14,7 @@
 //网站首页
 
 Route::get('/', function () {
-
-
     return view('welcome');
-
-
 });
 //后台登陆
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
@@ -57,6 +53,8 @@ Route::group(['middleware'=>'adminIslogin'],function() {
     Route::post('/admin/shops/changestatus', 'Admin\Shops\ShopsController@changestatus');
     //管理员删除店铺
     Route::post('/admin/shops/delete/{id}', 'Admin\Shops\ShopsController@deleteshop');
+    //商铺审核
+    Route::get('/admin/shops/judgeshop', 'Admin\Shops\ShopsController@judgeShop');
     Route::resource('/admin/shops', 'Admin\Shops\ShopsController');
 
 
@@ -156,9 +154,37 @@ Route::group(['middleware'=>'homeIslogin'],function(){
     //账户余额
     Route::get('/balance','Home\Users\UserController@balance');
 
+    //开店申请1
+    Route::get('/opendata','Home\Shops\OpenShopController@opendata');
+    //开店信息采集
+    Route::get('/openmessage','Home\Shops\OpenShopController@openmessage');
+    //开店信息表单
+    Route::get('/storeform','Home\Shops\OpenShopController@storeform');
+    //获取二级分类
+    Route::get('/home/getsecond','Home\Shops\OpenShopController@getsecond');
+    //表单信息处理
+    Route::post('/home/shop/doform','Home\Shops\OpenShopController@doform');
+    //处理表单上传文件
+    Route::post('/home/shop/uploadfile','Home\Shops\OpenShopController@uploadfile');
+    //开店申请审核页面
+    Route::get('/home/openlast','Home\Shops\OpenShopController@openlast');
+
 });
     //商品列表
     Route::get('/lists','Home\Shops\ShopController@lists');
+    //首页获得商品列表
+    Route::get('home/getshop','Home\Shops\ShopController@getShop');
+    //首页获取子分类
+    Route::get('home/getcate','Home\Shops\ShopController@getCate');
+    //列表页搜索
+    Route::post('home/dosearch','Home\Shops\ShopController@listDoSearch');
+    //我要开店首页
+    Route::get('home/openshop','Home\Shops\OpenShopController@index');
+
+
+
+
+
     //加盟合作
     Route::get('/join','Home\Users\UserController@join');
     //商品详情

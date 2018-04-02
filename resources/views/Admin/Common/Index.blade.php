@@ -137,7 +137,7 @@
                             </a>
                         </li >
                         <li>
-                            <a _href="/admin/shops/shop/add" target="_blank">
+                            <a _href="/admin/shops/judgeshop" target="_blank">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>开店审核</cite>
                             </a>
