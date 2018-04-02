@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin\Users;
 
 use App\Model\User;
+use App\Model\UserInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 
 class UserController extends Controller
 {
@@ -25,7 +27,24 @@ class UserController extends Controller
     public function index(Request $request)
     {
 
-        $users =User::where('auth','2')->get();
+        // 搜索条件下获取
+        $users = User::orderBy('id','asc')->where('auth','2')
+            ->where(function($query) use($request){
+                //检测关键字
+                $username = $request->input('username');
+                $sex = $request->input('sex');
+                //如果用户名不为空
+                if(!empty($username)) {
+                    $query->where('username','like','%'.$username.'%');
+                }
+                //如果性别不为空
+                if(!empty($sex)) {
+                    $query->where('sex',$sex);
+                }
+            })
+            ->paginate($request->input('num', 3));
+
+
 //
          return view('Admin.Users.UserList',['users'=>$users,'request'=> $request]);
 
@@ -127,7 +146,62 @@ class UserController extends Controller
         return $arr;
     }
 
+    public function show($id){
 
+    }
+//    public function info()
+//    {
+////        $userinfo = User::findOrFail($id);
+//        return view('Admin.Users.UserInfo');
+//    }
+    public function info(Request $request)
+    {
+
+        // 搜索条件下获取
+        $userinfo = UserInfo::orderBy('id','asc')->where(function($query) use($request){
+                //检测关键字
+                $uname = $request->input('uname');
+                $sex = $request->input('sex');
+                //如果用户名不为空
+                if(!empty($uname)) {
+                    $query->where('uname','like','%'.$uname.'%');
+                }
+                //如果性别不为空
+                if(!empty($sex)) {
+                    $query->where('sex',$sex);
+                }
+            })
+            ->paginate($request->input('num', 3));
+
+
+//
+        return view('Admin.Users.UserInfo',['userinfo'=>$userinfo,'request'=> $request]);
+
+
+
+
+
+    }
+    public function del($id)
+    {
+        $userinfo = userinfo::find($id);
+
+        $res = $userinfo->delete();
+        if($res){
+//            json格式的接口信息  {'status':是否成功，'msg'：提示信息}
+            $arr = [
+                'status'=>0,
+                'msg'=>'删除成功'
+            ];
+        }else{
+            $arr = [
+                'status'=>1,
+                'msg'=>'删除失败'
+            ];
+        }
+
+        return $arr;
+    }
 
 
 }

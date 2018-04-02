@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home\Users;
 
+use App\Model\UserInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,7 +11,8 @@ class UserController extends Controller
     //个人中心
     public function center()
     {
-        return view('Homes.Users.center');
+        $userinfo = UserInfo::find(2);
+        return view('Homes.Users.center',compact('userinfo'));
     }
 
     //安全中心
@@ -40,7 +42,8 @@ class UserController extends Controller
     //用户积分
     public function integral()
     {
-        return view('Homes.Users.integral');
+        $userinfo = UserInfo::find(2);
+        return view('Homes.Users.integral',compact('userinfo'));
     }
 
     //用户收藏
@@ -52,12 +55,21 @@ class UserController extends Controller
     //账户余额
     public function balance()
     {
-        return view('Homes.Users.balance');
+        $userinfo = UserInfo::find(2);
+
+
+        return view('Homes.Users.balance',compact('userinfo'));
     }
 
     //加盟合作
     public function join()
     {
         return view('Homes.Users.join');
+    }
+
+    //个人红包
+    public function hongbao()
+    {
+        return view('Homes.Users.hongbao');
     }
 }
