@@ -3,8 +3,10 @@
 @section('title','饿了么-网上订餐_外卖_饿了么订餐官网')
 
 @section('content')
+
     <link href="/home/css/vendor.eb86f5.css" rel="stylesheet">
     <link href="/home/css/profile.4b02a0.css" rel="stylesheet">
+    <script src="/home/js/jquery-1.8.3.min.js"></script>
 <div ng-view="" role="main" class="ng-scope">
     <div class="profile-container container" profile-container="" page-name="balance"
          page-title="账户余额">
@@ -32,14 +34,14 @@
                                 <li ng-repeat="userPlace in userPlaces | filter:filterPlace | limitTo: 4"
                                     class="ng-scope">
                                     <a class="inherit ng-binding" ng-href="/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404"
-                                       ng-bind="userPlace.name" ubt-click="399" href="https://www.ele.me/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404">
+                                       ng-bind="userPlace.name" ubt-click="399" href="/place/wx4spk2jk0db?latitude=40.102375&amp;longitude=116.334404">
                                         昌平区204县道(北京市育荣教育园区西)
                                     </a>
                                 </li>
                                 <!-- end ngRepeat: userPlace in userPlaces | filter:filterPlace | limitTo:
                                 4 -->
                                 <li class="changelocation">
-                                    <a ng-href="/home" hardjump="" href="https://www.ele.me/home">
+                                    <a ng-href="/home" hardjump="" href="/home">
                                         修改收货地址
                                         <span class="icon-location">
                                         </span>
@@ -63,7 +65,7 @@
                 <h2 class="profile-sidebar-sectiontitle" ng-class="{ active: pageName === &#39;profile&#39; }">
                     <i class="icon-line-home">
                     </i>
-                    <a href="https://www.ele.me/profile">
+                    <a href="/center">
                         个人中心
                     </a>
                 </h2>
@@ -76,18 +78,18 @@
                 </h2>
                 <ul>
                     <li ng-class="{ active: pageName === &#39;order&#39; }">
-                        <a href="https://www.ele.me/profile/order">
+                        <a href="/orders">
                             近三个月订单
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;order-unrated&#39; }">
-                        <a href="https://www.ele.me/profile/order/unrated">
+                        <a href="/orders">
                             待评价订单
                             <!-- ngIf: unratedNumber -->
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;order-refunding&#39; }">
-                        <a href="https://www.ele.me/profile/order/refund">
+                        <a href="/orders">
                             退单记录
                         </a>
                     </li>
@@ -100,18 +102,18 @@
                     我的资产
                 </h2>
                 <ul>
-                    <li ng-class="{ active: pageName === &#39;hongbao&#39; }">
-                        <a href="https://www.ele.me/profile/hongbao">
-                            我的红包
+                    <li ng-class="{ active: pageName === &#39;balance&#39; }" class="active">
+                        <a href="/hongbao">
+                            个人红包
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;balance&#39; }" class="active">
-                        <a href="https://www.ele.me/profile/balance">
+                        <a href="/balance">
                             账户余额
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;points&#39; }">
-                        <a href="https://www.ele.me/profile/points">
+                        <a href="/integral">
                             我的积分
                         </a>
                     </li>
@@ -125,22 +127,22 @@
                 </h2>
                 <ul>
                     <li ng-class="{ active: pageName === &#39;info&#39; }">
-                        <a href="https://www.ele.me/profile/info">
+                        <a href="/data">
                             个人资料
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;address&#39; }">
-                        <a href="https://www.ele.me/profile/address">
+                        <a href="add">
                             地址管理
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;security-center&#39; }">
-                        <a href="https://www.ele.me/profile/security">
+                        <a href="/safety">
                             安全中心
                         </a>
                     </li>
                     <li ng-class="{ active: pageName === &#39;changepassword&#39; }">
-                        <a href="https://www.ele.me/profile/security/changepassword">
+                        <a href="/password">
                             修改密码
                         </a>
                     </li>
@@ -148,7 +150,7 @@
             </li>
             <li class="profile-sidebar-section">
                 <h2 class="profile-sidebar-sectiontitle" ng-class="{ active: pageName === &#39;favor&#39; }">
-                    <a href="https://www.ele.me/profile/favor">
+                    <a href="/collect">
                         <i class="icon-order-favor">
                         </i>
                         我的收藏
@@ -174,72 +176,88 @@
                                     当前账户余额：
                                 </span>
                         <b class="balance-number ng-binding" ng-bind="balance.number">
-                            0
+                            {{$userinfo['money']}}
                         </b>
                         元
                     </p>
                     <p class="balance-fn">
                                 <span class="btn-default balance-btn disabled" tooltip="暂不支持提现，可使用余额消费">
-                                    提现
+                                    暂不支持提现
                                 </span>
                     </p>
                 </div>
+
+
                 <div class="balance-detail ng-scope">
                     <div class="balance-detail-header">
                         <h2 class="balance-detail-title">
                             账户资产明细
                         </h2>
+                        <script>
+                            function morenxuan(obj){
+                                $(obj).siblings().removeClass("active");
+                                $(obj).addClass("active");
+                                // var add=$(".num-add").text();
+                                // add++;
+                                // $(".num-add").text(add);
+                                return false;
+                            };
+                        </script>
                         <p class="selector-list ng-isolate-scope" selector="" label="分类" data="balance.type"
                            filter-selected="filter.type">
                                     <span class="selector-label ng-binding" ng-bind="label">
                                         分类
                                     </span>
+                                {{--@if(active=='active')--}}
+
                             <span class="selector-content">
+
                                         <!-- ngRepeat: item in data -->
                                         <a class="selector-item ng-binding ng-scope active" href="javascript:"
                                            ng-repeat="item in data" ng-class="{&#39;active&#39;: item.val === selected}"
-                                           ng-bind="item.key" ng-click="choose(item)">
+                                           onclick="morenxuan(this)">
                                             全部
                                         </a>
                                 <!-- end ngRepeat: item in data -->
-                                        <a class="selector-item ng-binding ng-scope" href="javascript:" ng-repeat="item in data"
+                                        <a class="selector-item ng-binding ng-scope  " href="javascript:" ng-repeat="item in data"
                                            ng-class="{&#39;active&#39;: item.val === selected}" ng-bind="item.key"
-                                           ng-click="choose(item)">
+                                           onclick="morenxuan(this)">
                                             充值
                                         </a>
                                 <!-- end ngRepeat: item in data -->
                                         <a class="selector-item ng-binding ng-scope" href="javascript:" ng-repeat="item in data"
                                            ng-class="{&#39;active&#39;: item.val === selected}" ng-bind="item.key"
-                                           ng-click="choose(item)">
+                                           onclick="morenxuan(this)">
                                             余额消费
                                         </a>
                                 <!-- end ngRepeat: item in data -->
                                         <a class="selector-item ng-binding ng-scope" href="javascript:" ng-repeat="item in data"
                                            ng-class="{&#39;active&#39;: item.val === selected}" ng-bind="item.key"
-                                           ng-click="choose(item)">
+                                           onclick="morenxuan(this)">
                                             第三方支付消费
                                         </a>
                                 <!-- end ngRepeat: item in data -->
                                         <a class="selector-item ng-binding ng-scope" href="javascript:" ng-repeat="item in data"
                                            ng-class="{&#39;active&#39;: item.val === selected}" ng-bind="item.key"
-                                           ng-click="choose(item)">
+                                           onclick="morenxuan(this)">
                                             支付失败退款
                                         </a>
                                 <!-- end ngRepeat: item in data -->
                                         <a class="selector-item ng-binding ng-scope" href="javascript:" ng-repeat="item in data"
                                            ng-class="{&#39;active&#39;: item.val === selected}" ng-bind="item.key"
-                                           ng-click="choose(item)">
+                                           onclick="morenxuan(this)">
                                             订单退款
                                         </a>
                                 <!-- end ngRepeat: item in data -->
                                         <a class="selector-item ng-binding ng-scope" href="javascript:" ng-repeat="item in data"
                                            ng-class="{&#39;active&#39;: item.val === selected}" ng-bind="item.key"
-                                           ng-click="choose(item)">
+                                           onclick="morenxuan(this)">
                                             提现
                                         </a>
                                 <!-- end ngRepeat: item in data -->
                                     </span>
                         </p>
+
                         <p class="selector-list ng-isolate-scope" selector="" label="时间" data="balance.days"
                            filter-selected="filter.days">
                                     <span class="selector-label ng-binding" ng-bind="label">
@@ -249,25 +267,25 @@
                                         <!-- ngRepeat: item in data -->
                                         <a class="selector-item ng-binding ng-scope" href="javascript:" ng-repeat="item in data"
                                            ng-class="{&#39;active&#39;: item.val === selected}" ng-bind="item.key"
-                                           ng-click="choose(item)">
+                                           onclick="morenxuan(this)">
                                             今天
                                         </a>
                                 <!-- end ngRepeat: item in data -->
                                         <a class="selector-item ng-binding ng-scope" href="javascript:" ng-repeat="item in data"
                                            ng-class="{&#39;active&#39;: item.val === selected}" ng-bind="item.key"
-                                           ng-click="choose(item)">
+                                           onclick="morenxuan(this)">
                                             近7天
                                         </a>
                                 <!-- end ngRepeat: item in data -->
                                         <a class="selector-item ng-binding ng-scope" href="javascript:" ng-repeat="item in data"
                                            ng-class="{&#39;active&#39;: item.val === selected}" ng-bind="item.key"
-                                           ng-click="choose(item)">
+                                           onclick="morenxuan(this)">
                                             近15天
                                         </a>
                                 <!-- end ngRepeat: item in data -->
                                         <a class="selector-item ng-binding ng-scope" href="javascript:" ng-repeat="item in data"
                                            ng-class="{&#39;active&#39;: item.val === selected}" ng-bind="item.key"
-                                           ng-click="choose(item)">
+                                           onclick="morenxuan(this)">
                                             1个月
                                         </a>
                                 <!-- end ngRepeat: item in data -->
